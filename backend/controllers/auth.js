@@ -40,7 +40,6 @@ export async function signup(req, res) {
         birthDate, 
         name, 
         email, 
-        state,
         carPicture,
         password } = req.body
         console.log(req.body)
@@ -48,7 +47,7 @@ export async function signup(req, res) {
     if (
             !pseudo || !firstname || 
             !birthDate || !name || 
-            !email || !state || 
+            !email || 
             !carPicture || !password
         ) {
         return res
@@ -71,7 +70,6 @@ export async function signup(req, res) {
             birthDate,
             name,
             email,
-            state,
             carPicture,
             password: passwordHash.generate(password),
         })

@@ -11,7 +11,7 @@ const userSchema = new Schema(
         birthDate: String,
         name: String,
         email: String,
-        state: String,
+        state: {type:String, default:"en attente"},
         carPicture: String,
         password: String,
     },

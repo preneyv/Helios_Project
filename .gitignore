@@ -1,5 +1,4 @@
 backend/node_modules
-backend/env/.env.dev
-backend/env/.env.prod
+backend/.env
 backend/controllers/.gitkeep
 .idea/*

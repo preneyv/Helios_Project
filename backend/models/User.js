@@ -16,7 +16,7 @@ const userSchema = new Schema(
         password: String,
     },
     {
-        timestamps: { createdAt: "created_at" }
+        timestamps: { createdAt: "created_at", updatedAt: "update_at" }
     }
 )
 

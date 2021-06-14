@@ -34,9 +34,23 @@ export async function signin(req, res) {
  * @returns
  */
 export async function signup(req, res) {
-    const { name, email, password, externals } = req.body
+    const { 
+        pseudo, 
+        firstname, 
+        birthDate, 
+        name, 
+        email, 
+        state,
+        carPicture,
+        password } = req.body
+        console.log(req.body)
 
-    if (!name || !email || !password) {
+    if (
+            !pseudo || !firstname || 
+            !birthDate || !name || 
+            !email || !state || 
+            !carPicture || !password
+        ) {
         return res
             .status(403)
             .json({ message: `Formulaire invalide` })
@@ -52,10 +66,14 @@ export async function signup(req, res) {
 
     try {
         const user = new User({
+            pseudo,
+            firstname,
+            birthDate,
             name,
             email,
+            state,
+            carPicture,
             password: passwordHash.generate(password),
-            externals,
         })
 
         user.save((error) => {

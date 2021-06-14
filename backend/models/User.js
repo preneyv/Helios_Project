@@ -6,11 +6,14 @@ const { Schema, model } = mongoose
 
 const userSchema = new Schema(
     {
+        pseudo: String,
+        firstname: String,
+        birthDate: String,
         name: String,
         email: String,
+        state: String,
+        carPicture: String,
         password: String,
-        externals: [Object],
-        isSuperAdmin: Boolean
     },
     {
         timestamps: { createdAt: "created_at" }
@@ -36,7 +39,6 @@ userSchema.methods = {
             _id: this._id,
             name: this.name,
             email: this.email,
-            isSuperAdmin: this.isSuperAdmin
         }
 
         return jwt.sign(payload, process.env.TOKEN_SECRET)

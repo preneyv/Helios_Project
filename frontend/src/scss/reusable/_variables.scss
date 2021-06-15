@@ -1,4 +1,16 @@
-
 //Variable globales
+$space: 0.25rem;
+$size-text-base: 12px;
+$black: #222222;
+$white: #ffffff;
 $primary: #8CA6BA;
-$white: #fff;
+
+// :root {
+
+//   @each $color, $value in $colors {
+//     --color-#{$color}: #{$value};
+//   }
+//   --space: #{$space};
+//   --size-text-base: #{$size-text-base};
+
+// }

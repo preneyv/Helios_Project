@@ -11,15 +11,35 @@
         <div class="login">
           <h2>Rejoignez la communauté !</h2>
           <div class="cta-login">
-            <router-link to="/">S'inscrire</router-link>
-            <router-link to="/">Se connecter</router-link>
+
+            <button @click="showModalInscription = true">S'inscrire</button>
+            <button @click="showModalConnexion = true">Se connecter</button>
+            <!-- <router-link to="/">S'inscrire</router-link>
+            <router-link to="/">Se connecter</router-link> -->
           </div>
         </div> 
     </div>
+    <PopUp v-if="showModalInscription" @close="showModalInscription = false" headTitle="S'inscrire">
+      <template v-slot:header>
+        <button class="modal-default-button" @click="showModalInscription = false">Fermer</button>
+      </template>
+      <template v-slot:content>
+        <h3>Test inscription</h3>
+       </template>
+    </PopUp>
+     <PopUp v-if="showModalConnexion" @close="showModalConnexion = false" headTitle="S'inscrire">
+      <template v-slot:header>
+        <button class="modal-default-button" @click="showModalConnexion = false">Fermer</button>
+      </template>
+      <template v-slot:content>
+        <h3>Test connexion</h3>
+       </template>
+    </PopUp>
   </div>
 </template>
 
 <style lang="scss">
+
 #app {
   font-family: Poppins, Helvetica, Arial, sans-serif;
 }
@@ -87,7 +107,7 @@
   }
 
   .cta-login {
-    a {
+    button {
       &:first-of-type {
         @include btnBlue;
       }
@@ -103,12 +123,18 @@
 
 <script>
 // @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
+import PopUp from '@/components/PopUp.vue'
 
 export default {
   name: 'home',
-  // components: {
-  //   HelloWorld
-  // }
+  components: {
+    PopUp
+  },
+  data() {
+    return {
+      showModalInscription: false,
+      showModalConnexion: false
+    }
+  }
 }
 </script>

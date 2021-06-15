@@ -8,9 +8,9 @@
   </div>
 </template>
 
-<style lang="scss">
-#app {
+// <style lang="scss">
+// #app {
  
 
-}
-</style>
+// }
+// </style>

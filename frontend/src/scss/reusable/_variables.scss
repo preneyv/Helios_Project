@@ -14,3 +14,22 @@ $primary: #8CA6BA;
 //   --size-text-base: #{$size-text-base};
 
 // }
+
+$breakpoints: (
+        "tablet": (
+                min-width: 767px,
+        ),
+        "laptop": (
+                min-width: 992px,
+        ),
+        "desktop": (
+                min-width: 1200px,
+        ),
+        "xl-desktop": (
+                min-width: 1500px,
+        ),
+        "large": (
+                min-width: 1920px,
+        ),
+) !default;
+

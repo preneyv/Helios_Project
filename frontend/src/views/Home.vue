@@ -74,6 +74,7 @@
   </div>
 </template>
 
+
 <script>
 // @ is an alias to /src
 import PopUp from '@/components/PopUp.vue'
@@ -84,17 +85,20 @@ export default {
   components: {
     PopUp
   },
-  mounted() {
-      //this.show = true; // might need this.$nextTick
-  },
   data() {
     return {
       showModalInscription: false,
       showModalConnexion: false,
       formData:{},
-      show: false,
+      show: false
     }
   },
+  mounted() {
+    this.show = true; // might need this.$nextTick
+    let home = document.querySelector(".home");
+     home.style.opacity = "1";
+  },
+
   methods:{
 
     closeModal(modal) {
@@ -148,6 +152,13 @@ export default {
 
   }
 }
+
+// document.addEventListener('DOMContentLoaded', function() {
+//     let home = document.querySelector(".home");
+//     home.style.opacity = "1";
+
+// }, false);
+
 </script>
 
 <style lang="scss">
@@ -292,7 +303,6 @@ export default {
     .img-input {
        display: none;
     }
-
     #password {
       margin-bottom: 25px;
     }
@@ -308,7 +318,7 @@ export default {
      font-size: 12px; 
     line-height: 15px;
   }
-
+ 
   .photo-profil, .name-file {
     font-size: 10px; 
     line-height: 15px;
@@ -343,7 +353,6 @@ export default {
   }
 
   //connexion form 
-
   .connexion.basic-popUp {
     height: 45%;
 

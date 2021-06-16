@@ -1,17 +1,19 @@
 <template> 
-    <div class="profil">
+    <div class="fil-actu">
+        <div class="actus"></div>
     </div>
 </template>
 <script>
     /* eslint-disable */ 
-    // import Nav from '../components/Nav.vue'
-    // import BandeauRight from '../components/BandeauRight.vue'
+    import Nav from '../components/Nav.vue'
+    import BandeauRight from '../components/BandeauRight.vue'
 
     export default {
-        name: 'profil',
+        name: 'filActu',
         // props: ['counter'] ,
         components: {
-          
+            Nav,
+            BandeauRight
         },
         data() {
             return {

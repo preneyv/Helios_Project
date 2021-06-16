@@ -19,31 +19,33 @@
           </div>
         </div> 
     </div>
-    <PopUp v-if="showModalInscription" @close="showModalInscription = false" headTitle="S'inscrire" classPopUp="inscription">
+    <PopUp v-if="showModalInscription" @close="closeModal('inscription')" headTitle="S'inscrire" classPopUp="inscription" :actionButton="signup">
       <template v-slot:header>
         <button class="modal-default-button" @click="showModalInscription = false"><img :src="require('@/assets/cancel.svg')" alt="fermer la pop up"></button>
       </template>
       <template v-slot:content>
-       <form @submit.prevent="submit()">
+       <form @submit.prevent="signup()">
          <div class="form-group-50">
-          <input type="text" id="nom" name="nom" placeholder="Nom"/>
-          <input type="text" id="prenom" name="prenom" placeholder="Prenom"/>
+          <input type="text" id="name" name="nom" placeholder="Nom" @input="updateFormData"/>
+          <input type="text" id="firstname" name="prenom" placeholder="Prenom"  @input="updateFormData"/>
         </div>
         <div class="form-group-50">
-          <input type="email" id="email" name="email" placeholder="Email"/>
-          <input type="text" id="dateNaissance" name="dateNaissance" required placeholder="Date de naissance"/>
+          <input type="email" id="email" name="email" placeholder="Email"  @input="updateFormData"/>
+          <input type="date" id="birthDate" name="dateNaissance" required placeholder="Date de naissance"  @input="updateFormData"/>
         </div>
         <div class="form-group--100">
             <p class="login-id">Votre login apparaîtra sur tout ce que vous publié, il sera votre identifant sur la plateforme pour garantir votre anonymat</p>
-            <input type="text" id="login" name="login" placeholder="Login"/>
+            <input type="text" id="pseudo" name="login" placeholder="Login"  @input="updateFormData"/>
         </div>
         <div class="form-group--100">
-            <input type="password" id="mdp" name="mdp" placeholder="Mot de passe"/>
+            <input type="password" id="password" class="mdp" name="mdp" placeholder="Mot de passe"  @input="updateFormData"/>
              <p class="photo-car">Afin de s’assurer que vous êtes propriétaire d’une belle voiture, veuillez insérer une photo de celle-ci, ci-dessous :</p>
             <p class="photo-profil">Cette photo deviendra votre photo de profil sur le réseau</p>
         </div>
         <div class="form-group--100">
-            <button class="img-btn">Image +</button>
+          <label for="carPicture" class="img-btn">Image +</label>
+            <input type="file" class="img-input" id="carPicture" @input="updateFormData">
+            <p class="name-file">{{ formData.file }}</p>
         </div>
         <!-- <p class="forgot-password text-right mt-2 mb-4">
             <router-link to="/forgot-password">Mot de passe oublié ?</router-link>
@@ -51,7 +53,7 @@
       </form>
       </template>
     </PopUp>
-     <PopUp v-if="showModalConnexion" @close="showModalConnexion = false" headTitle="Se connecter" classPopUp="connexion">
+     <PopUp v-if="showModalConnexion" @close="closeModal('connexion')" headTitle="Se connecter" classPopUp="connexion" :actionButton="signin">
       <template v-slot:header>
         <button class="modal-default-button" @click="showModalConnexion = false"><img :src="require('@/assets/cancel.svg')" alt="fermer la pop up"></button>
       </template>
@@ -241,10 +243,12 @@ document.addEventListener('DOMContentLoaded', function() {
      input {
       width: 100%;
     }
+    .img-input {
+       display: none;
+    }
 
     #password {
       margin-bottom: 25px;
-    }
   }
 
   .login-id {
@@ -258,10 +262,14 @@ document.addEventListener('DOMContentLoaded', function() {
     line-height: 15px;
   }
 
-  .photo-profil {
+  .photo-profil, .name-file {
     font-size: 10px; 
     line-height: 15px;
     padding: 3px 0 8px 0;
+  }
+
+  .name-file {
+    margin-top: 9px;
   }
 
   .img-btn {
@@ -305,7 +313,80 @@ document.addEventListener('DOMContentLoaded', function() {
       a {
         font-size: 12px;
       }
+  }
+}
+
+</style>
+
+<script>
+// @ is an alias to /src
+import PopUp from '@/components/PopUp.vue'
+
+import AuthServices from "@/services/auth.js"
+
+export default {
+  name: 'home',
+  components: {
+    PopUp
+  },
+  data() {
+    return {
+      showModalInscription: false,
+      showModalConnexion: false,
+      formData:{}
     }
+  },
+  methods:{
+
+    closeModal(modal) {
+      modal === "inscription" ? this.showModalInscription = false : this.showModalConnexion = false
+      this.formData = {}
+
+    },
+    updateFormData(e) {
+      this.formData[e.target.id] = e.target.value
+      
+    },
+    signin() {
+      const data = this.formData
+      AuthServices.signin(data)
+            .then(this.handleSuccess())
+            .catch((error) => this.handleError(error))
+
+    },
+    signup() {
+      const data = this.formData
+      AuthServices.signup(data)
+            .then(this.handleSuccess())
+            .catch((error) => this.handleError(error))
+          
+    },
+    handleError(error) {
+      console.log(error)
+      this.error = { type: "error" }
+      this.error.message =
+          error.response?.data?.message || "Erreur serveur"
+    },
+
+    handleSuccess() {
+      const queryString = window.location.search
+      console.log(window.location)
+      const params = new URLSearchParams(queryString)
+
+
+      const redirectTo = params.get("redirectTo") || "Dashboard"
+
+      if (redirectTo === "back")
+      {
+        this.$router.go(-1)
+      }
+      else
+      {
+        this.$router.push( redirectTo )
+      }
+
+    },
+
   }
 }
 </style>

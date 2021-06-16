@@ -1,5 +1,5 @@
 <template>
-    <div class="basic-popUp">
+    <div :class="[classPopUp,'basic-popUp']">
         <div class="basic-popUp-head">
             <h2>{{headTitle}}</h2>
             <slot name="header"></slot>
@@ -18,7 +18,8 @@ export default {
     name: "PopUp",
     props: {
         headTitle: String,
-        actionButton: Function
+        actionButton: Function,
+        classPopUp: String
     },
 }
 </script>
@@ -27,7 +28,7 @@ export default {
 
 .basic-popUp {
     position: absolute;
-    height: fit-content;
+    height: 85%;
     width: 50vw;
     left: 0;
     bottom: 0;

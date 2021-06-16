@@ -61,7 +61,7 @@
             <input type="email" id="email" name="email" placeholder="Adresse email"/>
           </div>
           <div class="form-group--100">
-              <input type="password" id="mdp" name="mdp" placeholder="Mot de passe"/>
+              <input type="password" id="password" name="password" placeholder="Mot de passe"/>
           </div>
           <div class="form-group--100 forgot-password">
               <router-link to="/forgot-password">Mot de passe oublié ?</router-link>
@@ -71,6 +71,35 @@
     </PopUp>
   </div>
 </template>
+
+<script>
+// @ is an alias to /src
+import PopUp from '@/components/PopUp.vue'
+
+export default {
+  name: 'home',
+  components: {
+    PopUp
+  },
+  data() {
+    return {
+      showModalInscription: false,
+      showModalConnexion: false,
+      show: false
+    }
+  },
+    mounted() {
+      this.show = true; // might need this.$nextTick
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    let home = document.querySelector(".home");
+    home.style.opacity = "1";
+
+}, false);
+
+</script>
 
 <style lang="scss">
 
@@ -83,9 +112,11 @@
   height: 100vh;
   width: 100vw;
   background-image: url("../assets/bg-home.jpg");
-  background-size: 100%;
+  background-size: cover;
   background-repeat: no-repeat;
   color: $white;
+  opacity: 0;
+  transition: opacity 3s;
 
   .logo-container {
     width: 45%;
@@ -106,6 +137,14 @@
     justify-content: center;
     align-items: center;
     padding: 0 5%;
+
+    @include responsive('xl-desktop'){
+      padding: 0 15% 0 0;
+    }
+
+    @include responsive('large'){
+      padding: 0 22% 0 0;
+    } 
   }
 
   .login {
@@ -119,6 +158,10 @@
         display: inline-flex;
         justify-content: space-around;
         width: 90%;
+
+        @include responsive('xl-desktop'){
+            width: 85%;
+        }
       }
     }
 
@@ -199,7 +242,7 @@
       width: 100%;
     }
 
-    #mdp {
+    #password {
       margin-bottom: 25px;
     }
   }
@@ -223,8 +266,8 @@
 
   .img-btn {
     padding: 5px 20px;
-    background-color: #222222;
-    color: #ffffff;
+    background-color: $black;
+    color: $white;
     border-radius: 10px;
     font-size: 14px;
     border: 1px solid $black;
@@ -249,35 +292,20 @@
   .connexion.basic-popUp {
     height: 45%;
 
-    #mdp {
+    @include responsive('xl-desktop'){
+      height: 32.5%;
+      width: 25vw;
+    }
+
+    #password {
       margin-bottom: 15px;
     }
 
-  .forgot-password {
-    a {
-      font-size: 12px;
+    .forgot-password {
+      a {
+        font-size: 12px;
+      }
     }
   }
-
-  }
 }
-
 </style>
-
-<script>
-// @ is an alias to /src
-import PopUp from '@/components/PopUp.vue'
-
-export default {
-  name: 'home',
-  components: {
-    PopUp
-  },
-  data() {
-    return {
-      showModalInscription: false,
-      showModalConnexion: false
-    }
-  }
-}
-</script>

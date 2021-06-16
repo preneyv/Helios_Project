@@ -9,6 +9,7 @@
         </div>   
         <div class="basic-popUp-footer">
             <button>{{headTitle}}</button>
+            <router-link to="/fil-actu">Fil actu</router-link>
         </div>
     </div>
 </template>
@@ -38,7 +39,11 @@ export default {
     color: $black;
     border-radius: 20px;
     font-family: $mainFont;
-   padding: 0 0 15px 0;
+    padding: 0 0 15px 0;
+
+    @include responsive('xl-desktop'){
+      height: 55%;
+    }
 }
 
 .basic-popUp-head {

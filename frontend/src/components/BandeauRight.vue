@@ -77,22 +77,22 @@
   }
 
   .titreBandeau {
-    margin-top:20px;
-    margin-left:10px;
+    margin-top:8%;
+    margin-left:2%;
     color:white;
-    font-size:18px;
-    padding: 15px;
+    font-size:115%;
+    padding: 5%;
     font-weight: bold;
   }
 
   .trait {
     border-bottom: 0.8px solid white;
-    margin-left:25px;
-    margin-right:25px;
+    margin-left:7%;
+    margin-right:7%;
   }
 
   .prochainsEvents {
-    padding-left:10%;
+    padding-left:7%;
     padding-top:7%;
     padding-bottom:3%;
   }
@@ -102,38 +102,40 @@
   }
 
   .prochainsEvents td {
-    width:90px;
+    width:10%;
     height:38px;
     vertical-align: middle;
   }
 
   .dateEvent {
     color:#B6B6B6;
+    font-size:90%;
   }
 
   .titreEvent {
     color:#FFFFFF;
-    font-size:14px;
+    font-size:100%;
     font-weight: bold;
     text-align:center;
   }
 
   .decompteEventText {
-    border-radius:10px;
+    border-radius:18%;
     background-color:white;
-    padding-top:7px;
-    padding-bottom:7px;
-    margin-left:25px;
+    padding-top:6%;
+    padding-bottom:6%;
+    margin-left:10%;
     font-weight: bold;
-    width:60px;
+    width:65%;
+    font-size:90%;
   }
 
   .mesGroupes {
-    padding-left: 5%;
+    padding-left: 10%;
     padding-top:7%;
     padding-bottom:7%;
     color:white;
-    font-size:14px;
+    font-size:100%;
   }
 
   .imgGroupe {
@@ -160,8 +162,8 @@
 
   .imgGrp {
     padding-left:10%;
-    width:70px;
-    height:50px;
+    width:30%;
+    height:40%;
     vertical-align: middle;
   }
 </style>

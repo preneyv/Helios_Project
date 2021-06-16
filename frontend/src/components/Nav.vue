@@ -30,25 +30,25 @@
   .bandeauLeft {
 	  min-height: 100%;
     position: absolute;
-    width:18%;
+    width:17%;
     margin-right:0;
     background-color:#222222;
     text-align:center;
   }
 
   #logo {
-    padding-top:60px;
-    padding-bottom:20px;
-    width:180px;
+    padding-top:30%;
+    padding-bottom:7%;
+    width:60%;
   }
 
   li a {
     color:white;
-    font-size:18px;
+    font-size:110%;
   }
 
   li {
-    padding: 15px;
+    padding: 5%;
   }
 
 </style>

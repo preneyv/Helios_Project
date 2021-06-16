@@ -21,13 +21,37 @@
     </div>
     <PopUp v-if="showModalInscription" @close="showModalInscription = false" headTitle="S'inscrire">
       <template v-slot:header>
-        <button class="modal-default-button" @click="showModalInscription = false">Fermer</button>
+        <button class="modal-default-button" @click="showModalInscription = false"><img :src="require('@/assets/cancel.svg')" alt="fermer la pop up"></button>
       </template>
       <template v-slot:content>
-        <h3>Test inscription</h3>
+       <form @submit.prevent="submit()">
+         <div class="form-group-50">
+          <input type="text" id="nom" name="nom" placeholder="Nom"/>
+          <input type="text" id="prenom" name="prenom" placeholder="Prenom"/>
+        </div>
+        <div class="form-group-50">
+          <input type="email" id="email" name="email" placeholder="Email"/>
+          <input type="text" id="dateNaissance" name="dateNaissance" required placeholder="Date de naissance"/>
+        </div>
+        <div class="form-group--100">
+            <p class="login-id">Votre login apparaîtra sur tout ce que vous publié, il sera votre identifant sur la plateforme pour garantir votre anonymat</p>
+            <input type="text" id="login" name="login" placeholder="Login"/>
+        </div>
+        <div class="form-group--100">
+            <input type="password" id="mdp" name="mdp" placeholder="Mot de passe"/>
+             <p class="photo-car">Afin de s’assurer que vous êtes propriétaire d’une belle voiture, veuillez insérer une photo de celle-ci, ci-dessous :</p>
+            <p class="photo-profil">Cette photo deviendra votre photo de profil sur le réseau</p>
+        </div>
+        <div class="form-group--100">
+            <button class="img-btn">Image +</button>
+        </div>
+        <!-- <p class="forgot-password text-right mt-2 mb-4">
+            <router-link to="/forgot-password">Mot de passe oublié ?</router-link>
+        </p> -->
+    </form>
        </template>
     </PopUp>
-     <PopUp v-if="showModalConnexion" @close="showModalConnexion = false" headTitle="S'inscrire">
+     <PopUp v-if="showModalConnexion" @close="showModalConnexion = false" headTitle="Se connecter">
       <template v-slot:header>
         <button class="modal-default-button" @click="showModalConnexion = false">Fermer</button>
       </template>
@@ -115,6 +139,92 @@
       &:last-of-type {
         @include btnBorderWhite;
       }
+    }
+  }
+
+  //forms 
+
+  .basic-popUp-head {
+    h2 {
+      padding: 30px 0 25px 0;
+    }
+
+    .modal-default-button {
+        width: 15px;
+        height: 15px;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  .basic-popUp {
+    input {
+      @include input;
+    }
+  }
+
+  .basic-popUp-content {
+    form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 10% 10px 10%;
+    }
+  }
+
+  .form-group-50 {
+    display: inline-flex;
+    justify-content: space-between;
+    width: 100%;
+    
+    input {
+      width: 45%;
+    }
+  }
+
+  .form-group--100 {
+     input {
+      width: 100%;
+    }
+
+    #mdp {
+      margin-bottom: 25px;
+    }
+  }
+
+  .login-id {
+    font-size: 12px; 
+    line-height: 15px;
+    padding: 20px 0 8px 0;
+  }
+
+  .photo-car {
+     font-size: 12px; 
+    line-height: 15px;
+  }
+
+  .photo-profil {
+    font-size: 10px; 
+    line-height: 15px;
+    padding: 3px 0 8px 0;
+  }
+
+  .img-btn {
+    padding: 5px 20px;
+    background-color: #222222;
+    color: #ffffff;
+    border-radius: 10px;
+    font-size: 14px;
+    border: 1px solid $black;
+    transition: all 0.2s linear;
+
+    &:hover {
+        background-color: transparent;
+        border: 1px solid $black;
+        color: $black;
+        transition: all 0.2s linear;
     }
   }
 }

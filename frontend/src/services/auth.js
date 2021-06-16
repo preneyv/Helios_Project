@@ -1,22 +1,23 @@
-import Axios from 'axios'
-import api, {updateApiToken} from "@/configAxios/api"
+
+import api, {updateApiToken} from "@/configAxios/api.js"
 
 
 const AuthService = {
-    signin : (email, password) => {
-        return api.post('/auth/signin', {email, password}).then(res => {
-            const token = response.data.token
+    signin : (data) => {
+        console.log(data)
+        /*return api.post('/auth/signin', {...data}).then(res => {
+            const token = res.data.token
             localStorage.setItem("token", token)
             updateApiToken(token)
 
-        })
+        })*/
     },
-    signup: (pseudo, firstname, name, password, email, birthDate, carPicture) => {
-
-        return api.post('/auth/signup', {pseudo, firstname, name, password, email, birthDate, carPicture}).then( res => {
-            const token = response.data.token
+    signup: (data) => {
+        console.log(data)
+        /*return api.post('/auth/signup', {...data}).then( res => {
+            const token = res.data.token
             localStorage.setItem("token", token)
-        })
+        })*/
     },
     signout: () => {
         localStorage.removeItem("token")

@@ -77,30 +77,77 @@
 <script>
 // @ is an alias to /src
 import PopUp from '@/components/PopUp.vue'
+import AuthServices from "@/services/auth.js"
 
 export default {
   name: 'home',
   components: {
     PopUp
   },
+  mounted() {
+      //this.show = true; // might need this.$nextTick
+  },
   data() {
     return {
       showModalInscription: false,
       showModalConnexion: false,
-      show: false
+      formData:{},
+      show: false,
     }
   },
-    mounted() {
-      this.show = true; // might need this.$nextTick
-    }
+  methods:{
+
+    closeModal(modal) {
+      modal === "inscription" ? this.showModalInscription = false : this.showModalConnexion = false
+      this.formData = {}
+
+    },
+    updateFormData(e) {
+      this.formData[e.target.id] = e.target.value
+      
+    },
+    signin() {
+      const data = this.formData
+      AuthServices.signin(data)
+            .then(this.handleSuccess())
+            .catch((error) => this.handleError(error))
+
+    },
+    signup() {
+      const data = this.formData
+      AuthServices.signup(data)
+            .then(this.handleSuccess())
+            .catch((error) => this.handleError(error))
+          
+    },
+    handleError(error) {
+      console.log(error)
+      this.error = { type: "error" }
+      this.error.message =
+          error.response?.data?.message || "Erreur serveur"
+    },
+
+    handleSuccess() {
+      const queryString = window.location.search
+      console.log(window.location)
+      const params = new URLSearchParams(queryString)
+
+
+      const redirectTo = params.get("redirectTo") || "Dashboard"
+
+      if (redirectTo === "back")
+      {
+        this.$router.go(-1)
+      }
+      else
+      {
+        this.$router.push( redirectTo )
+      }
+
+    },
+
+  }
 }
-
-document.addEventListener('DOMContentLoaded', function() {
-    let home = document.querySelector(".home");
-    home.style.opacity = "1";
-
-}, false);
-
 </script>
 
 <style lang="scss">
@@ -117,7 +164,6 @@ document.addEventListener('DOMContentLoaded', function() {
   background-size: cover;
   background-repeat: no-repeat;
   color: $white;
-  opacity: 0;
   transition: opacity 3s;
 
   .logo-container {
@@ -249,6 +295,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     #password {
       margin-bottom: 25px;
+    }
   }
 
   .login-id {
@@ -313,80 +360,7 @@ document.addEventListener('DOMContentLoaded', function() {
       a {
         font-size: 12px;
       }
-  }
-}
-
-</style>
-
-<script>
-// @ is an alias to /src
-import PopUp from '@/components/PopUp.vue'
-
-import AuthServices from "@/services/auth.js"
-
-export default {
-  name: 'home',
-  components: {
-    PopUp
-  },
-  data() {
-    return {
-      showModalInscription: false,
-      showModalConnexion: false,
-      formData:{}
     }
-  },
-  methods:{
-
-    closeModal(modal) {
-      modal === "inscription" ? this.showModalInscription = false : this.showModalConnexion = false
-      this.formData = {}
-
-    },
-    updateFormData(e) {
-      this.formData[e.target.id] = e.target.value
-      
-    },
-    signin() {
-      const data = this.formData
-      AuthServices.signin(data)
-            .then(this.handleSuccess())
-            .catch((error) => this.handleError(error))
-
-    },
-    signup() {
-      const data = this.formData
-      AuthServices.signup(data)
-            .then(this.handleSuccess())
-            .catch((error) => this.handleError(error))
-          
-    },
-    handleError(error) {
-      console.log(error)
-      this.error = { type: "error" }
-      this.error.message =
-          error.response?.data?.message || "Erreur serveur"
-    },
-
-    handleSuccess() {
-      const queryString = window.location.search
-      console.log(window.location)
-      const params = new URLSearchParams(queryString)
-
-
-      const redirectTo = params.get("redirectTo") || "Dashboard"
-
-      if (redirectTo === "back")
-      {
-        this.$router.go(-1)
-      }
-      else
-      {
-        this.$router.push( redirectTo )
-      }
-
-    },
-
   }
 }
 </style>

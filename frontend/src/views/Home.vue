@@ -74,9 +74,11 @@
   </div>
 </template>
 
+
 <script>
 // @ is an alias to /src
 import PopUp from '@/components/PopUp.vue'
+import AuthServices from "@/services/auth.js"
 
 export default {
   name: 'home',
@@ -87,19 +89,76 @@ export default {
     return {
       showModalInscription: false,
       showModalConnexion: false,
+      formData:{},
       show: false
     }
   },
-    mounted() {
-      this.show = true; // might need this.$nextTick
-    }
+  mounted() {
+    this.show = true; // might need this.$nextTick
+    let home = document.querySelector(".home");
+     home.style.opacity = "1";
+  },
+
+  methods:{
+
+    closeModal(modal) {
+      modal === "inscription" ? this.showModalInscription = false : this.showModalConnexion = false
+      this.formData = {}
+
+    },
+    updateFormData(e) {
+      this.formData[e.target.id] = e.target.value
+      
+    },
+    signin() {
+      const data = this.formData
+      AuthServices.signin(data)
+            .then(this.handleSuccess())
+            .catch((error) => this.handleError(error))
+
+    },
+    signup() {
+      const data = this.formData
+      AuthServices.signup(data)
+            .then(this.handleSuccess())
+            .catch((error) => this.handleError(error))
+          
+    },
+    handleError(error) {
+      console.log(error)
+      this.error = { type: "error" }
+      this.error.message =
+          error.response?.data?.message || "Erreur serveur"
+    },
+
+    handleSuccess() {
+      const queryString = window.location.search
+      console.log(window.location)
+      const params = new URLSearchParams(queryString)
+
+
+      const redirectTo = params.get("redirectTo") || "Dashboard"
+
+      if (redirectTo === "back")
+      {
+        this.$router.go(-1)
+      }
+      else
+      {
+        this.$router.push( redirectTo )
+      }
+
+    },
+
+  }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    let home = document.querySelector(".home");
-    home.style.opacity = "1";
+// document.addEventListener('DOMContentLoaded', function() {
+//     let home = document.querySelector(".home");
+//     home.style.opacity = "1";
 
-}, false);
+// }, false);
+
 
 </script>
 
@@ -246,9 +305,9 @@ document.addEventListener('DOMContentLoaded', function() {
     .img-input {
        display: none;
     }
-
     #password {
       margin-bottom: 25px;
+    }
   }
 
   .login-id {
@@ -261,7 +320,7 @@ document.addEventListener('DOMContentLoaded', function() {
      font-size: 12px; 
     line-height: 15px;
   }
-
+ 
   .photo-profil, .name-file {
     font-size: 10px; 
     line-height: 15px;
@@ -296,7 +355,6 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   //connexion form 
-
   .connexion.basic-popUp {
     height: 45%;
 
@@ -313,80 +371,7 @@ document.addEventListener('DOMContentLoaded', function() {
       a {
         font-size: 12px;
       }
-  }
-}
-
-</style>
-
-<script>
-// @ is an alias to /src
-import PopUp from '@/components/PopUp.vue'
-
-import AuthServices from "@/services/auth.js"
-
-export default {
-  name: 'home',
-  components: {
-    PopUp
-  },
-  data() {
-    return {
-      showModalInscription: false,
-      showModalConnexion: false,
-      formData:{}
     }
-  },
-  methods:{
-
-    closeModal(modal) {
-      modal === "inscription" ? this.showModalInscription = false : this.showModalConnexion = false
-      this.formData = {}
-
-    },
-    updateFormData(e) {
-      this.formData[e.target.id] = e.target.value
-      
-    },
-    signin() {
-      const data = this.formData
-      AuthServices.signin(data)
-            .then(this.handleSuccess())
-            .catch((error) => this.handleError(error))
-
-    },
-    signup() {
-      const data = this.formData
-      AuthServices.signup(data)
-            .then(this.handleSuccess())
-            .catch((error) => this.handleError(error))
-          
-    },
-    handleError(error) {
-      console.log(error)
-      this.error = { type: "error" }
-      this.error.message =
-          error.response?.data?.message || "Erreur serveur"
-    },
-
-    handleSuccess() {
-      const queryString = window.location.search
-      console.log(window.location)
-      const params = new URLSearchParams(queryString)
-
-
-      const redirectTo = params.get("redirectTo") || "Dashboard"
-
-      if (redirectTo === "back")
-      {
-        this.$router.go(-1)
-      }
-      else
-      {
-        this.$router.push( redirectTo )
-      }
-
-    },
-
   }
 }
 </style>

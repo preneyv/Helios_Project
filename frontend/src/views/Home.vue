@@ -19,7 +19,7 @@
           </div>
         </div> 
     </div>
-    <PopUp v-if="showModalInscription" @close="showModalInscription = false" headTitle="S'inscrire">
+    <PopUp v-if="showModalInscription" @close="showModalInscription = false" headTitle="S'inscrire" classPopUp="inscription">
       <template v-slot:header>
         <button class="modal-default-button" @click="showModalInscription = false"><img :src="require('@/assets/cancel.svg')" alt="fermer la pop up"></button>
       </template>
@@ -48,15 +48,25 @@
         <!-- <p class="forgot-password text-right mt-2 mb-4">
             <router-link to="/forgot-password">Mot de passe oublié ?</router-link>
         </p> -->
-    </form>
-       </template>
+      </form>
+      </template>
     </PopUp>
-     <PopUp v-if="showModalConnexion" @close="showModalConnexion = false" headTitle="Se connecter">
+     <PopUp v-if="showModalConnexion" @close="showModalConnexion = false" headTitle="Se connecter" classPopUp="connexion">
       <template v-slot:header>
-        <button class="modal-default-button" @click="showModalConnexion = false">Fermer</button>
+        <button class="modal-default-button" @click="showModalConnexion = false"><img :src="require('@/assets/cancel.svg')" alt="fermer la pop up"></button>
       </template>
       <template v-slot:content>
-        <h3>Test connexion</h3>
+        <form @submit.prevent="submit()">
+          <div class="form-group--100">
+            <input type="email" id="email" name="email" placeholder="Adresse email"/>
+          </div>
+          <div class="form-group--100">
+              <input type="password" id="mdp" name="mdp" placeholder="Mot de passe"/>
+          </div>
+          <div class="form-group--100 forgot-password">
+              <router-link to="/forgot-password">Mot de passe oublié ?</router-link>
+          </div>
+        </form>
        </template>
     </PopUp>
   </div>
@@ -226,6 +236,29 @@
         color: $black;
         transition: all 0.2s linear;
     }
+  }
+
+  .forgot-password {
+    a {
+      font-size: 14px;
+    }
+  }
+
+  //connexion form 
+
+  .connexion.basic-popUp {
+    height: 45%;
+
+    #mdp {
+      margin-bottom: 15px;
+    }
+
+  .forgot-password {
+    a {
+      font-size: 12px;
+    }
+  }
+
   }
 }
 

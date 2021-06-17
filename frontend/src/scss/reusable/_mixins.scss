@@ -78,3 +78,32 @@
         transition: all 0.2s linear;
     }
 }
+
+@mixin inputLight {
+    background-color: transparent;
+    border: 0px;
+    border-bottom: 1px solid $white;
+    padding: 0 0 10px 6px;
+    font-size: 14px;
+    align-self: center;
+    transition: all 0.2s linear;
+    margin-bottom: 20px;
+
+    &:focus-visible,
+    &:focus {
+        border: 0px;
+        border-bottom: 1px solid $white;
+        transition: all 0.2s linear;
+        outline: none;
+
+        &::placeholder {
+            color: transparent;
+            transition: all 0.2s linear;
+        }
+    }
+
+    &::placeholder {
+        color: $white;
+        transition: all 0.2s linear;
+    }
+}

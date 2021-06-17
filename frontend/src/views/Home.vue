@@ -217,7 +217,6 @@ export default {
 
 // }, false);
 
-
 </script>
 
 <style lang="scss">
@@ -234,7 +233,6 @@ export default {
   background-size: cover;
   background-repeat: no-repeat;
   color: $white;
-  opacity: 0;
   transition: opacity 3s;
 
   .logo-container {

@@ -11,7 +11,6 @@
         <div class="login">
           <h2>Rejoignez la communauté !</h2>
           <div class="cta-login">
-
             <button @click="showModalInscription = true">S'inscrire</button>
             <button @click="showModalConnexion = true">Se connecter</button>
             <!-- <router-link to="/">S'inscrire</router-link>

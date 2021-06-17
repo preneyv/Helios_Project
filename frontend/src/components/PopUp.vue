@@ -10,7 +10,7 @@
         <div class="basic-popUp-footer">
             <button @click="actionButton">{{headTitle}}</button>
         </div>
-    </div>
+    </div> 
 </template>
 <script>
  

@@ -13,8 +13,7 @@
 <style lang="scss">
 
   .bandeauLeft {
-    min-height: 100%;
-    position: absolute;
+    height: 100vh;
     width: 17%;
     margin-right: 0;
     background-color: $black;
@@ -28,7 +27,7 @@
       li {
         padding: 5%;
       }
-
+ 
   }
 
   #logo {

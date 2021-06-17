@@ -7,7 +7,7 @@
     // import Nav from '../components/Nav.vue'
     // import BandeauRight from '../components/BandeauRight.vue'
 
-    export default {
+    export default { 
         name: 'profil',
         // props: ['counter'] ,
         components: {

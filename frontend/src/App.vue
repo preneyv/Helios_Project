@@ -1,16 +1,10 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <!-- <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> -->
-      <template>
-          <Nav v-if="$route.name !== 'home'"/>
-          <main>
-              <router-view />
-          </main>
-          <BandeauRight v-if="$route.name !== 'home'"/>
-      </template>
-    </div>
+    <Nav v-if="$route.name !== 'home'"/>
+    <main>
+      <router-view />
+    </main>
+    <BandeauRight v-if="$route.name !== 'home'"/>
   </div>
 </template>
 
@@ -42,5 +36,14 @@ export default {
    background-color: $gray;
   }
 
+  main {
+    width: 65%;
+  }
+
+  #app {
+    width: 100%;
+    height: 100%;
+    display: inline-flex;
+  }
 
 </style>

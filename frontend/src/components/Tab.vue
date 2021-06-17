@@ -8,7 +8,7 @@ export default {
   props: {
     isSelected: {
       type: Boolean,
-    },
+    }, 
   },
 }
 </script>

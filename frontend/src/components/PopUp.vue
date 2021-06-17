@@ -1,5 +1,5 @@
 <template>
-    <div class="basic-popUp">
+    <div :class="[classPopUp,'basic-popUp']">
         <div class="basic-popUp-head">
             <h2>{{headTitle}}</h2>
             <slot name="header"></slot>
@@ -8,7 +8,7 @@
             <slot name="content"></slot>
         </div>   
         <div class="basic-popUp-footer">
-            <button>{{headTitle}}</button>
+            <button @click="actionButton">{{headTitle}}</button>
         </div>
     </div>
 </template>
@@ -18,6 +18,8 @@ export default {
     name: "PopUp",
     props: {
         headTitle: String,
+        actionButton: Function,
+        classPopUp: String
     },
 }
 </script>
@@ -26,7 +28,7 @@ export default {
 
 .basic-popUp {
     position: absolute;
-    height: fit-content;
+    height: 85%;
     width: 50vw;
     left: 0;
     bottom: 0;
@@ -37,7 +39,20 @@ export default {
     color: $black;
     border-radius: 20px;
     font-family: $mainFont;
-   padding: 0 0 15px 0;
+    padding: 0 0 15px 0;
+
+    @include responsive('xl-desktop'){
+      height: 55%;
+    }
+}
+
+.inscription.yes.basic-popUp  {
+    height: 98%;
+    width: 55vw;
+
+     @include responsive('xl-desktop'){
+      height: 63%;
+    }
 }
 
 .basic-popUp-head {

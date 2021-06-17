@@ -19,48 +19,205 @@
           </div>
         </div> 
     </div>
-    <PopUp v-if="showModalInscription" @close="showModalInscription = false" headTitle="S'inscrire">
+    <PopUp v-if="showModalInscription" @close="closeModal('inscription')" headTitle="S'inscrire"  v-bind:classPopUp = "[errorsSignUp.length ? 'inscription yes':'inscription no']" :actionButton="signup">
       <template v-slot:header>
         <button class="modal-default-button" @click="showModalInscription = false"><img :src="require('@/assets/cancel.svg')" alt="fermer la pop up"></button>
       </template>
       <template v-slot:content>
-       <form @submit.prevent="submit()">
+       <form @submit.prevent="signup()">
+          <p class="errors" v-if="errorsSignUp.length">
+            <b>Veuillez corriger ces erreurs pour vous connecter :</b>
+            <ul>
+              <li class="error" v-for="error in errorsSignUp" v-bind:key="error">{{ error }}, </li>
+            </ul>
+          </p>
          <div class="form-group-50">
-          <input type="text" id="nom" name="nom" placeholder="Nom"/>
-          <input type="text" id="prenom" name="prenom" placeholder="Prenom"/>
+          <input type="text" id="name" name="name" placeholder="Nom" @input="updateFormData"/>
+          <input type="text" id="firstname" name="firstname" placeholder="Prenom"  @input="updateFormData"/>
         </div>
         <div class="form-group-50">
-          <input type="email" id="email" name="email" placeholder="Email"/>
-          <input type="text" id="dateNaissance" name="dateNaissance" required placeholder="Date de naissance"/>
+          <input type="email" id="email" name="email" placeholder="Email"  @input="updateFormData"/>
+          <input type="date" id="birthDate" name="birthDate" required placeholder="Date de naissance"  @input="updateFormData"/>
         </div>
         <div class="form-group--100">
             <p class="login-id">Votre login apparaîtra sur tout ce que vous publié, il sera votre identifant sur la plateforme pour garantir votre anonymat</p>
-            <input type="text" id="login" name="login" placeholder="Login"/>
+            <input type="text" id="pseudo" name="pseudo" placeholder="Login"  @input="updateFormData"/>
         </div>
         <div class="form-group--100">
-            <input type="password" id="mdp" name="mdp" placeholder="Mot de passe"/>
+            <input type="password" id="password" class="mdp" name="password" placeholder="Mot de passe"  @input="updateFormData"/>
              <p class="photo-car">Afin de s’assurer que vous êtes propriétaire d’une belle voiture, veuillez insérer une photo de celle-ci, ci-dessous :</p>
             <p class="photo-profil">Cette photo deviendra votre photo de profil sur le réseau</p>
         </div>
         <div class="form-group--100">
-            <button class="img-btn">Image +</button>
+          <label for="carPicture" class="img-btn">Image +</label>
+            <input type="file" class="img-input" id="carPicture" name="carPicture" @input="updateFormData">
+            <p class="name-file">{{ formData.file }}</p>
         </div>
         <!-- <p class="forgot-password text-right mt-2 mb-4">
             <router-link to="/forgot-password">Mot de passe oublié ?</router-link>
         </p> -->
-    </form>
-       </template>
+      </form>
+      </template>
     </PopUp>
-     <PopUp v-if="showModalConnexion" @close="showModalConnexion = false" headTitle="Se connecter">
+     <PopUp v-if="showModalConnexion" @close="closeModal('connexion')" headTitle="Se connecter" v-bind:classPopUp = "[errors.length ? 'connexion yes':'connexion no']" :actionButton="signin">
       <template v-slot:header>
-        <button class="modal-default-button" @click="showModalConnexion = false">Fermer</button>
+        <button class="modal-default-button" @click="showModalConnexion = false"><img :src="require('@/assets/cancel.svg')" alt="fermer la pop up"></button>
       </template>
       <template v-slot:content>
-        <h3>Test connexion</h3>
+        <form @submit.prevent="submit()">
+          <p class="errors" v-if="errors.length">
+            <b>Veuillez corriger ces erreurs pour vous connecter :</b>
+            <ul>
+              <li class="error" v-for="error in errors" v-bind:key="error">{{ error }}</li>
+            </ul>
+          </p>
+          <div class="form-group--100">
+            <input type="email" id="email" name="email" placeholder="Adresse email" @input="updateFormData"/>
+          </div>
+          <div class="form-group--100">
+              <input type="password" id="password" name="password" placeholder="Mot de passe" @input="updateFormData"/>
+          </div>
+          <div class="form-group--100 forgot-password">
+              <router-link to="/forgot-password">Mot de passe oublié ?</router-link>
+          </div>
+        </form>
        </template>
     </PopUp>
   </div>
 </template>
+
+
+<script>
+// @ is an alias to /src
+import PopUp from '@/components/PopUp.vue'
+import AuthServices from "@/services/auth.js"
+
+export default {
+  name: 'home',
+  components: {
+    PopUp
+  },
+  data() {
+    return {
+      showModalInscription: false,
+      showModalConnexion: false,
+      formData:{},
+      show: false,
+      errors: [],
+      errorsSignUp: [],
+    }
+  },
+  mounted() {
+    this.show = true; // might need this.$nextTick
+    let home = document.querySelector(".home");
+     home.style.opacity = "1";
+  },
+
+  methods:{
+
+    closeModal(modal) {
+      modal === "inscription" ? this.showModalInscription = false : this.showModalConnexion = false
+      this.formData = {}
+
+    },
+    updateFormData(e) {
+      this.formData[e.target.id] = e.target.value
+      
+    },
+    signin() {
+
+      if (this.email && this.password) {
+        const data = this.formData
+        AuthServices.signin(data)
+            .then(this.handleSuccess())
+            .catch((error) => this.handleError(error))
+      }
+
+      this.errors = [];
+
+      if (!this.email) {
+        this.errors.push('Email demandé.');
+      }
+      if (!this.password) {
+        this.errors.push('Mot de passe demandé.');
+      }
+
+      e.preventDefault();
+
+     
+
+    },
+    signup() {
+       if (this.name && this.firstname && this.email && this.birthDate && this.pseudo && this.password && this.carPicture) {
+          const data = this.formData
+          AuthServices.signup(data)
+            .then(this.handleSuccess())
+            .catch((error) => this.handleError(error))
+      } 
+      
+      this.errorsSignUp = [];
+
+      if (!this.name) {
+        this.errorsSignUp.push('Nom demandé');
+      }  
+      if (!this.firstname) {
+         this.errorsSignUp.push('Prénom demandé');
+      } 
+      if (!this.email) {
+        this.errorsSignUp.push('Email demandé');
+      } 
+      if (!this.birthDate) {
+        this.errorsSignUp.push('Date de naissance demandé');
+      } 
+      if (!this.pseudo) {
+        this.errorsSignUp.push('Pseudo demandé');
+      } 
+      if (!this.password) {
+        this.errorsSignUp.push('Mot de passe demandé');
+      } 
+      if (!this.carPicture) {
+        this.errorsSignUp.push('Photo de votre voiture demandé');
+      }
+
+      e.preventDefault();
+    },
+
+    handleError(error) {
+      console.log(error)
+      this.error = { type: "error" }
+      this.error.message =
+          error.response?.data?.message || "Erreur serveur"
+    },
+
+    handleSuccess() {
+      const queryString = window.location.search
+      console.log(window.location)
+      const params = new URLSearchParams(queryString)
+
+
+      const redirectTo = params.get("redirectTo") || "filActu"
+
+      if (redirectTo === "back")
+      {
+        this.$router.go(-1)
+      }
+      else
+      {
+        this.$router.push( redirectTo )
+      }
+
+    },
+
+  }
+}
+
+// document.addEventListener('DOMContentLoaded', function() {
+//     let home = document.querySelector(".home");
+//     home.style.opacity = "1";
+
+// }, false);
+
+</script>
 
 <style lang="scss">
 
@@ -73,9 +230,10 @@
   height: 100vh;
   width: 100vw;
   background-image: url("../assets/bg-home.jpg");
-  background-size: 100%;
+  background-size: cover;
   background-repeat: no-repeat;
   color: $white;
+  transition: opacity 3s;
 
   .logo-container {
     width: 45%;
@@ -96,6 +254,14 @@
     justify-content: center;
     align-items: center;
     padding: 0 5%;
+
+    @include responsive('xl-desktop'){
+      padding: 0 15% 0 0;
+    }
+
+    @include responsive('large'){
+      padding: 0 22% 0 0;
+    } 
   }
 
   .login {
@@ -109,6 +275,10 @@
         display: inline-flex;
         justify-content: space-around;
         width: 90%;
+
+        @include responsive('xl-desktop'){
+            width: 85%;
+        }
       }
     }
 
@@ -172,6 +342,14 @@
       justify-content: center;
       padding: 0 10% 10px 10%;
     }
+
+    .error {
+      color: red;
+    }
+
+    .errors {
+      padding-bottom: 10px;
+    }
   }
 
   .form-group-50 {
@@ -188,8 +366,10 @@
      input {
       width: 100%;
     }
-
-    #mdp {
+    .img-input {
+       display: none;
+    }
+    #password {
       margin-bottom: 25px;
     }
   }
@@ -204,17 +384,21 @@
      font-size: 12px; 
     line-height: 15px;
   }
-
-  .photo-profil {
+ 
+  .photo-profil, .name-file {
     font-size: 10px; 
     line-height: 15px;
     padding: 3px 0 8px 0;
   }
 
+  .name-file {
+    margin-top: 9px;
+  }
+
   .img-btn {
     padding: 5px 20px;
-    background-color: #222222;
-    color: #ffffff;
+    background-color: $black;
+    color: $white;
     border-radius: 10px;
     font-size: 14px;
     border: 1px solid $black;
@@ -227,24 +411,52 @@
         transition: all 0.2s linear;
     }
   }
-}
 
-</style>
+  .forgot-password {
+    a {
+      font-size: 14px;
+    }
+  }
 
-<script>
-// @ is an alias to /src
-import PopUp from '@/components/PopUp.vue'
+  .inscription.basic-popUp {
+    .errors {
+      ul {
+        display: inline-flex;
+        flex-wrap: wrap;
+      }
 
-export default {
-  name: 'home',
-  components: {
-    PopUp
-  },
-  data() {
-    return {
-      showModalInscription: false,
-      showModalConnexion: false
+      li {
+        padding-right: 5px;
+      }
+    }
+  }
+
+  //connexion form 
+  .connexion.basic-popUp {
+    height: 45%;
+
+    @include responsive('xl-desktop'){
+      height: 32%;
+      width: 25vw;
+    }
+
+    #password {
+      margin-bottom: 15px;
+    }
+
+    .forgot-password {
+      a {
+        font-size: 12px;
+      }
+    }
+  }
+
+  .connexion.yes.basic-popUp  {
+    height: 58%;
+
+     @include responsive('xl-desktop'){
+      height: 40%;
     }
   }
 }
-</script>
+</style>

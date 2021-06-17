@@ -2,15 +2,24 @@
 $space: 0.25rem;
 $size-text-base: 12px;
 $black: #222222;
+$gray: #353535;
 $white: #ffffff;
 $primary: #8CA6BA;
 
-// :root {
-
-//   @each $color, $value in $colors {
-//     --color-#{$color}: #{$value};
-//   }
-//   --space: #{$space};
-//   --size-text-base: #{$size-text-base};
-
-// }
+$breakpoints: (
+    "tablet": (
+        min-width: 767px,
+    ),
+    "laptop": (
+        min-width: 992px,
+    ),
+    "desktop": (
+        min-width: 1200px,
+    ),
+    "xl-desktop": (
+        min-width: 1500px,
+    ),
+    "large": (
+        min-width: 1800px,
+    ),
+) !default;

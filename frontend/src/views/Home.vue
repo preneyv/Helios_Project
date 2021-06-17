@@ -19,32 +19,38 @@
           </div>
         </div> 
     </div>
-    <PopUp v-if="showModalInscription" @close="closeModal('inscription')" headTitle="S'inscrire" classPopUp="inscription" :actionButton="signup">
+    <PopUp v-if="showModalInscription" @close="closeModal('inscription')" headTitle="S'inscrire"  v-bind:classPopUp = "[errorsSignUp.length ? 'inscription yes':'inscription no']" :actionButton="signup">
       <template v-slot:header>
         <button class="modal-default-button" @click="showModalInscription = false"><img :src="require('@/assets/cancel.svg')" alt="fermer la pop up"></button>
       </template>
       <template v-slot:content>
        <form @submit.prevent="signup()">
+          <p class="errors" v-if="errorsSignUp.length">
+            <b>Veuillez corriger ces erreurs pour vous connecter :</b>
+            <ul>
+              <li class="error" v-for="error in errorsSignUp" v-bind:key="error">{{ error }}, </li>
+            </ul>
+          </p>
          <div class="form-group-50">
-          <input type="text" id="name" name="nom" placeholder="Nom" @input="updateFormData"/>
-          <input type="text" id="firstname" name="prenom" placeholder="Prenom"  @input="updateFormData"/>
+          <input type="text" id="name" name="name" placeholder="Nom" @input="updateFormData"/>
+          <input type="text" id="firstname" name="firstname" placeholder="Prenom"  @input="updateFormData"/>
         </div>
         <div class="form-group-50">
           <input type="email" id="email" name="email" placeholder="Email"  @input="updateFormData"/>
-          <input type="date" id="birthDate" name="dateNaissance" required placeholder="Date de naissance"  @input="updateFormData"/>
+          <input type="date" id="birthDate" name="birthDate" required placeholder="Date de naissance"  @input="updateFormData"/>
         </div>
         <div class="form-group--100">
             <p class="login-id">Votre login apparaîtra sur tout ce que vous publié, il sera votre identifant sur la plateforme pour garantir votre anonymat</p>
-            <input type="text" id="pseudo" name="login" placeholder="Login"  @input="updateFormData"/>
+            <input type="text" id="pseudo" name="pseudo" placeholder="Login"  @input="updateFormData"/>
         </div>
         <div class="form-group--100">
-            <input type="password" id="password" class="mdp" name="mdp" placeholder="Mot de passe"  @input="updateFormData"/>
+            <input type="password" id="password" class="mdp" name="password" placeholder="Mot de passe"  @input="updateFormData"/>
              <p class="photo-car">Afin de s’assurer que vous êtes propriétaire d’une belle voiture, veuillez insérer une photo de celle-ci, ci-dessous :</p>
             <p class="photo-profil">Cette photo deviendra votre photo de profil sur le réseau</p>
         </div>
         <div class="form-group--100">
           <label for="carPicture" class="img-btn">Image +</label>
-            <input type="file" class="img-input" id="carPicture" @input="updateFormData">
+            <input type="file" class="img-input" id="carPicture" name="carPicture" @input="updateFormData">
             <p class="name-file">{{ formData.file }}</p>
         </div>
         <!-- <p class="forgot-password text-right mt-2 mb-4">
@@ -53,12 +59,18 @@
       </form>
       </template>
     </PopUp>
-     <PopUp v-if="showModalConnexion" @close="closeModal('connexion')" headTitle="Se connecter" classPopUp="connexion" :actionButton="signin">
+     <PopUp v-if="showModalConnexion" @close="closeModal('connexion')" headTitle="Se connecter" v-bind:classPopUp = "[errors.length ? 'connexion yes':'connexion no']" :actionButton="signin">
       <template v-slot:header>
         <button class="modal-default-button" @click="showModalConnexion = false"><img :src="require('@/assets/cancel.svg')" alt="fermer la pop up"></button>
       </template>
       <template v-slot:content>
         <form @submit.prevent="submit()">
+          <p class="errors" v-if="errors.length">
+            <b>Veuillez corriger ces erreurs pour vous connecter :</b>
+            <ul>
+              <li class="error" v-for="error in errors" v-bind:key="error">{{ error }}</li>
+            </ul>
+          </p>
           <div class="form-group--100">
             <input type="email" id="email" name="email" placeholder="Adresse email"/>
           </div>
@@ -90,7 +102,9 @@ export default {
       showModalInscription: false,
       showModalConnexion: false,
       formData:{},
-      show: false
+      show: false,
+      errors: [],
+      errorsSignUp: [],
     }
   },
   mounted() {
@@ -111,19 +125,63 @@ export default {
       
     },
     signin() {
-      const data = this.formData
-      AuthServices.signin(data)
+
+      if (this.email && this.password) {
+        const data = this.formData
+        AuthServices.signin(data)
             .then(this.handleSuccess())
             .catch((error) => this.handleError(error))
+      }
+
+      this.errors = [];
+
+      if (!this.email) {
+        this.errors.push('Email demandé.');
+      }
+      if (!this.password) {
+        this.errors.push('Mot de passe demandé.');
+      }
+
+      e.preventDefault();
+
+     
 
     },
     signup() {
-      const data = this.formData
-      AuthServices.signup(data)
+       if (this.name && this.firstname && this.email && this.birthDate && this.pseudo && this.password && this.carPicture) {
+          const data = this.formData
+          AuthServices.signup(data)
             .then(this.handleSuccess())
             .catch((error) => this.handleError(error))
-          
+      } 
+      
+      this.errorsSignUp = [];
+
+      if (!this.name) {
+        this.errorsSignUp.push('Nom demandé');
+      }  
+      if (!this.firstname) {
+         this.errorsSignUp.push('Prénom demandé');
+      } 
+      if (!this.email) {
+        this.errorsSignUp.push('Email demandé');
+      } 
+      if (!this.birthDate) {
+        this.errorsSignUp.push('Date de naissance demandé');
+      } 
+      if (!this.pseudo) {
+        this.errorsSignUp.push('Pseudo demandé');
+      } 
+      if (!this.password) {
+        this.errorsSignUp.push('Mot de passe demandé');
+      } 
+      if (!this.carPicture) {
+        this.errorsSignUp.push('Photo de votre voiture demandé');
+      }
+
+      e.preventDefault();
     },
+
     handleError(error) {
       console.log(error)
       this.error = { type: "error" }
@@ -286,6 +344,14 @@ export default {
       justify-content: center;
       padding: 0 10% 10px 10%;
     }
+
+    .error {
+      color: red;
+    }
+
+    .errors {
+      padding-bottom: 10px;
+    }
   }
 
   .form-group-50 {
@@ -354,12 +420,25 @@ export default {
     }
   }
 
+  .inscription.basic-popUp {
+    .errors {
+      ul {
+        display: inline-flex;
+        flex-wrap: wrap;
+      }
+
+      li {
+        padding-right: 5px;
+      }
+    }
+  }
+
   //connexion form 
   .connexion.basic-popUp {
     height: 45%;
 
     @include responsive('xl-desktop'){
-      height: 32.5%;
+      height: 32%;
       width: 25vw;
     }
 
@@ -371,6 +450,14 @@ export default {
       a {
         font-size: 12px;
       }
+    }
+  }
+
+  .connexion.yes.basic-popUp  {
+    height: 58%;
+
+     @include responsive('xl-desktop'){
+      height: 40%;
     }
   }
 }

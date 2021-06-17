@@ -8,7 +8,7 @@
             <slot name="content"></slot>
         </div>   
         <div class="basic-popUp-footer">
-            <router-link to="/fil-actu">Fil actu</router-link>
+            <!-- <router-link to="/fil-actu">Fil actu</router-link> -->
             <button @click="actionButton">{{headTitle}}</button>
         </div>
     </div>
@@ -44,6 +44,15 @@ export default {
 
     @include responsive('xl-desktop'){
       height: 55%;
+    }
+}
+
+.inscription.yes.basic-popUp  {
+    height: 98%;
+    width: 55vw;
+
+     @include responsive('xl-desktop'){
+      height: 63%;
     }
 }
 

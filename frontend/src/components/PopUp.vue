@@ -46,6 +46,15 @@ export default {
     }
 }
 
+.inscription.yes.basic-popUp  {
+    height: 98%;
+    width: 55vw;
+
+     @include responsive('xl-desktop'){
+      height: 63%;
+    }
+}
+
 .basic-popUp-head {
     position: relative;
 

@@ -60,22 +60,12 @@
 /* eslint-disable */
 </script>
 <style lang="scss">
-  html {
-    height: 100%;
-  }
-
-  body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    background-color: #353535;
-  }
 
   .bandeauRight {
     min-height: 100%;
     position: absolute;
     width: 18%;
-    background-color: #222222;
+    background-color: $black;
     right: 0;
   }
 
@@ -89,7 +79,7 @@
   }
 
   .trait {
-    border-bottom: 0.8px solid white;
+    border-bottom: 0.8px solid $white;
     margin-left: 7%;
     margin-right: 7%;
   }
@@ -116,7 +106,7 @@
   }
 
   .titreEvent {
-    color: #FFFFFF;
+    color: $white;
     font-size: 100%;
     font-weight: bold;
     text-align: center;
@@ -124,7 +114,7 @@
 
   .decompteEventText {
     border-radius: 18%;
-    background-color: white;
+    background-color: $white;
     padding-top: 6%;
     padding-bottom: 6%;
     margin-left: 10%;
@@ -137,7 +127,7 @@
     padding-left: 10%;
     padding-top: 7%;
     padding-bottom: 7%;
-    color: white;
+    color: $white;
     font-size: 100%;
   }
 

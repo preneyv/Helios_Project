@@ -1,5 +1,6 @@
 import User from "../models/User.js"
 import passwordHash from "password-hash"
+import fs from 'fs'
 
 /**
  * Login user from the database and generate a JWT
@@ -70,7 +71,7 @@ export async function signup(req, res) {
             birthDate,
             name,
             email,
-            carPicture,
+            carPicture:{title: `carpicture-${pseudo}`, data:fs.readFileSync(carPicture)},
             password: passwordHash.generate(password),
         })
 

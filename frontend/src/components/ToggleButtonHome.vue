@@ -42,16 +42,7 @@ export default {
 
 <style lang="scss">
 
- .toggle-btns {
-    display: inline-flex;
-    width: 100%;
 
-    button {
-        color: $white;
-        width: 20%;
-        background-color: $primary;
-    }
- }
 
 
 </style>

@@ -2,9 +2,13 @@
   <div class="bandeauLeft">
     <img id="logo" src="../assets/LogoHelios.svg">
     <ul>
-      <li><a href="#">Accueil</a></li>
+      <li>
+        <router-link to="/fil-actu">Accueil</router-link>
+      </li>
       <li><a href="#">Agenda</a></li>
-      <li><a href="#">Mon profil</a></li>
+      <li>
+        <router-link to="/mon-profil">Mon profil</router-link>
+      </li>
       <li><a href="#">Déconnexion</a></li>
     </ul>
   </div>

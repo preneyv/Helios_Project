@@ -12,7 +12,7 @@ const userSchema = new Schema(
         name: String,
         email: String,
         state: {type:String, default:"en attente"},
-        carPicture: String,
+        carPicture: {title:String, data: Buffer},
         password: String,
     },
     {

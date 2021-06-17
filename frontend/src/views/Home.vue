@@ -60,10 +60,10 @@
       <template v-slot:content>
         <form @submit.prevent="submit()">
           <div class="form-group--100">
-            <input type="email" id="email" name="email" placeholder="Adresse email"/>
+            <input type="email" id="email" name="email" placeholder="Adresse email" @input="updateFormData"/>
           </div>
           <div class="form-group--100">
-              <input type="password" id="password" name="password" placeholder="Mot de passe"/>
+              <input type="password" id="password" name="password" placeholder="Mot de passe" @input="updateFormData"/>
           </div>
           <div class="form-group--100 forgot-password">
               <router-link to="/forgot-password">Mot de passe oublié ?</router-link>
@@ -137,7 +137,7 @@ export default {
       const params = new URLSearchParams(queryString)
 
 
-      const redirectTo = params.get("redirectTo") || "Dashboard"
+      const redirectTo = params.get("redirectTo") || "filActu"
 
       if (redirectTo === "back")
       {

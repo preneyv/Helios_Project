@@ -8,7 +8,7 @@ const {Types} = mongoose
 export async function getAllPost(req, res) {
 
     try {
-        const posts = await Post.find()
+        const posts = await Post.find({}).sort({"created_at": -1})
         res.json({posts:posts})
     } catch (e) {
         return res.json({ error: e })

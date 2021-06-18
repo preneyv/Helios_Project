@@ -47,18 +47,15 @@
              <p class="photo-car">Afin de s’assurer que vous êtes propriétaire d’une belle voiture, veuillez insérer une photo de celle-ci, ci-dessous :</p>
             <p class="photo-profil">Cette photo deviendra votre photo de profil sur le réseau</p>
         </div>
-        
-        <!-- <p class="forgot-password text-right mt-2 mb-4">
-            <router-link to="/forgot-password">Mot de passe oublié ?</router-link>
-        </p> -->
-      </form>
-      <form @submit="downloadImage" method="post" enctype="multipart/form-data">
         <div class="form-group--100">
             <label for="carPicture" class="img-btn">Image +</label>
               <input type="file" class="img-input" id="carPicture" name="carPicture" @input="updateFormData">
               <p class="name-file" v-if="formData.carPicture">{{ formData.carPicture.name }}</p>
         </div>
-        <input type="submit" value="Envoyer image" />
+        
+        <!-- <p class="forgot-password text-right mt-2 mb-4">
+            <router-link to="/forgot-password">Mot de passe oublié ?</router-link>
+        </p> -->
       </form>
       </template>
     </PopUp>
@@ -94,7 +91,7 @@
 // @ is an alias to /src
 import PopUp from '@/components/PopUp.vue'
 import AuthServices from "@/services/auth.js"
-import LoadImage from "@/services/loadImage.js"
+import UploadFile from "@/services/loadImage.js"
 
 
 
@@ -129,11 +126,8 @@ export default {
     },
     updateFormData(e) {
       console.log(e)
-      e.target.type ===  "file" ? this.formData[e.target.id] = e.target.files[0] : this.formData[e.target.id] = e.target.value
+      e.target.type ===  "file" ? this.formData[e.target.id] = UploadFile(e.target.files[0]) : this.formData[e.target.id] = e.target.value
       
-    },
-    downloadImage(e){
-      LoadImage(e)
     },
     signin() {
 

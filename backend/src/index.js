@@ -12,6 +12,7 @@ import authRoutes from "../routes/auth.js"
 import postRoutes from "../routes/post.js"
 
 import { uploadImage } from "../controllers/uploadImage.js"
+import upload from "../multer/storage.js"
 
 //Import DB
 import database from "./database.js"
@@ -32,7 +33,7 @@ app.use(cors())
 
 
 // Routes
-app.post("/api/helios/upload", uploadImage)
+app.post("/api/helios/upload", upload)
 app.use("/api/helios/auth", authRoutes)
 app.use("/api/helios/user", userRoutes)
 app.use("/api/helios/post", postRoutes)

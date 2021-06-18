@@ -69,6 +69,9 @@
     import BandeauRight from '../components/BandeauRight.vue'
     import PopUp from '../components/PopUp.vue'
     import AuthServices from "@/services/auth.js"
+
+    import {getAllPost} from "@/services/posts.js"
+
     export default {
         name: 'filActu',
         components: {
@@ -85,7 +88,14 @@
                 errorsPost: [],
                 errorsEvent: [],
                 textButton: "Que souhaitez-vous partager aujourd'hui ?",
+                listPost:[]
             }
+        },
+        async mounted(){
+            const {data} = await getAllPost()
+            this.listPost = data.posts || []
+            console.log(this.listPost)
+
         },
         methods: {
             togglePosts() {

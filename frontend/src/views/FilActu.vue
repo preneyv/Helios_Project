@@ -7,7 +7,7 @@
             <button class="button toggle" id="btn_events"  @click="toggleEvents" :class="[!currentStateToggle ? 'active' : '']">Événements</button>
         </div>
         <div class="input-post">
-            <button @click="showModalPost = true">Que souhaitez-vous partager aujourd'hui ?</button>
+            <button @click="detectPopUp">{{ textButton }}</button>
         </div>
         <!-- :actionButton="signup" -->
         <PopUp v-if="showModalPost" @close="closeModal('post')" headTitle="Créer un post"  class="post" v-bind:classPopUp = "[errorsPost.length ? 'yes':'no']" >
@@ -33,6 +33,30 @@
                 </form>
             </template>
         </PopUp>
+        <PopUp v-if="showModalEvent" @close="closeModal('event')" headTitle="Créer un événement"  class="event" v-bind:classPopUp = "[errorsEvent.length ? 'yes':'no']" >
+            <template v-slot:header>
+                <button class="modal-default-button" @click="showModalEvent = false"><img :src="require('@/assets/cancel.svg')" alt="fermer la pop up"></button>
+            </template> 
+            <template v-slot:content>
+                <form @submit.prevent="signin()">
+                    <p class="errors" v-if="errorsEvent.length">
+                        <b>Veuillez corriger ces erreurs pour vous connecter :</b>
+                        <ul>
+                        <li class="error" v-for="error in errorsEvent" v-bind:key="error">{{ error }}, </li>
+                        </ul>
+                    </p>
+                    <div class="form-group-100">
+                        <textarea rows="5" id="desc" name="desc" placeholder="Description" @input="updateFormData"></textarea>
+                    </div>
+                    <div class="form-group--100">
+                        <label for="postImage" class="img-btn">Image +</label>
+                        <input type="file" class="img-input" id="postImage" name="postImage" @input="updateFormData">
+                        <p class="name-file">{{ formData.file }}</p>
+                    </div>
+                </form>
+            </template>
+        </PopUp>
+        
         <div class="actus">
             
         </div>
@@ -60,8 +84,11 @@
             return {
                 currentStateToggle: true,
                 showModalPost: false,
+                showModalEvent: false,
                 formData:{},
                 errorsPost: [],
+                errorsEvent: [],
+                textButton: "Que souhaitez-vous partager aujourd'hui ?",
             }
         },
         methods: {
@@ -71,6 +98,7 @@
                 } else {
                     
                     this.currentStateToggle = !this.currentStateToggle;
+                     this.textButton = "Que souhaitez-vous partager aujourd'hui ?"
                 }
                 
             },
@@ -79,7 +107,18 @@
                     
                 } else {
                     this.currentStateToggle = !this.currentStateToggle;
+                   
+                    this.textButton = "Quel événement voulez-vous créer aujourd'hui ?"
                 }
+            },
+
+            detectPopUp() {
+                if(this.currentStateToggle) {
+                    this.showModalPost = true
+                }else {
+                    this.showModalEvent = true
+                }
+                
             },
 
             closeModal(modal) {

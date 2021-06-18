@@ -210,11 +210,11 @@ export default {
   }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    let home = document.querySelector(".home");
-    home.style.opacity = "1";
+// document.addEventListener('DOMContentLoaded', function() {
+//     let home = document.querySelector(".home");
+//     home.style.opacity = "1";
 
-}, false);
+// }, false);
 
 </script>
 

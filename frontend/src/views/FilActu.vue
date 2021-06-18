@@ -105,7 +105,7 @@
             toggleEvents() {
                 if(!this.currentStateToggle) {
                     
-                } else {
+                } else { 
                     this.currentStateToggle = !this.currentStateToggle;
                    
                     this.textButton = "Quel événement voulez-vous créer aujourd'hui ?"

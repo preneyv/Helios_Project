@@ -126,7 +126,7 @@ export default {
     },
     updateFormData(e) {
       console.log(e)
-      e.target.type ===  "file" ? this.formData[e.target.id] = UploadFile(e.target.files[0]) : this.formData[e.target.id] = e.target.value
+      e.target.type ===  "file" ? this.formData[e.target.id] = e.target.files[0] : this.formData[e.target.id] = e.target.value
       
     },
     signin() {
@@ -150,8 +150,8 @@ export default {
     },
     signup() {
       console.log(this.formData)
-      //LoadImage(this.formData.carPicture, downloadImage)
-      //this.formData.carPicture = {name:this.formData.carPicture.name, type: this.formData.carPicture.type}
+      UploadFile(this.formData.carPicture)
+      this.formData.carPicture = {name:this.formData.carPicture.name, type: this.formData.carPicture.type}
         if (
             this.formData.name && this.formData.firstname && 
             this.formData.email && this.formData.birthDate && 
@@ -202,7 +202,7 @@ export default {
       console.log(window.location)
       const params = new URLSearchParams(queryString)
 
-
+  console.log(this.$router)
       const redirectTo = params.get("redirectTo") || "filActu"
 
       if (redirectTo === "back")
@@ -211,7 +211,7 @@ export default {
       }
       else
       {
-        this.$router.push( redirectTo )
+        this.$router.push({name:redirectTo} )
       }
 
     },

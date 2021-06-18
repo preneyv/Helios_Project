@@ -1,3 +1,17 @@
+html,
+body {
+    height: 100%;
+}
+
+main {
+    margin-left: 17%;
+    height: 100%;
+}
+
+main.home {
+    margin-left: 0;
+}
+
 .main {
     padding: 8% 5%;
     position: relative;

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Nav v-if="$route.name !== 'home'"/>
-    <main>
+    <main :class=highlight>
       <span v-if="$route.name !== 'home'" class="notifs"><img :src="require('@/assets/notifs.svg')" alt="Mes notifications"></span>
       <router-view />
     </main>
@@ -26,6 +26,11 @@ export default {
     
     }
   },
+  computed: {
+    highlight () {
+      return this.$route.name
+    }
+  }
 }
 </script>
 

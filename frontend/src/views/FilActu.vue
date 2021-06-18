@@ -45,8 +45,22 @@
                         <li class="error" v-for="error in errorsEvent" v-bind:key="error">{{ error }}, </li>
                         </ul>
                     </p>
-                    <div class="form-group-100">
-                        <textarea rows="5" id="desc" name="desc" placeholder="Description" @input="updateFormData"></textarea>
+                    <div class="form-group--100">
+                        <input type="text" id="title" name="title" placeholder="Titre" @input="updateFormData"/>
+                        <input type="text" id="adress" name="adress" placeholder="Adresse" @input="updateFormData"/>
+                        <input type="text" id="members" name="members" placeholder="Membres" @input="updateFormData"/>
+                    </div>
+                    <div class="form-group--100">
+                        <textarea rows="5" id="descEvent" name="desc" placeholder="Description" @input="updateFormData"></textarea>
+                    </div>
+                     <div class="form-group--100">
+                        <label for="date" class="date-label">Date</label>
+                        <p class="le">Le</p>
+                        <input type="date" class="date" id="date" name="date" @input="updateFormData">
+                         <p class="de">de </p>
+                        <input type="time" class="horaire start" id="timeStart" name="timeStart" @input="updateFormData">
+                        <p class="a">à </p>
+                        <input type="time" class="horaire end" id="timeEnd" name="timeEnd" @input="updateFormData">
                     </div>
                     <div class="form-group--100">
                         <label for="postImage" class="img-btn">Image +</label>
@@ -126,6 +140,7 @@
                 
             },
             closeModal(modal) {
+                console.log(modal);
                 modal === "post" ? this.showModalPost = false : this.showModalEvent = false
                 this.formData = {}
             },

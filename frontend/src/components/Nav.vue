@@ -23,6 +23,7 @@
     background-color: $black;
     text-align: center;
 
+
       li a {
         color: $white;
         font-size: 110%;

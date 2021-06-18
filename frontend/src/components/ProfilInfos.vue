@@ -75,9 +75,12 @@
     padding-top:2%;
   }
 
-  button {
-      &:first-of-type {
-        @include btnBlue;
-      }
+  .infosPerso {
+      button {
+        &:first-of-type {
+          @include btnBlue;
+        }
+    }
   }
+  
 </style>

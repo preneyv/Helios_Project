@@ -224,7 +224,7 @@ export default {
   font-family: Poppins, Helvetica, Arial, sans-serif;
 }
 
-.home {
+.home { 
   display: inline-flex;
   height: 100vh;
   width: 100vw;

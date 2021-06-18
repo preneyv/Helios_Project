@@ -72,7 +72,11 @@
         </PopUp>
         
         <div class="actus">
-            
+            <ul id="posts">
+                <li v-for="post in listPost" :key="post.id">
+                    {{ post.content }}
+                </li>
+            </ul>
         </div>
     </div>
 </div>

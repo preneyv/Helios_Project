@@ -278,19 +278,18 @@ export default {
         @include responsive('xl-desktop'){
             width: 85%;
         }
-
-         button {
-            &:first-of-type {
-            @include btnBlue;
-          }
-
-          &:last-of-type {
-          @include btnBorderWhite;
-        }
       }
     }
 
-    }
+      button.cta-login {
+            &:first-of-type {
+             @include btnBlue;
+          }
+
+          &:last-of-type {
+            @include btnBorderWhite;
+          }
+        }
 
     h1 {
       font-size: 35px;

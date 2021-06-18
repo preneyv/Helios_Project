@@ -67,7 +67,6 @@
     /* eslint-disable */ 
     import Nav from '../components/Nav.vue'
     import BandeauRight from '../components/BandeauRight.vue'
-    import ToggleButtonHome from '../components/ToggleButtonHome.vue'
     import PopUp from '../components/PopUp.vue'
     import AuthServices from "@/services/auth.js"
 
@@ -76,7 +75,6 @@
         components: {
             Nav,
             BandeauRight,
-            ToggleButtonHome,
             PopUp
         },
 
@@ -183,7 +181,7 @@
 
 .fil-actu {
     height: 100%;
-}
+
 
  .toggle-btns {
     display: inline-flex;
@@ -199,6 +197,12 @@
         filter: drop-shadow(0px 4px 16px rgba(0, 0, 0, 0.25));
         margin-right: 10px;
         transition: all 0.2s linear;
+        border: none;
+
+        &:hover {
+            border: none;
+            background-color: $light-black;
+        }
     }
 
     button.active {
@@ -210,22 +214,32 @@
         filter: drop-shadow(0px 4px 16px rgba(0, 0, 0, 0.25));
         margin-right: 10px;
         transition: all 0.2s linear;
+        border: none;
     }       
  }
 
-.input-post {
-    button {
-        padding: 9px 20px 9px 20px;
-        color: $white;
-        width: 100%;
-        background-color: $black;
-        border-radius: 10px;
-        filter: drop-shadow(0px 4px 16px rgba(0, 0, 0, 0.25));
-        margin-right: 10px;
-        text-align: left;
-        font-size: 16px;
+    .input-post {
+        button {
+            padding: 9px 20px 9px 20px;
+            color: $white;
+            width: 100%;
+            background-color: $black;
+            border-radius: 10px;
+            filter: drop-shadow(0px 4px 16px rgba(0, 0, 0, 0.25));
+            margin-right: 10px;
+            text-align: left;
+            font-size: 16px;
+            border: none;
+
+            &:hover {
+                border: none;
+                background-color: $light-black;
+            }
+        }
     }
+
 }
+
 
 #desc {
     margin-bottom: 30px;

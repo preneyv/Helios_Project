@@ -278,38 +278,37 @@ export default {
         @include responsive('xl-desktop'){
             width: 85%;
         }
+
+         button {
+            &:first-of-type {
+            @include btnBlue;
+          }
+
+          &:last-of-type {
+          @include btnBorderWhite;
+        }
       }
     }
 
-  h1 {
-    font-size: 35px;
-    font-weight: 600;
-    line-height: 52px;
-  }
-
-  p {
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 24px;
-  }
-
-  h2 {
-    font-size: 25px;
-    font-weight: 600;
-    padding: 50px 0 25px 0;
-  }
-
-  .cta-login {
-    button {
-      &:first-of-type {
-        @include btnBlue;
-      }
-
-      &:last-of-type {
-        @include btnBorderWhite;
-      }
     }
-  }
+
+    h1 {
+      font-size: 35px;
+      font-weight: 600;
+      line-height: 52px;
+    }
+
+    p {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 24px;
+    }
+
+    h2 {
+      font-size: 25px;
+      font-weight: 600;
+      padding: 50px 0 25px 0;
+    }
 
   //forms 
 

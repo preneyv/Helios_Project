@@ -36,6 +36,7 @@
 <style lang="scss">
   .monProfil {
     color:white;
+    padding-bottom: 25px;
   }
 
 

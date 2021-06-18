@@ -17,12 +17,12 @@
 <style lang="scss">
 
   .bandeauLeft {
+    position: fixed;
     height: 100vh;
     width: 17%;
     margin-right: 0;
     background-color: $black;
     text-align: center;
-
 
       li a {
         color: $white;

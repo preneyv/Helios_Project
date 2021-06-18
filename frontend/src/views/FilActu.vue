@@ -67,19 +67,15 @@
     /* eslint-disable */ 
     import Nav from '../components/Nav.vue'
     import BandeauRight from '../components/BandeauRight.vue'
-    import ToggleButtonHome from '../components/ToggleButtonHome.vue'
     import PopUp from '../components/PopUp.vue'
     import AuthServices from "@/services/auth.js"
-
     export default {
         name: 'filActu',
         components: {
             Nav,
             BandeauRight,
-            ToggleButtonHome,
             PopUp
         },
-
         data() {
             return {
                 currentStateToggle: true,
@@ -111,7 +107,6 @@
                     this.textButton = "Quel événement voulez-vous créer aujourd'hui ?"
                 }
             },
-
             detectPopUp() {
                 if(this.currentStateToggle) {
                     this.showModalPost = true
@@ -120,51 +115,38 @@
                 }
                 
             },
-
             closeModal(modal) {
                 modal === "post" ? this.showModalPost = false : this.showModalEvent = false
                 this.formData = {}
             },
-
             updateFormData(e) {
                 this.formData[e.target.id] = e.target.value
             },
-
             signin() {
-
                 if (this.desc || this.postImage) {
                     const data = this.formData
                     AuthServices.signin(data)
                         .then(this.handleSuccess())
                         .catch((error) => this.handleError(error))
                 }
-
                 this.errors = [];
-
                 if (!this.desc && !this.postImage) {
                     this.errors.push('Description ou image demandé.');
                 }
                 
-
                 e.preventDefault();
-
             },
-
             handleError(error) {
                 console.log(error)
                 this.error = { type: "error" }
                 this.error.message =
                     error.response?.data?.message || "Erreur serveur"
             },
-
             handleSuccess() {
                 const queryString = window.location.search
                 console.log(window.location)
                 const params = new URLSearchParams(queryString)
-
-
                 const redirectTo = params.get("redirectTo") || "filActu"
-
                 if (redirectTo === "back")
                 {
                     this.$router.go(-1)
@@ -173,23 +155,18 @@
                 {
                     this.$router.push( redirectTo )
                 }
-
             },
         },
     }
 </script>
-
 <style lang="scss">
-
 .fil-actu {
     height: 100%;
 }
-
  .toggle-btns {
     display: inline-flex;
     width: 100%;
     padding-bottom: 2%;
-
     button {
         padding: 9px 28px;
         color: $white;
@@ -200,7 +177,6 @@
         margin-right: 10px;
         transition: all 0.2s linear;
     }
-
     button.active {
         padding: 9px 28px;
         color: $white;
@@ -212,7 +188,6 @@
         transition: all 0.2s linear;
     }       
  }
-
 .input-post {
     button {
         padding: 9px 20px 9px 20px;
@@ -226,11 +201,7 @@
         font-size: 16px;
     }
 }
-
 #desc {
     margin-bottom: 30px;
 }
-
-
 </style>
-

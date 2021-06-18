@@ -2,7 +2,7 @@
     <div class="derniersPosts">
         <div class="titresCategories">Mes derniers posts</div>
         <div class="dernierPost">
-            <div class="iconsPost"><img class="iconHeliosPartage" src="../assets/IconHelios1.svg"><img class="iconHeliosPartage" src="../assets/IconHelios2.svg"></div>
+            <div class="iconsPost"><a href="#"><img class="iconHeliosPartage" src="../assets/IconHelios1.svg"></a><a href="#"><img class="iconHeliosPartage" src="../assets/IconHelios2.svg"></a></div>
             <table>
                 <tr>
                     <td class="caseImgPost"><img class="imgGroupe"></td>
@@ -14,7 +14,7 @@
             <div class="datePost">Posté le 29/05/21</div>
         </div>
         <div class="dernierPost">
-            <div class="iconsPost"><img class="iconHeliosPartage" src="../assets/IconHelios1.svg"><img class="iconHeliosPartage" src="../assets/IconHelios2.svg"></div>
+            <div class="iconsPost"><a href="#"><img class="iconHeliosPartage" src="../assets/IconHelios1.svg"></a><a href="#"><img class="iconHeliosPartage" src="../assets/IconHelios2.svg"></a></div>
             <table>
                 <tr>
                     <td class="caseImgPost"><img class="imgGroupe"></td>
@@ -76,7 +76,7 @@
     .contenuPost {
         padding: 2% 0% 2% 0%;
         line-height:160%;
-        font-size:95%;
+        font-size:85%;
     }
 
     .trait {
@@ -91,7 +91,7 @@
     .datePost {
         text-align:right;
         padding:2% 0% 1% 0%;
-        font-size:90%;
+        font-size:80%;
     }
   }
    

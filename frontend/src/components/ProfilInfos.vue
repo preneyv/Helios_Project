@@ -62,7 +62,7 @@
   .secondTable td {    
     padding:1%;
     padding-left:3.5%;
-    width:930px;
+    width:980px;
   }
 
   .secondTable input {

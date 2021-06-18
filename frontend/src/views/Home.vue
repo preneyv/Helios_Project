@@ -48,14 +48,18 @@
              <p class="photo-car">Afin de s’assurer que vous êtes propriétaire d’une belle voiture, veuillez insérer une photo de celle-ci, ci-dessous :</p>
             <p class="photo-profil">Cette photo deviendra votre photo de profil sur le réseau</p>
         </div>
-        <div class="form-group--100">
-          <label for="carPicture" class="img-btn">Image +</label>
-            <input type="file" class="img-input" id="carPicture" name="carPicture" @input="updateFormData">
-            <p class="name-file">{{ formData.file }}</p>
-        </div>
+        
         <!-- <p class="forgot-password text-right mt-2 mb-4">
             <router-link to="/forgot-password">Mot de passe oublié ?</router-link>
         </p> -->
+      </form>
+      <form @submit="downloadImage" method="post" enctype="multipart/form-data">
+        <div class="form-group--100">
+            <label for="carPicture" class="img-btn">Image +</label>
+              <input type="file" class="img-input" id="carPicture" name="carPicture" @input="updateFormData">
+              <p class="name-file" v-if="formData.carPicture">{{ formData.carPicture.name }}</p>
+        </div>
+        <input type="submit" value="Envoyer image" />
       </form>
       </template>
     </PopUp>
@@ -91,6 +95,10 @@
 // @ is an alias to /src
 import PopUp from '@/components/PopUp.vue'
 import AuthServices from "@/services/auth.js"
+import LoadImage from "@/services/loadImage.js"
+
+
+
 
 export default {
   name: 'home',
@@ -121,72 +129,79 @@ export default {
 
     },
     updateFormData(e) {
-      this.formData[e.target.id] = e.target.value
+      console.log(e)
+      e.target.type ===  "file" ? this.formData[e.target.id] = e.target.files[0] : this.formData[e.target.id] = e.target.value
       
+    },
+    downloadImage(e){
+      LoadImage(e)
     },
     signin() {
 
-      if (this.email && this.password) {
+      if (this.formData.email && this.formData.password) {
         const data = this.formData
         AuthServices.signin(data)
-            .then(this.handleSuccess())
-            .catch((error) => this.handleError(error))
+            .then(() => this.handleSuccess())
+            .catch((error) => this.handleError(error , "signin"))
       }
 
       this.errors = [];
 
-      if (!this.email) {
+      if (!this.formData.email) {
         this.errors.push('Email demandé.');
       }
-      if (!this.password) {
+      if (!this.formData.password) {
         this.errors.push('Mot de passe demandé.');
       }
 
-      e.preventDefault();
-
-     
-
     },
     signup() {
-       if (this.name && this.firstname && this.email && this.birthDate && this.pseudo && this.password && this.carPicture) {
+      console.log(this.formData)
+      //LoadImage(this.formData.carPicture, downloadImage)
+      //this.formData.carPicture = {name:this.formData.carPicture.name, type: this.formData.carPicture.type}
+        if (
+            this.formData.name && this.formData.firstname && 
+            this.formData.email && this.formData.birthDate && 
+            this.formData.pseudo && this.formData.password && 
+            this.formData.carPicture
+            ) {
           const data = this.formData
           AuthServices.signup(data)
-            .then(this.handleSuccess())
-            .catch((error) => this.handleError(error))
+            .then(() => this.handleSuccess())
+            .catch((error) => this.handleError(error, "signup"))
       } 
       
       this.errorsSignUp = [];
 
-      if (!this.name) {
+      if (!this.formData.name) {
         this.errorsSignUp.push('Nom demandé');
       }  
-      if (!this.firstname) {
+      if (!this.formData.firstname) {
          this.errorsSignUp.push('Prénom demandé');
       } 
-      if (!this.email) {
+      if (!this.formData.email) {
         this.errorsSignUp.push('Email demandé');
       } 
-      if (!this.birthDate) {
+      if (!this.formData.birthDate) {
         this.errorsSignUp.push('Date de naissance demandé');
       } 
-      if (!this.pseudo) {
+      if (!this.formData.pseudo) {
         this.errorsSignUp.push('Pseudo demandé');
       } 
-      if (!this.password) {
+      if (!this.formData.password) {
         this.errorsSignUp.push('Mot de passe demandé');
       } 
-      if (!this.carPicture) {
+      if (!this.formData.carPicture) {
         this.errorsSignUp.push('Photo de votre voiture demandé');
       }
 
-      e.preventDefault();
     },
 
-    handleError(error) {
-      console.log(error)
-      this.error = { type: "error" }
-      this.error.message =
-          error.response?.data?.message || "Erreur serveur"
+    handleError(error, from) {
+      from === "signin" ? 
+      this.errors = [...this.errors, error.response?.data?.message || "Erreur serveur"]
+      : this.errorsSignUp = [...this.errorsSignUp,  error.response?.data?.message || "Erreur serveur" ]
+   
     },
 
     handleSuccess() {
@@ -208,15 +223,9 @@ export default {
 
     },
 
+  
   }
 }
-
-// document.addEventListener('DOMContentLoaded', function() {
-//     let home = document.querySelector(".home");
-//     home.style.opacity = "1";
-
-// }, false);
-
 </script>
 
 <style lang="scss">

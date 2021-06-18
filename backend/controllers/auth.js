@@ -1,6 +1,6 @@
 import User from "../models/User.js"
 import passwordHash from "password-hash"
-import fs from 'fs'
+import { startUpload } from "../src/googleapi.js"
 
 /**
  * Login user from the database and generate a JWT
@@ -65,13 +65,16 @@ export async function signup(req, res) {
     }
 
     try {
+        
+        //startUpload(carPicture)
+
         const user = new User({
             pseudo,
             firstname,
             birthDate,
             name,
             email,
-            carPicture:{title: `carpicture-${pseudo}`, data:fs.readFileSync(carPicture)},
+            carPicture,
             password: passwordHash.generate(password),
         })
 

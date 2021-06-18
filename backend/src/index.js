@@ -5,10 +5,13 @@ import express, { json } from "express"
 import helmet from "helmet"
 import cors from "cors"
 
+
 // Imports Routes
 import userRoutes from "../routes/user.js"
 import authRoutes from "../routes/auth.js"
 import postRoutes from "../routes/post.js"
+
+import { uploadImage } from "../controllers/uploadImage.js"
 
 //Import DB
 import database from "./database.js"
@@ -26,7 +29,10 @@ app.use(helmet())
 app.use(json())
 app.use(cors())
 
+
+
 // Routes
+app.post("/api/helios/upload", uploadImage)
 app.use("/api/helios/auth", authRoutes)
 app.use("/api/helios/user", userRoutes)
 app.use("/api/helios/post", postRoutes)

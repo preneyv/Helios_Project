@@ -2,7 +2,7 @@
   <div id="app">
     <Nav v-if="$route.name !== 'home'"/>
     <main>
-      <span class="notifs"><img :src="require('@/assets/notifs.svg')" alt="Mes notifications"></span>
+      <span v-if="$route.name !== 'home'" class="notifs"><img :src="require('@/assets/notifs.svg')" alt="Mes notifications"></span>
       <router-view />
     </main>
     <BandeauRight v-if="$route.name !== 'home'"/>

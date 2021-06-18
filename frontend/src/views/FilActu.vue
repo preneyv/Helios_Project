@@ -1,4 +1,5 @@
 <template> 
+<div class="main">
     <div class="fil-actu">
         <h1 class="h1">Mes actualités</h1>
          <div class="toggle-btns">
@@ -36,6 +37,7 @@
             
         </div>
     </div>
+</div>
 </template>
 <script>
     /* eslint-disable */ 

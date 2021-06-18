@@ -1,7 +1,7 @@
 <template> 
   <div class="main">
       <div class="monProfil">
-          <h1 class="h1">Mon profil</h1>
+          <div class="h1">Mon profil</div>
       </div>
   </div>
 </template>
@@ -28,6 +28,8 @@
 </script>
 
 <style lang="scss">
+
+
 
 
 </style>

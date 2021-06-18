@@ -159,7 +159,7 @@ export default {
 //add a post 
 
 .post.no.basic-popUp  {
-    height: 76%;
+    height: 64%;
     width: 55vw;
 
     #desc {
@@ -167,11 +167,69 @@ export default {
     }
 
      @include responsive('xl-desktop'){
-      height: 50%;
+      height: 43%;
       width: 45vw;
     }
 }
 
 //add an event 
+.event.basic-popUp {
+    height: 116%;
+
+   @include responsive('xl-desktop'){
+      height: 78%;
+    }
+
+  .form-group--100 {
+    display: inline-flex; 
+    flex-wrap: wrap;
+
+    input,
+    textarea {
+      width: 100%;
+    }
+
+    .de,
+    .a {
+      width: 5%;
+      margin: 0 12px 0 15px;
+      font-size: 14px;
+      text-align: right;
+      font-size: 14px;
+    }
+  
+    .le { 
+      width: 4%;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    #timeStart,
+    #timeEnd {
+      padding-left: 30px;
+      width: 18%;
+    }
+
+    #time,
+    #date {
+      width: 35%;
+    }
+  }
+
+  .date-label {
+    width: 100%;
+    padding-top: 1rem;
+    font-weight: 600;
+    padding-bottom: 15px;
+  }
+
+  #descEvent {
+    margin-bottom: 10px;
+  }
+
+  .img-btn {
+    margin-top: 5px;
+  }
+}
 
 </style>

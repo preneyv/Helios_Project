@@ -2,33 +2,36 @@
   <div class="bandeauLeft">
     <img id="logo" src="../assets/LogoHelios.svg">
     <ul>
-      <li><a href="#">Accueil</a></li>
+      <li>
+        <router-link to="/fil-actu">Accueil</router-link>
+      </li>
       <li><a href="#">Agenda</a></li>
-      <li><a href="#">Mon profil</a></li>
+      <li>
+        <router-link to="/mon-profil">Mon profil</router-link>
+      </li>
       <li><a href="#">Déconnexion</a></li>
     </ul>
   </div>
 </template>
 
 <style lang="scss">
-  html {
-    height: 100%;
-  }
-
-  body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    background-color: #353535;
-  }
 
   .bandeauLeft {
-    min-height: 100%;
-    position: absolute;
+    height: 100vh;
     width: 17%;
     margin-right: 0;
-    background-color: #222222;
+    background-color: $black;
     text-align: center;
+
+      li a {
+        color: $white;
+        font-size: 110%;
+      } 
+
+      li {
+        padding: 5%;
+      }
+ 
   }
 
   #logo {
@@ -37,12 +40,5 @@
     width: 60%;
   }
 
-  li a {
-    color: white;
-    font-size: 110%;
-  }
 
-  li {
-    padding: 5%;
-  }
 </style>

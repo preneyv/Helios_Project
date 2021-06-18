@@ -2,7 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import FilActu from './views/FilActu.vue'
-import ProfileInfo from './components/ProfileInfo.vue'
+import MonProfil from './views/MonProfil.vue'
+import Agenda from './views/Agenda.vue'
 
 
 Vue.use(Router)
@@ -23,9 +24,15 @@ export default new Router({
       // component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
     },
     {
-      path: '/my-profil',
+      path: '/mon-profil',
       name: 'profil',
-      component: ProfileInfo
+      component: MonProfil
+      // component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+    },
+    {
+      path: '/mon-agenda',
+      name: 'agenda',
+      component: Agenda
       // component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
     }
 

@@ -10,7 +10,7 @@
         <div class="basic-popUp-footer">
             <button @click="actionButton">{{headTitle}}</button>
         </div>
-    </div>
+    </div> 
 </template>
 <script>
  
@@ -19,7 +19,7 @@ export default {
     props: {
         headTitle: String,
         actionButton: Function,
-        classPopUp: String
+        classPopUp: Array
     },
 }
 </script>
@@ -44,16 +44,13 @@ export default {
     @include responsive('xl-desktop'){
       height: 55%;
     }
-}
 
-.inscription.yes.basic-popUp  {
-    height: 98%;
-    width: 55vw;
-
-     @include responsive('xl-desktop'){
-      height: 63%;
+    input,
+    textarea {
+      @include input;
     }
 }
+
 
 .basic-popUp-head {
     position: relative;
@@ -62,6 +59,7 @@ export default {
         font-size: 24px;
         text-align: center;
         font-weight: 500;
+         padding: 30px 0 25px 0;
     }
 
     button {
@@ -69,7 +67,55 @@ export default {
         right: 15px;
         top: 15px;
     }
+
+    .modal-default-button {
+        width: 15px;
+        height: 15px;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
 }
+  .basic-popUp-content {
+    form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 10% 10px 10%;
+    }
+
+    .error {
+      color: red;
+    }
+
+    .errors {
+      padding-bottom: 10px;
+    }
+  }
+
+  .form-group-50 {
+    display: inline-flex;
+    justify-content: space-between;
+    width: 100%;
+    
+    input {
+      width: 45%;
+    }
+  }
+
+  .form-group--100 {
+     input {
+      width: 100%;
+    }
+    .img-input {
+       display: none;
+    }
+    #password {
+      margin-bottom: 25px;
+    }
+  }
+
 
 .basic-popUp-footer {
     display: flex;
@@ -81,4 +127,51 @@ export default {
         padding: 8px 40px;
     }
 }
+
+  .img-btn {
+    padding: 5px 20px;
+    background-color: $black;
+    color: $white;
+    border-radius: 10px;
+    font-size: 14px;
+    border: 1px solid $black;
+    transition: all 0.2s linear;
+
+    &:hover {
+        background-color: transparent;
+        border: 1px solid $black;
+        color: $black;
+        transition: all 0.2s linear;
+    }
+  }
+
+//Register
+
+.inscription.yes.basic-popUp  {
+    height: 98%;
+    width: 55vw;
+
+     @include responsive('xl-desktop'){
+      height: 63%;
+    }
+}
+
+//add a post 
+
+.post.no.basic-popUp  {
+    height: 76%;
+    width: 55vw;
+
+    #desc {
+        width: 100%;
+    }
+
+     @include responsive('xl-desktop'){
+      height: 50%;
+      width: 45vw;
+    }
+}
+
+//add an event 
+
 </style>

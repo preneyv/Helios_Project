@@ -11,7 +11,6 @@
         <div class="login">
           <h2>Rejoignez la communauté !</h2>
           <div class="cta-login">
-
             <button @click="showModalInscription = true">S'inscrire</button>
             <button @click="showModalConnexion = true">Se connecter</button>
             <!-- <router-link to="/">S'inscrire</router-link>
@@ -115,11 +114,11 @@ export default {
       errorsSignUp: [],
     }
   },
-  mounted() {
-    this.show = true; // might need this.$nextTick
-    let home = document.querySelector(".home");
-     home.style.opacity = "1";
-  },
+  // mounted() {
+  //   this.show = true; // might need this.$nextTick
+  //   let home = document.querySelector(".home");
+  //    home.style.opacity = "1";
+  // },
 
   methods:{
 
@@ -234,7 +233,7 @@ export default {
   font-family: Poppins, Helvetica, Arial, sans-serif;
 }
 
-.home {
+.home { 
   display: inline-flex;
   height: 100vh;
   width: 100vw;
@@ -291,97 +290,35 @@ export default {
       }
     }
 
-  h1 {
-    font-size: 35px;
-    font-weight: 600;
-    line-height: 52px;
-  }
+      button.cta-login {
+            &:first-of-type {
+             @include btnBlue;
+          }
 
-  p {
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 24px;
-  }
+          &:last-of-type {
+            @include btnBorderWhite;
+          }
+        }
 
-  h2 {
-    font-size: 25px;
-    font-weight: 600;
-    padding: 50px 0 25px 0;
-  }
-
-  .cta-login {
-    button {
-      &:first-of-type {
-        @include btnBlue;
-      }
-
-      &:last-of-type {
-        @include btnBorderWhite;
-      }
+    h1 {
+      font-size: 35px;
+      font-weight: 600;
+      line-height: 52px;
     }
-  }
+
+    p {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 24px;
+    }
+
+    h2 {
+      font-size: 25px;
+      font-weight: 600;
+      padding: 50px 0 25px 0;
+    }
 
   //forms 
-
-  .basic-popUp-head {
-    h2 {
-      padding: 30px 0 25px 0;
-    }
-
-    .modal-default-button {
-        width: 15px;
-        height: 15px;
-      img {
-        width: 100%;
-        height: 100%;
-      }
-    }
-  }
-
-  .basic-popUp {
-    input {
-      @include input;
-    }
-  }
-
-  .basic-popUp-content {
-    form {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 0 10% 10px 10%;
-    }
-
-    .error {
-      color: red;
-    }
-
-    .errors {
-      padding-bottom: 10px;
-    }
-  }
-
-  .form-group-50 {
-    display: inline-flex;
-    justify-content: space-between;
-    width: 100%;
-    
-    input {
-      width: 45%;
-    }
-  }
-
-  .form-group--100 {
-     input {
-      width: 100%;
-    }
-    .img-input {
-       display: none;
-    }
-    #password {
-      margin-bottom: 25px;
-    }
-  }
 
   .login-id {
     font-size: 12px; 
@@ -400,25 +337,12 @@ export default {
     padding: 3px 0 8px 0;
   }
 
-  .name-file {
-    margin-top: 9px;
+  .photo-profil {
+    padding-bottom: 2%;
   }
 
-  .img-btn {
-    padding: 5px 20px;
-    background-color: $black;
-    color: $white;
-    border-radius: 10px;
-    font-size: 14px;
-    border: 1px solid $black;
-    transition: all 0.2s linear;
-
-    &:hover {
-        background-color: transparent;
-        border: 1px solid $black;
-        color: $black;
-        transition: all 0.2s linear;
-    }
+  .name-file {
+    margin-top: 9px;
   }
 
   .forgot-password {

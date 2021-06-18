@@ -5,4 +5,15 @@ $mainFont: 'Poppins';
 body {
     font-family: 'Poppins', sans-serif;
     font-size: var(--size-text-base);
+} 
+
+.h1 { 
+    color: $white;
+    font-size: 22px;
+    font-weight: 600;
+    padding-bottom: 4%;
+}
+
+button {
+    font-family: 'Poppins', sans-serif;
 }

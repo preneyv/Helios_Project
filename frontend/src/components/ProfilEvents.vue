@@ -49,7 +49,7 @@
     background-color:#353535;
     padding:2% 4% 2% 4%;
     border-radius:20px;
-    width:410px;
+    width:450px;
   }
 
   .titreEventOrganis {
@@ -73,6 +73,6 @@
   }
 
   .ecartTableau {
-    padding-left:85px;
+    padding-left:100px;
   }
 </style>

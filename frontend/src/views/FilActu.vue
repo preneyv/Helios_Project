@@ -73,8 +73,9 @@
         
         <div class="actus">
             <ul id="posts">
-                <li v-for="post in listPost" :key="post.id">
-                    {{ post.content }}
+                <li class="post" v-for="post in listPost" :key="post.id">
+                    <!-- {{ post.content }} -->
+                    <Post :post="post"></Post>
                 </li>
             </ul>
         </div>
@@ -88,6 +89,7 @@
     import PopUp from '../components/PopUp.vue'
     import UploadFile from "@/services/loadImage.js"
     import {isImage} from "@/utils/utils.js"
+    import Post from '../components/Post.vue'
 
     import {getAllPost, insertOnePost} from "@/services/posts.js"
 
@@ -96,7 +98,8 @@
         components: {
             Nav,
             BandeauRight,
-            PopUp
+            PopUp,
+            Post
         },
         data() {
             return {
@@ -181,6 +184,13 @@
     }
 </script>
 <style lang="scss">
+
+// .filActu {
+//     .main {
+//         height: fit-content;
+//     }
+// }
+
 .fil-actu {
     height: 100%;
 
@@ -238,10 +248,23 @@
         }
     }
 
+    .actus {
+        padding-bottom: 10px;
+    }
+
 }
 
 
 #content {
     margin-bottom: 30px;
+}
+
+// Post 
+
+.post {
+    background-color: $black;
+    color: $white;
+    margin: 25px 0;
+    border-radius: 20px;
 }
 </style>

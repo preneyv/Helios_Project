@@ -42,19 +42,12 @@ import moment from 'moment';
      },
     methods: {
          formatDate(date) {
-          console.log(date);
           let formatDate = moment(date).format("DD/MM/YY");
-          console.log(formatDate);
            return formatDate;
         }
     },
     computed: {
-    //   formatDate(date) {
-    //       console.log(date);
-    //       let formatDate = moment(date).format("YYYY-MM-DD");
-    //       console.log(formatDate);
-    //        return formatDate;
-    //     }
+
     }
    }
 </script>
@@ -146,9 +139,6 @@ import moment from 'moment';
         }
      }
 
-     img {
-
-     }
 }
 
 .date {

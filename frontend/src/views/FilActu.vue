@@ -115,8 +115,6 @@
         async mounted(){
             const {data} = await getAllPost()
             this.listPost = data.posts || []
-            console.log(this.listPost)
-
         },
         methods: {
             togglePosts() {
@@ -147,7 +145,6 @@
                 
             },
             closeModal(modal) {
-                console.log(modal);
                 modal === "post" ? this.showModalPost = false : this.showModalEvent = false
                 this.formData = {}
                 this.errors = []
@@ -156,15 +153,13 @@
                  e.target.type ===  "file" ? this.formData[e.target.id] = e.target.files[0] : this.formData[e.target.id] = e.target.value
             },
             addPost() {
-
-                
                 if (this.formData.content && this.formData.media && isImage(this.formData.media.name)) {
-                    console.log(this.formData)
                     UploadFile(this.formData.media)
                     this.formData.media = {name:this.formData.media.name, type: this.formData.media.type}
                     const data = {...this.formData, group: null}
                     insertOnePost(data)
-                        .then(this.handleSuccess())
+                        // .then(this.handleSuccess())
+                        .then(this.handleSuccess(res))
                         .catch((error) => this.handleError(error))
                 }
 
@@ -184,12 +179,6 @@
     }
 </script>
 <style lang="scss">
-
-// .filActu {
-//     .main {
-//         height: fit-content;
-//     }
-// }
 
 .fil-actu {
     height: 100%;

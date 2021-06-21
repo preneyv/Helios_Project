@@ -4,6 +4,7 @@ import fs from 'fs'
 
 
  async function startUpload (file) {
+     console.log("Google API");
         const CLIENT_ID = "663254775431-hhk7pgf7gohgfseu4prleq4eedt5s7dh.apps.googleusercontent.com"
         const CLIENT_SECRET = "gCvsRYBtCmERLtHcEf4RaqLm"
         const REDIRECT_URI = "https://developers.google.com/oauthplayground/"
@@ -24,6 +25,7 @@ import fs from 'fs'
         })
 
        const id = await uploadFile(file, drive)
+       console.log("FIN : Google API");
        return id
         
 }
@@ -32,7 +34,7 @@ import fs from 'fs'
 
 
 async function uploadFile({name, type}, drive) {
-
+    console.log("DEBUT : upload");
     try {
         var __dirname = path.resolve()
         const filepath = path.join(__dirname, `/temp/${name}`)

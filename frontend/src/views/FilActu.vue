@@ -28,7 +28,7 @@
                     <div class="form-group--100">
                         <label for="media" class="img-btn">Image +</label>
                         <input type="file" class="img-input" id="media" name="postImage" @input="updateFormData">
-                        <p class="name-file">{{ formData.file }}</p>
+                        <p class="name-file"  v-if="formData.media">{{ formData.media.name || null }}</p>
                     </div>
                 </form>
             </template>
@@ -65,7 +65,7 @@
                     <div class="form-group--100">
                         <label for="postImage" class="img-btn">Image +</label>
                         <input type="file" class="img-input" id="postImage" name="postImage" @input="updateFormData">
-                        <p class="name-file">{{ formData.file }}</p>
+                        <p class="name-file" v-if="formData.media">{{ formData.media.name || null }}</p>
                     </div>
                 </form>
             </template>
@@ -156,15 +156,13 @@
                  e.target.type ===  "file" ? this.formData[e.target.id] = e.target.files[0] : this.formData[e.target.id] = e.target.value
             },
             addPost() {
-
-                
                 if (this.formData.content && this.formData.media && isImage(this.formData.media.name)) {
                     console.log(this.formData)
                     UploadFile(this.formData.media)
                     this.formData.media = {name:this.formData.media.name, type: this.formData.media.type}
                     const data = {...this.formData, group: null}
                     insertOnePost(data)
-                        .then(this.handleSuccess())
+                        .then(res => this.handleSuccess(res))
                         .catch((error) => this.handleError(error))
                 }
 
@@ -177,8 +175,8 @@
             handleError(error) {
                 this.errors = [...this.errors,  error.response?.data?.message || "Erreur serveur" ]
             },
-            handleSuccess() {
-                
+            handleSuccess(res) {
+                console.log(res)
             },
         },
     }

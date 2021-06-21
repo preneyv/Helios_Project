@@ -92,6 +92,7 @@
 import PopUp from '@/components/PopUp.vue'
 import AuthServices from "@/services/auth.js"
 import UploadFile from "@/services/loadImage.js"
+import {isImage} from "@/utils/utils.js"
 
 
 
@@ -149,20 +150,21 @@ export default {
 
     },
     signup() {
-      console.log(this.formData)
-      UploadFile(this.formData.carPicture)
-      this.formData.carPicture = {name:this.formData.carPicture.name, type: this.formData.carPicture.type}
+
         if (
             this.formData.name && this.formData.firstname && 
             this.formData.email && this.formData.birthDate && 
             this.formData.pseudo && this.formData.password && 
-            this.formData.carPicture
-            ) {
-          const data = this.formData
-          AuthServices.signup(data)
-            .then(() => this.handleSuccess())
-            .catch((error) => this.handleError(error, "signup"))
-      } 
+            this.formData.carPicture && isImage(this.formData.carPicture.name)
+            ) 
+        {
+            UploadFile(this.formData.carPicture)
+            this.formData.carPicture = {name:this.formData.carPicture.name, type: this.formData.carPicture.type}
+            const data = this.formData
+            AuthServices.signup(data)
+              .then(() => this.handleSuccess())
+              .catch((error) => this.handleError(error, "signup"))
+        } 
       
       this.errorsSignUp = [];
 
@@ -186,6 +188,9 @@ export default {
       } 
       if (!this.formData.carPicture) {
         this.errorsSignUp.push('Photo de votre voiture demandé');
+      }
+      if (this.formData.carPicture && !isImage(this.formData.carPicture.name)) {
+        this.errorsSignUp.push('Veuillez transmettre une image valide (jpg, png, svg)');
       }
 
     },
@@ -211,7 +216,7 @@ export default {
       }
       else
       {
-        this.$router.push({name:redirectTo} )
+        this.$router.push({name:redirectTo})
       }
 
     },

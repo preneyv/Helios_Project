@@ -10,39 +10,39 @@
             <button @click="detectPopUp">{{ textButton }}</button>
         </div>
         <!-- :actionButton="signup" -->
-        <PopUp v-if="showModalPost" @close="closeModal('post')" headTitle="Créer un post"  class="post" v-bind:classPopUp = "[errorsPost.length ? 'yes':'no']" >
+        <PopUp v-if="showModalPost" @close="closeModal('post')" headTitle="Créer un post"  class="post" v-bind:classPopUp = "[errors.length ? 'yes':'no']" :actionButton="addPost">
             <template v-slot:header>
                 <button class="modal-default-button" @click="showModalPost = false"><img :src="require('@/assets/cancel.svg')" alt="fermer la pop up"></button>
             </template> 
             <template v-slot:content>
-                <form @submit.prevent="signin()">
-                    <p class="errors" v-if="errorsPost.length">
+                <form @submit.prevent="">
+                    <p class="errors" v-if="errors.length">
                         <b>Veuillez corriger ces erreurs pour vous connecter :</b>
                         <ul>
-                        <li class="error" v-for="error in errorsPost" v-bind:key="error">{{ error }}, </li>
+                        <li class="error" v-for="error in errors" v-bind:key="error">{{ error }}, </li>
                         </ul>
                     </p>
                     <div class="form-group-100">
-                        <textarea rows="5" id="desc" name="desc" placeholder="Description" @input="updateFormData"></textarea>
+                        <textarea rows="5" id="content" name="desc" placeholder="Description" @input="updateFormData"></textarea>
                     </div>
                     <div class="form-group--100">
-                        <label for="postImage" class="img-btn">Image +</label>
-                        <input type="file" class="img-input" id="postImage" name="postImage" @input="updateFormData">
+                        <label for="media" class="img-btn">Image +</label>
+                        <input type="file" class="img-input" id="media" name="postImage" @input="updateFormData">
                         <p class="name-file">{{ formData.file }}</p>
                     </div>
                 </form>
             </template>
         </PopUp>
-        <PopUp v-if="showModalEvent" @close="closeModal('event')" headTitle="Créer un événement"  class="event" v-bind:classPopUp = "[errorsEvent.length ? 'yes':'no']" >
+        <PopUp v-if="showModalEvent" @close="closeModal('event')" headTitle="Créer un événement"  class="event" v-bind:classPopUp = "[errors.length ? 'yes':'no']" >
             <template v-slot:header>
                 <button class="modal-default-button" @click="showModalEvent = false"><img :src="require('@/assets/cancel.svg')" alt="fermer la pop up"></button>
             </template> 
             <template v-slot:content>
-                <form @submit.prevent="signin()">
-                    <p class="errors" v-if="errorsEvent.length">
+                <form @submit.prevent="">
+                    <p class="errors" v-if="errors.length">
                         <b>Veuillez corriger ces erreurs pour vous connecter :</b>
                         <ul>
-                        <li class="error" v-for="error in errorsEvent" v-bind:key="error">{{ error }}, </li>
+                        <li class="error" v-for="error in errors" v-bind:key="error">{{ error }}, </li>
                         </ul>
                     </p>
                     <div class="form-group--100">
@@ -86,9 +86,10 @@
     import Nav from '../components/Nav.vue'
     import BandeauRight from '../components/BandeauRight.vue'
     import PopUp from '../components/PopUp.vue'
-    import AuthServices from "@/services/auth.js"
+    import UploadFile from "@/services/loadImage.js"
+    import {isImage} from "@/utils/utils.js"
 
-    import {getAllPost} from "@/services/posts.js"
+    import {getAllPost, insertOnePost} from "@/services/posts.js"
 
     export default {
         name: 'filActu',
@@ -103,8 +104,7 @@
                 showModalPost: false,
                 showModalEvent: false,
                 formData:{},
-                errorsPost: [],
-                errorsEvent: [],
+                errors: [],
                 textButton: "Que souhaitez-vous partager aujourd'hui ?",
                 listPost:[]
             }
@@ -147,43 +147,35 @@
                 console.log(modal);
                 modal === "post" ? this.showModalPost = false : this.showModalEvent = false
                 this.formData = {}
+                this.errors = []
             },
             updateFormData(e) {
-                this.formData[e.target.id] = e.target.value
+                 e.target.type ===  "file" ? this.formData[e.target.id] = e.target.files[0] : this.formData[e.target.id] = e.target.value
             },
-            signin() {
-                if (this.desc || this.postImage) {
-                    const data = this.formData
-                    AuthServices.signin(data)
+            addPost() {
+
+                
+                if (this.formData.content && this.formData.media && isImage(this.formData.media.name)) {
+                    console.log(this.formData)
+                    UploadFile(this.formData.media)
+                    this.formData.media = {name:this.formData.media.name, type: this.formData.media.type}
+                    const data = {...this.formData, group: null}
+                    insertOnePost(data)
                         .then(this.handleSuccess())
                         .catch((error) => this.handleError(error))
                 }
+
                 this.errors = [];
-                if (!this.desc && !this.postImage) {
+                if (!this.formData.content && !this.formData.media) {
                     this.errors.push('Description ou image demandé.');
                 }
                 
-                e.preventDefault();
             },
             handleError(error) {
-                console.log(error)
-                this.error = { type: "error" }
-                this.error.message =
-                    error.response?.data?.message || "Erreur serveur"
+                this.errors = [...this.errors,  error.response?.data?.message || "Erreur serveur" ]
             },
             handleSuccess() {
-                const queryString = window.location.search
-                console.log(window.location)
-                const params = new URLSearchParams(queryString)
-                const redirectTo = params.get("redirectTo") || "filActu"
-                if (redirectTo === "back")
-                {
-                    this.$router.go(-1)
-                }
-                else
-                {
-                    this.$router.push( redirectTo )
-                }
+                
             },
         },
     }
@@ -249,7 +241,7 @@
 }
 
 
-#desc {
+#content {
     margin-bottom: 30px;
 }
 </style>

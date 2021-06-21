@@ -1,6 +1,10 @@
 import Post from '../models/Post.js'
 import mongoose from "mongoose"
 
+import { startUpload } from "../src/googleapi.js"
+
+import { deleteImage } from "../multer/storage.js"
+
 const {Types} = mongoose
 
 /*POST PART */
@@ -32,16 +36,19 @@ export async function insertPost(req, res) {
 
     try {
         
+        const idPicture = await startUpload(media)
         const post = new Post({
             maker: user._id,
             content,
-            media,
+            media: idPicture,
             idGroup: group,
         })
         
         post.save((err) => {
             if (err)
                 return console.error(err)
+
+            deleteImage(media.name)
             return res.json(post)
         })
 

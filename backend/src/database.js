@@ -3,9 +3,6 @@ import mongoose from "mongoose"
 const database = {
     init() {
         const { DB_NAME, DB_PASSWORD, DB_USER } = process.env
-
-        console.log(process.env)
-
         this.uri = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@helioscluster.lfkqf.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`
         this.connect()
     },

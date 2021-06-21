@@ -13,9 +13,16 @@
  /* eslint-disable */
     import Nav from './components/Nav.vue'
     import BandeauRight from './components/BandeauRight.vue'
+    import VueMeta from 'vue-meta'
+
+    // Vue.use(VueMeta)
 
 export default {
   name: 'app',
+  tile: 'Helios',
+  // metaInfo: {
+  //     title: 'Helios',
+  // },
   // props: ,
   components: {
     Nav,
@@ -44,6 +51,10 @@ export default {
 
   main {
     width: 65%;
+  }
+
+  main.filActu {
+    position: relative;
   }
 
   #app {

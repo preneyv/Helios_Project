@@ -73,7 +73,7 @@
         
         <div class="actus">
             <ul id="posts">
-                <li class="post" v-for="post in listPost" :key="post.id">
+                <li class="post" v-for="post in getPost" :key="post.id">
                     <!-- {{ post.content }} -->
                     <Post :post="post"></Post>
                 </li>
@@ -92,7 +92,7 @@
     import Post from '../components/Post.vue'
 
     import {getAllPost, insertOnePost} from "@/services/posts.js"
-
+    
     export default {
         name: 'filActu',
         components: {
@@ -115,6 +115,13 @@
         async mounted(){
             const {data} = await getAllPost()
             this.listPost = data.posts || []
+
+        },
+        computed: {
+            getPost() {
+                return this.listPost;
+            }
+
         },
         methods: {
             togglePosts() {
@@ -142,7 +149,6 @@
                 }else {
                     this.showModalEvent = true
                 }
-                
             },
             closeModal(modal) {
                 modal === "post" ? this.showModalPost = false : this.showModalEvent = false
@@ -159,7 +165,7 @@
                     const data = {...this.formData, group: null}
                     insertOnePost(data)
                         // .then(this.handleSuccess())
-                        .then(this.handleSuccess(res))
+                        .then(res => this.handleSuccess(res))
                         .catch((error) => this.handleError(error))
                 }
 
@@ -172,10 +178,26 @@
             handleError(error) {
                 this.errors = [...this.errors,  error.response?.data?.message || "Erreur serveur" ]
             },
-            handleSuccess() {
+            handleSuccess(res) {
+                // console.log(res);
+                // console.log(res.data);
+                let newPost = res.data;
+                console.log(newPost);
+                try {
+                //  this.listPost.push(newPost);
+                this.listPost = [newPost, ...this.listPost]
+                 console.log(this.listPost);
+                } catch (error) {
+                    console.log(error);
+                }
                 
             },
         },
+        watch: {
+            listPost: (newlistPost, oldlistPost) => {
+                console.log("listPost changed from " + oldlistPost + " to " + newlistPost);
+            }
+        }
     }
 </script>
 <style lang="scss">

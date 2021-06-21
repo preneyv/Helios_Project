@@ -15,7 +15,16 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: Home,
+      meta: {
+        title: 'Helios',
+        metaTags: [
+          {
+            title: 'Helios',
+            content: "Page d'accueil de l'application Helios"
+          }
+        ]
+      }
     },
     {
       path: '/fil-actu',

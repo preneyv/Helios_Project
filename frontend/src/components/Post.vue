@@ -118,26 +118,20 @@ import moment from 'moment';
      align-items: center;
      justify-content: center;
 
-     .likes {
+     img.likes {
         padding-right: 8px;
         cursor: pointer;
-
-         img {
-            height: 50px;
-            width: auto;
-        }
+        height: 50px;
+        width: auto;
      }
 
-     .comment {
+     img.comment {
         padding-left: 8px;  
         cursor: pointer;
         align-self: center;
-
-        img {
-            height: 28px;
-            width: auto;
-        }
-     }
+        height: 28px;
+        width: auto;
+    }
 
 }
 

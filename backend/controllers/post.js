@@ -37,6 +37,7 @@ export async function insertPost(req, res) {
     try {
         
         const idPicture = await startUpload(media)
+        console.log(idPicture);
         const post = new Post({
             maker: user._id,
             content,

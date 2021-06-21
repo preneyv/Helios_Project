@@ -28,7 +28,7 @@
                     <div class="form-group--100">
                         <label for="media" class="img-btn">Image +</label>
                         <input type="file" class="img-input" id="media" name="postImage" @input="updateFormData">
-                        <p class="name-file">{{ formData.file }}</p>
+                         <p class="name-file"  v-if="formData.media">{{ formData.media.name || null }}</p>
                     </div>
                 </form>
             </template>

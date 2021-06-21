@@ -2,6 +2,8 @@ import User from "../models/User.js"
 import passwordHash from "password-hash"
 import { startUpload } from "../src/googleapi.js"
 
+import { deleteImage } from "../multer/storage.js"
+
 /**
  * Login user from the database and generate a JWT
  * @param {express.Request} req
@@ -66,15 +68,14 @@ export async function signup(req, res) {
 
     try {
         
-        //startUpload(carPicture)
-
+        const idPicture = await startUpload(carPicture)
         const user = new User({
             pseudo,
             firstname,
             birthDate,
             name,
             email,
-            carPicture,
+            carPicture: idPicture,
             password: passwordHash.generate(password),
         })
 
@@ -82,10 +83,11 @@ export async function signup(req, res) {
             if (error)
                 throw new Error(error)
 
+            deleteImage(carPicture.name)
             const token = user.generateAccessToken()
             return res.status(200).json({ token })
         })
     } catch (error) {
-        return res.status(500).json({ message: `${error}` })
+        return res.status(500).json({ message: `Erreur en base de données. Veuillez réessayer.` })
     }
 }

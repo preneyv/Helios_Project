@@ -11,7 +11,7 @@ import userRoutes from "../routes/user.js"
 import authRoutes from "../routes/auth.js"
 import postRoutes from "../routes/post.js"
 
-import { uploadImage } from "../controllers/uploadImage.js"
+
 import upload from "../multer/storage.js"
 
 //Import DB

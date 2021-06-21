@@ -6,9 +6,9 @@ import fs from 'fs'
  async function startUpload (file) {
         const CLIENT_ID = "663254775431-hhk7pgf7gohgfseu4prleq4eedt5s7dh.apps.googleusercontent.com"
         const CLIENT_SECRET = "gCvsRYBtCmERLtHcEf4RaqLm"
-        const REDIRECT_URI = "http://127.0.0.1:8080/auth/google/callback"
+        const REDIRECT_URI = "https://developers.google.com/oauthplayground/"
         
-        const REFRESH_TOKEN = "1//04J12qpr0lF18CgYIARAAGAQSNwF-L9IrP3RZiRJ00ciYT9ZKBcwtDhX38hh9XsyEthq_NHUWLFGuQThL1b4QoHgnILkBycXznYw"
+        const REFRESH_TOKEN = "1//04TRnLh88YXqqCgYIARAAGAQSNwF-L9Ir5pTSW_DW0q96OISakFeXBOT6TQfqI4GtaBkc36c1Ya8dEpDAdGtBMbXHOv0yoksNCXw"
         
         const oAuth2Client = new google.auth.OAuth2(
             CLIENT_ID,
@@ -19,10 +19,12 @@ import fs from 'fs'
         oAuth2Client.setCredentials({refresh_token: REFRESH_TOKEN})
         const drive = google.drive({
             version: 'v3',
-            auth: oAuth2Client
+            auth: oAuth2Client,
+            
         })
 
-        await uploadFile(file, drive)
+       const id = await uploadFile(file, drive)
+       return id
         
 }
 
@@ -37,7 +39,8 @@ async function uploadFile({name, type}, drive) {
         const res = await drive.files.create({
             requestBody: {
                 name: name,
-                mimeType: type
+                mimeType: type,
+                parents:["1PK0H6WMpePcygdY3LW9b4MkUa1ItRbxG"]
             },
             media: {
                 mimeType: type,
@@ -45,7 +48,8 @@ async function uploadFile({name, type}, drive) {
             }
         })
 
-        console.log(res.data)
+        return res.data.id
+
     } catch (error) {
         console.log(error)
     }

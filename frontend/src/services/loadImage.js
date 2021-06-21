@@ -1,7 +1,5 @@
 import api  from "@/configAxios/api.js"
 
-
-
 const UploadFile = function(file) {
     var formData = new FormData()
     formData.append("image", file)

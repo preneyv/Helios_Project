@@ -73,8 +73,9 @@
         
         <div class="actus">
             <ul id="posts">
-                <li v-for="post in listPost" :key="post.id">
-                    {{ post.content }}
+                <li class="post" v-for="post in listPost" :key="post.id">
+                    <!-- {{ post.content }} -->
+                    <Post :post="post"></Post>
                 </li>
             </ul>
         </div>
@@ -86,6 +87,7 @@
     import Nav from '../components/Nav.vue'
     import BandeauRight from '../components/BandeauRight.vue'
     import PopUp from '../components/PopUp.vue'
+    import Post from '../components/Post.vue'
     import AuthServices from "@/services/auth.js"
 
     import {getAllPost} from "@/services/posts.js"
@@ -95,7 +97,8 @@
         components: {
             Nav,
             BandeauRight,
-            PopUp
+            PopUp,
+            Post
         },
         data() {
             return {
@@ -189,6 +192,13 @@
     }
 </script>
 <style lang="scss">
+
+// .filActu {
+//     .main {
+//         height: fit-content;
+//     }
+// }
+
 .fil-actu {
     height: 100%;
 
@@ -246,10 +256,23 @@
         }
     }
 
+    .actus {
+        padding-bottom: 10px;
+    }
+
 }
 
 
 #desc {
     margin-bottom: 30px;
+}
+
+// Post 
+
+.post {
+    background-color: $black;
+    color: $white;
+    margin: 25px 0;
+    border-radius: 20px;
 }
 </style>

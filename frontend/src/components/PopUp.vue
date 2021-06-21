@@ -40,6 +40,7 @@ export default {
     border-radius: 20px;
     font-family: $mainFont;
     padding: 0 0 15px 0;
+    z-index: 100;
 
     @include responsive('xl-desktop'){
       height: 55%;

@@ -5,7 +5,8 @@
       <li>
         <router-link to="/fil-actu">Accueil</router-link>
       </li>
-      <li><a href="#">Agenda</a></li>
+      <li>
+        <router-link to="/mon-agenda">Agenda</router-link>
       <li>
         <router-link to="/mon-profil">Mon profil</router-link>
       </li>

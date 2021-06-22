@@ -2,8 +2,8 @@
   <div class="container-post">
       <div class="up">
           <div class="user">
-              <img :src="require('@/assets/defaut-profil.jpg')" alt="photo de l'utilisateur">
-              <p class="user-name">John Doe</p>
+              <img :src="post.makerInfo[0].link_media.webContentLink || require('@/assets/defaut-profil.jpg')" alt="photo de l'utilisateur">
+              <p class="user-name">{{post.makerInfo[0].pseudo || "utilisateur inconnu"}}</p>
           </div>
           <div class="plus">
               <div class="social-media">
@@ -64,16 +64,15 @@ import {unLikePost, likePost, commentPost} from "@/services/posts.js"
             
             likePost(this.itemPost._id)
                 .then(res => {
-                    console.log(res)
-                    this.itemPost = res.data.modifiedPost
+                    this.itemPost.likes.push({user:this.userInfo._id, pseudo: this.userInfo.pseudo})
                 })
                 .catch((error) => console.log(error))
         },
         unLikePost(){
             unLikePost(this.itemPost._id, this.isLiking._id)
                 .then(res => {
-                    console.log(res)
-                    this.itemPost = res.data.modifiedPost
+                    const indexLike = this.itemPost.likes.findIndex((elt) => elt.user === this.userInfo._id)
+                    this.itemPost.likes.splice(indexLike, 1)
                 })
                 .catch((error) => console.log(error))
         },

@@ -72,10 +72,16 @@
         </PopUp>
         
         <div class="actus">
-            <ul id="posts">
+            <ul v-if="currentStateToggle" id="posts">
                 <li class="post" v-for="post in getPost" :key="post.id">
                     <!-- {{ post.content }} -->
                     <Post :post="post"></Post>
+                </li>
+            </ul>
+            <ul v-else id="events">
+                <li class="event">
+                   
+                    <!-- <Post :post="post"></Post> -->
                 </li>
             </ul>
         </div>

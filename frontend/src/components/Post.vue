@@ -20,8 +20,15 @@
       </div>
       <div class="down">
           <div class="actions">
-              <img class="likes" :src="require('@/assets/likes.svg')"  alt="Nombre de j'aimes sur ce post">
-              <img class="comment" :src="require('@/assets/commentaires.svg')"  alt="Commentaires de ce post">
+              <div v-if="isLiked" class="action-like">
+                  <img class="likes" :src="require('@/assets/likes-full.svg')"  @click="toggleLike" alt="Vous avez aimé ce post">
+              </div>
+              <div v-else class="action-like">
+                  <img class="likes" :src="require('@/assets/likes.svg')"  @click="toggleLike" alt="Aimez ce post">
+              </div>
+              <div class="action-comment">
+                  <img class="comment" :src="require('@/assets/commentaires.svg')"  alt="Commentaires de ce post">
+              </div>
           </div>
           <div class="date">
               <p>Posté le {{formatDate(post.created_at)}}</p>
@@ -37,13 +44,20 @@ import moment from 'moment';
      props: ['post'],
      data() {
        return {
-        
+           isLiked: false,
        }
      },
     methods: {
          formatDate(date) {
           let formatDate = moment(date).format("DD/MM/YY");
            return formatDate;
+        },
+
+        toggleLike() {
+            console.log(this.isLiked);
+            this.isLiked = !this.isLiked;
+            console.log(this.isLiked);
+            return this.isLiked;
         }
     },
     computed: {

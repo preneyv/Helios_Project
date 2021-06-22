@@ -181,6 +181,8 @@
                     
                     if(this.formData.media && isImage(this.formData.media.name)) {
                         UploadFile(this.formData.media)
+                        .then(res => console.log(res))
+                        .catch(e => console.log(e))
                         this.formData.media = {name:this.formData.media.name, type: this.formData.media.type}
                     }
                     

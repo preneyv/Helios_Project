@@ -2,25 +2,39 @@
     <div class="derniersPosts">
         <div class="titresCategories">Mes derniers posts</div>
         <div class="dernierPost">
-            <div class="iconsPost"><a href="#"><img class="iconHeliosPartage" src="../assets/IconHelios1.svg"></a><a href="#"><img class="iconHeliosPartage" src="../assets/IconHelios2.svg"></a></div>
-            <table>
-                <tr>
-                    <td class="caseImgPost"><img class="imgGroupe"></td>
-                    <td class="nomPosteur">John Doe</td>
-                </tr>
-            </table>
+            <div class="up">
+                <div class="user">
+                    <img :src="require('@/assets/defaut-profil.jpg')" alt="photo de l'utilisateur">
+                    <p class="user-name">John Doe</p>
+                </div>
+                <div class="plus">
+                    <div class="social-media">
+                        <img :src="require('@/assets/share.svg')" alt="Partager ce post sur les réseaux sociaux">
+                    </div>
+                    <div class="more-info">
+                        <img :src="require('@/assets/Informations.svg')" alt="Plus de fonctionnalités">
+                    </div>
+                </div>
+            </div>
             <div class="contenuPost">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
             <div class="trait"></div>
             <div class="datePost">Posté le 29/05/21</div>
         </div>
         <div class="dernierPost">
-            <div class="iconsPost"><a href="#"><img class="iconHeliosPartage" src="../assets/IconHelios1.svg"></a><a href="#"><img class="iconHeliosPartage" src="../assets/IconHelios2.svg"></a></div>
-            <table>
-                <tr>
-                    <td class="caseImgPost"><img class="imgGroupe"></td>
-                    <td class="nomPosteur">John Doe</td>
-                </tr>
-            </table>
+            <div class="up">
+                <div class="user">
+                    <img :src="require('@/assets/defaut-profil.jpg')" alt="photo de l'utilisateur">
+                    <p class="user-name">John Doe</p>
+                </div>
+                <div class="plus">
+                    <div class="social-media">
+                        <img :src="require('@/assets/share.svg')" alt="Partager ce post sur les réseaux sociaux">
+                    </div>
+                    <div class="more-info">
+                        <img :src="require('@/assets/Informations.svg')" alt="Plus de fonctionnalités">
+                    </div>
+                </div>
+            </div>
             <div class="contenuPost">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
             <div class="trait"></div>
             <div class="datePost">Posté le 29/05/21</div>
@@ -72,6 +86,8 @@
         text-align:right;
         padding-right:3%;
     }
+
+    
 
     .contenuPost {
         padding: 2% 0% 2% 0%;

@@ -5,6 +5,7 @@ const UploadFile = async function(file) {
     formData.append("image", file)
 
     const res = await api.post('/upload', formData);
+    console.log(res)
     return res
 }
 

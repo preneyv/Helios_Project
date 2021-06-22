@@ -16,6 +16,7 @@ const storage = multer.diskStorage({
     },
 })
 
+
 const deleteImage = function(img) {
     var __dirname = path.resolve()
     fs.rm(`${__dirname}/temp/${img}`, (err) => {
@@ -25,4 +26,5 @@ const deleteImage = function(img) {
 }
 
 export {deleteImage}
+
 export default multer({ storage }).single("image")

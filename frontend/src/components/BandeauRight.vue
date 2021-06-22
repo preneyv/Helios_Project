@@ -3,55 +3,37 @@
     <div class="titreBandeau">Mes prochains événements</div>
     <div class="trait"></div>
     <div class="prochainsEvents">
-      <table>
-        <tr>
-          <td class="dateEvent">12 oct</td>
-          <td class="titreEvent">Rally Paris</td>
-          <td>
-            <div class="decompteEventText">J-4</div>
-          </td>
-        </tr>
-        <tr>
-          <td class="dateEvent">10 nov</td>
-          <td class="titreEvent">Manif Ford</td>
-          <td>
-            <div class="decompteEventText">J-25</div>
-          </td>
-        </tr>
-        <tr>
-          <td class="dateEvent">19 nov</td>
-          <td class="titreEvent">Expo Ferrari</td>
-          <td class="decompteEvent">
-            <div class="decompteEventText">J-34</div>
-          </td>
-        </tr>
-      </table>
+      <div class="event">
+        <div class="dateEvent">12 oct</div>
+        <div class="titreEvent">Rally Paris</div>
+        <div class="decompteEventText"><span class="contourEventDecompte">J-4</span></div>
+      </div>
+      <div class="event">
+        <div class="dateEvent">10 nov</div>
+        <div class="titreEvent">Manif Ford</div>
+        <div class="decompteEventText"><span class="contourEventDecompte">J-4</span></div>
+      </div>
+      <div class="event">
+        <div class="dateEvent">19 nov</div>
+        <div class="titreEvent">Expo Ferrari</div>
+        <div class="decompteEventText"><span class="contourEventDecompte">J-4</span></div>
+      </div>
     </div>
     <div class="titreBandeau">Mes groupes</div>
     <div class="trait"></div>
     <div class="mesGroupes">
-      <table>
-        <tr>
-          <td class="imgGrp"><img class="imgGroupe"></td>
-          <td class="titreGrp">Green Bentley</td>
-        </tr>
-        <tr>
-          <td class="imgGrp"><img class="imgGroupe"></td>
-          <td class="titreGrp">Green Bentley</td>
-        </tr>
-        <tr>
-          <td class="imgGrp"><img class="imgGroupe"></td>
-          <td class="titreGrp">Green Bentley</td>
-        </tr>
-        <tr>
-          <td class="imgGrp"><img class="imgGroupe"></td>
-          <td class="titreGrp">Green Bentley</td>
-        </tr>
-        <tr>
-          <td class="imgGrp"><img class="imgGroupe"></td>
-          <td class="titreGrp">Green Bentley</td>
-        </tr>
-      </table>
+      <div class="groupe">
+        <div class="imgGrp"><img class="imgGroupe"></div>
+        <div class="titreGrp">Green Bentley</div>
+      </div>
+      <div class="groupe">
+        <div class="imgGrp"><img class="imgGroupe"></div>
+        <div class="titreGrp">Green Bentley</div>
+      </div>
+      <div class="groupe">
+        <div class="imgGrp"><img class="imgGroupe"></div>
+        <div class="titreGrp">Green Bentley</div>
+      </div>
     </div>
   </div>
 
@@ -85,24 +67,23 @@
     }
 
     .prochainsEvents {
-      padding-left: 7%;
-      padding-top: 7%;
-      padding-bottom: 3%;
+      padding: 10%;
     }
 
-    .prochainsEvents tr {
-      text-align: center;
-    }
-
-    .prochainsEvents td {
-      width: 10%;
-      height: 38px;
-      vertical-align: middle;
+    .event {
+      width: 100%;
+      display: inline-flex;
+      justify-content: space-between;
+      padding-bottom: 10px;
     }
 
     .dateEvent {
       color: #B6B6B6;
       font-size: 90%;
+      width:60%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .titreEvent {
@@ -110,46 +91,56 @@
       font-size: 100%;
       font-weight: bold;
       text-align: center;
+      width:60%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .decompteEventText {
-      border-radius: 18%;
-      background-color: $white;
-      padding-top: 6%;
-      padding-bottom: 6%;
-      margin-left: 10%;
       font-weight: bold;
       width: 65%;
       font-size: 90%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .contourEventDecompte {
+      border-radius: 18%;
+      background-color: $white;
+      padding: 6%;
     }
 
     .mesGroupes {
-      padding-left: 10%;
       padding-top: 7%;
       padding-bottom: 7%;
       color: $white;
       font-size: 100%;
     }
 
-    .mesGroupes tr {
-      text-align: center;
+    .groupe {
+      width: 100%;
+      display: inline-flex;
+      justify-content: space-between;
+      padding-bottom: 10px;
     }
 
     .titreGrp {
-      width: 150px;
-      height: 50px;
-      vertical-align: middle;
+      width:60%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .imgGrp {
-      padding-left: 10%;
-      width: 30%;
-      height: 40%;
-      vertical-align: middle;
+      width:60%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
-
   }
-
+  
    .imgGroupe {
       background-size: contain;
       background-position: 50% 50%;
@@ -162,5 +153,8 @@
       -webkit-border-radius: 75px;
       border-radius: 75px;
     }
+
+
+
   
 </style>

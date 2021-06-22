@@ -197,7 +197,8 @@
                 
             },
             handleError(error) {
-                this.errors = [...this.errors,  error.response?.data?.message || "Erreur serveur" ]
+                console.log(error)
+                this.errors = [...this.errors,  error.response?.data?.error || "Erreur serveur" ]
             },
             handleSuccess(res, type) {
                 this.closeModal(type)

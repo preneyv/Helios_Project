@@ -42,8 +42,9 @@ export async function insertPost(req, res) {
     console.log(req.body)
 
     try {
+        console.log(media)
+        const idPicture = media !== undefined ? await uploadFile(media) : null
         
-        const idPicture = media !== null ? await uploadFile(media) : null
         const post = new Post({
             maker: user._id,
             content,
@@ -60,7 +61,7 @@ export async function insertPost(req, res) {
         })
 
     } catch (e) {
-        return res.json({ error: e })
+        return res.status(500).send({error:"Erreur lors de l'ajout de post. Veuillez réessayer plus tard"})
     }
     
 }
@@ -74,7 +75,7 @@ export async function editPost(req, res){
         res.json({ found: post.n, modified: post.nModified })
 
     } catch (e) {
-        return res.json({ error: e })
+        return res.status(500).send("Erreur lors de l'edition du post. Veuillez réessayer plus tard")
     }
 }
 

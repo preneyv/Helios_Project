@@ -50,6 +50,7 @@
 
   input {
     @include inputLight;
+    color:grey;
   }
 
   .textProfil {

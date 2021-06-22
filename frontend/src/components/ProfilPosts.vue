@@ -53,11 +53,6 @@
     box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.5);
     margin-bottom:5%;
 
-    .iconHeliosPartage {
-        height:23px;
-        padding-left:20px;
-    }
-
     .dernierPost {
         height: auto;
         background-color:#353535;
@@ -67,27 +62,18 @@
         margin:2.5%;
     }
 
-    .dernierPost td {
-        vertical-align: middle;
+    .up {
+        padding-top:1.5%;
+        width: 100%;
+        display: inline-flex;
+        justify-content: space-between;
+        padding-bottom: 15px;
     }
 
     .caseImgPost {
         width:50px;
     }
-
-    .nomPosteur {
-        padding:0px 0px 0px 20px;    
-    }
-
-    .icons {
-        width:83%;
-        color:#B6B6B6;
-        font-size:90%;
-        text-align:right;
-        padding-right:3%;
-    }
-
-    
+   
 
     .contenuPost {
         padding: 2% 0% 2% 0%;

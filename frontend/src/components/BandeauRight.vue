@@ -96,6 +96,11 @@
       display: inline-flex;
       align-items: center;
       justify-content: right;
+      cursor: pointer;
+
+      &:hover {
+        color: $primary;
+      }
     }
 
     .decompteEventText {
@@ -133,6 +138,11 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      cursor: pointer;
+
+      &:hover {
+        color: $primary;
+      }
     }
 
     .imgGrp {

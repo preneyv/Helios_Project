@@ -167,7 +167,7 @@ import {unLikePost, likePost, commentPost} from "@/services/posts.js"
      img.likes {
         padding-right: 8px;
         cursor: pointer;
-        height: 50px;
+        height: 40px;
         width: auto;
      }
 
@@ -175,7 +175,7 @@ import {unLikePost, likePost, commentPost} from "@/services/posts.js"
         padding-left: 8px;  
         cursor: pointer;
         align-self: center;
-        height: 28px;
+        height: 40px;
         width: auto;
     }
 

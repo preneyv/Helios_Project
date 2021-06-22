@@ -9,7 +9,6 @@
         <div class="input-post">
             <button @click="detectPopUp">{{ textButton }}</button>
         </div>
-        <!-- :actionButton="signup" -->
         <PopUp v-if="showModalPost" @close="closeModal('post')" headTitle="Créer un post"  class="post" v-bind:classPopUp = "[errors.length ? 'yes':'no']" :actionButton="addPost">
             <template v-slot:header>
                 <button class="modal-default-button" @click="showModalPost = false"><img :src="require('@/assets/cancel.svg')" alt="fermer la pop up"></button>
@@ -181,8 +180,6 @@
                     
                     if(this.formData.media && isImage(this.formData.media.name)) {
                         UploadFile(this.formData.media)
-                        .then(res => console.log(res))
-                        .catch(e => console.log(e))
                         this.formData.media = {name:this.formData.media.name, type: this.formData.media.type}
                     }
                     
@@ -200,7 +197,7 @@
             },
             handleError(error) {
                 console.log(error)
-                this.errors = [...this.errors,  error.response?.data?.message || "Erreur serveur" ]
+                this.errors = [...this.errors,  error.response?.data?.error || "Erreur serveur" ]
             },
             handleSuccess(res, type) {
                 this.closeModal(type)
@@ -232,7 +229,7 @@
     button {
         padding: 9px 28px;
         color: $white;
-        width: 20%;
+        width: 25%;
         background-color: $light-black;
         border-radius: 10px;
         filter: drop-shadow(0px 4px 16px rgba(0, 0, 0, 0.25));
@@ -248,7 +245,7 @@
     button.active {
         padding: 9px 28px;
         color: $white;
-        width: 20%;
+        width: 25%;
         background-color: $black;
         border-radius: 10px;
         filter: drop-shadow(0px 4px 16px rgba(0, 0, 0, 0.25));

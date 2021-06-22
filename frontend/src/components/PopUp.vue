@@ -160,7 +160,7 @@ export default {
 //add a post 
 
 .post.no.basic-popUp  {
-    height: 64%;
+    height: 70%;
     width: 55vw;
 
     #content {

@@ -143,6 +143,11 @@ import {unLikePost, likePost, commentPost} from "@/services/posts.js"
 
     p {
         text-align: justify;
+        padding-bottom: 10px;
+    }
+
+    img {
+        padding-bottom: 10px;
     }
 }
 

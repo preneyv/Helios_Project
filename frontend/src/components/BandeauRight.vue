@@ -23,16 +23,16 @@
     <div class="trait"></div>
     <div class="mesGroupes">
       <div class="groupe">
-        <div class="imgGrp"><img class="imgGroupe"></div>
-        <div class="titreGrp">Green Bentley</div>
+        <img class="imgGroupe"> 
+        <p class="titreGrp">Green Bentley</p>
       </div>
       <div class="groupe">
-        <div class="imgGrp"><img class="imgGroupe"></div>
-        <div class="titreGrp">Green Bentley</div>
+        <img class="imgGroupe">
+        <p class="titreGrp">Green Bentley</p>
       </div>
       <div class="groupe">
-        <div class="imgGrp"><img class="imgGroupe"></div>
-        <div class="titreGrp">Green Bentley</div>
+        <img class="imgGroupe">
+        <p class="titreGrp">Green Bentley</p>
       </div>
     </div>
   </div>
@@ -67,7 +67,9 @@
     }
 
     .prochainsEvents {
-      padding: 10%;
+      padding-top: 10%;
+      margin: 0 2%;
+      padding: 10% 5% 0 5%;
     }
 
     .event {
@@ -83,7 +85,6 @@
       width:60%;
       display: inline-flex;
       align-items: center;
-      justify-content: center;
     }
 
     .titreEvent {
@@ -94,7 +95,7 @@
       width:60%;
       display: inline-flex;
       align-items: center;
-      justify-content: center;
+      justify-content: right;
     }
 
     .decompteEventText {
@@ -103,7 +104,7 @@
       font-size: 90%;
       display: inline-flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-end;
     }
 
     .contourEventDecompte {
@@ -113,6 +114,8 @@
     }
 
     .mesGroupes {
+      margin-left: 2%;
+      padding-left: 5%;
       padding-top: 7%;
       padding-bottom: 7%;
       color: $white;
@@ -122,7 +125,6 @@
     .groupe {
       width: 100%;
       display: inline-flex;
-      justify-content: space-between;
       padding-bottom: 10px;
     }
 

@@ -82,24 +82,7 @@
 </template>
 
 <script>
-  // var months = new Array();
-  // months[0] = "January";
-  // months[1] = "February";
-  // months[2] = "March";
-  // months[3] = "April";
-  // months[4] = "May";
-  // months[5] = "June";
-  // months[6] = "July";
-  // months[7] = "August";
-  // months[8] = "September";
-  // months[9] = "October";
-  // months[10] = "November";
-  // months[11] = "December";
-
-  // var currentMonth;
-  // var currentYear;
-  // var firstDay;
-  // var leapYear;
+  import { onMounted } from 'vue'
 
 export default {
   data() {
@@ -113,9 +96,8 @@ export default {
       leapYear: '',
     }
   },
-  methods: {
+  mounted: function () { 
     
-    fillCalendar() {
       var today = new Date();
       var day = today.getDate();
       var month = today.getMonth();
@@ -134,8 +116,9 @@ export default {
       this.firstDay = day;
 
       this.fillDays(this.firstDay);
-    },
+  },
 
+  methods: {
     setMonthYear(theMonth, theYear) {
         var monthName = this.months[theMonth];
         document.getElementById("monthHeading").innerHTML = monthName;

@@ -1,4 +1,5 @@
 import Post from '../models/Post.js'
+import User from '../models/User.js'
 import mongoose from "mongoose"
 
 import {uploadFile, generatePublicURL } from "../src/googleapi.js"
@@ -12,12 +13,30 @@ const {Types} = mongoose
 export async function getAllPost(req, res) {
 
     try {
-        const posts = await Post.find({}).sort({"created_at": -1})
+        const posts = await Post.aggregate([])
+                                .lookup(
+                                    {
+                                        from: "users", 
+                                        let:{ makerId: "$maker"}, 
+                                        pipeline: [
+                                            {
+                                                $match: {$expr:{$eq:["$$makerId", "$_id"]}}
+                                            },
+                                            {
+                                                $project: {pseudo:1, link_media:1}
+                                            }
+                                        ], 
+                                        as: "makerInfo"
+                                    }
+                                )
+                                .sort({"created_at": -1})
         res.json({posts: posts})
     } catch (e) {
         return res.json({ error: e })
     }
 }
+
+
 /**
  * 
  * @param {express.Request} req 
@@ -55,11 +74,12 @@ export async function insertPost(req, res) {
         if(idPicture !== null) {
             deleteImage(media.name)
         }
-        return res.json(post)
+        console.log(post)
+        return res.json({...post._doc, makerInfo: [await User.findById(post._doc.maker, {pseudo:1, link_media:1})]})
         
 
     } catch (e) {
-        return res.status(500).send({error:"Erreur lors de l'ajout de post. Veuillez réessayer plus tard"})
+        return res.status(500).send({error: e, message:"Erreur lors de l'ajout de post. Veuillez réessayer plus tard"})
     }
     
 }
@@ -164,9 +184,8 @@ export async function addLike(req, res) {
     const body = {$push:{"likes":{user:user._id, pseudo:user.pseudo}}}
 
     try {
-        const post = await Post.findOneAndUpdate(filter, body, {new:true})
-        console.log(post)
-        res.json({ modifiedPost: post })
+        const post = await Post.updateOne(filter, body)
+        res.json({ modifiedPost: post.n })
     } catch (e) {
         return res.json({ error: e })
     }
@@ -176,14 +195,13 @@ export async function addLike(req, res) {
 
 export async function removeLike(req, res) {
     const idPost = req.params.id
-    const idLike = req.params.idlike
+    const idUser = req.user._id
     
     const filter = {"_id":idPost}
-    const body = {$pull:{"likes":{"_id":idLike}}}
+    const body = {$pull:{"likes":{"user":idUser}}}
     try {
-        const post = await Post.findOneAndUpdate(filter, body, {new:true})
-        console.log(post)
-        res.json({ modifiedPost: post })
+        const post = await Post.updateOne(filter, body)
+        res.json({ modifiedPost: post.n })
     } catch (e) {
         return res.json({ error: e })
     }

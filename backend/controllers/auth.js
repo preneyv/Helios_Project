@@ -1,6 +1,6 @@
 import User from "../models/User.js"
 import passwordHash from "password-hash"
-import { startUpload } from "../src/googleapi.js"
+import { uploadFile, generatePublicURL } from "../src/googleapi.js"
 
 import { deleteImage } from "../multer/storage.js"
 
@@ -68,7 +68,7 @@ export async function signup(req, res) {
 
     try {
         
-        const idPicture = await startUpload(carPicture)
+        const idPicture = await uploadFile(carPicture)
         const user = new User({
             pseudo,
             firstname,

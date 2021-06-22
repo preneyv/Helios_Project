@@ -1,6 +1,7 @@
 import mongoose from "mongoose"
 import passwordHash from "password-hash"
 import jwt from "jsonwebtoken"
+import { generatePublicURL } from "../src/googleapi.js"
 
 const { Schema, model } = mongoose
 
@@ -38,7 +39,10 @@ userSchema.methods = {
         const payload = {
             _id: this._id,
             name: this.name,
+            firstname: this.firstname,
+            carPicture: generatePublicURL(this.carPicture),
             email: this.email,
+            pseudo: this.pseudo
         }
 
         return jwt.sign(payload, process.env.TOKEN_SECRET)

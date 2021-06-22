@@ -16,11 +16,12 @@
       </div>
       <div class="content">
           <p>{{ post.content }}</p>
-          <img src="" alt="">
+          <img v-if="post.link_media" :src="post.link_media.webContentLink" alt="">
       </div>
       <div class="down">
           <div class="actions">
-              <img class="likes" :src="require('@/assets/likes.svg')"  alt="Nombre de j'aimes sur ce post">
+              <img v-if="!isLiking" class="likes" :src="require('@/assets/likes.svg')"  alt="Nombre de j'aimes sur ce post" @click="likePost">
+              <img v-else class="likes" :src="require('@/assets/notifs.svg')"  alt="Nombre de j'aimes sur ce post" @click="unLikePost">
               <img class="comment" :src="require('@/assets/commentaires.svg')"  alt="Commentaires de ce post">
           </div>
           <div class="date">
@@ -32,12 +33,14 @@
 
 <script>
 import moment from 'moment';
+import {getUserInfos} from '@/utils/utils.js'
+import {unLikePost, likePost, commentPost} from "@/services/posts.js"
 
    export default {
      props: ['post'],
      data() {
        return {
-        
+        itemPost: this.post
        }
      },
     methods: {
@@ -46,7 +49,33 @@ import moment from 'moment';
           let formatDate = moment(date).format("DD/MM/YY");
           console.log(formatDate);
            return formatDate;
+        },
+        likePost(){
+            
+            likePost(this.itemPost._id)
+                .then(res => {
+                    console.log(res)
+                    this.itemPost = res.data.modifiedPost
+                })
+                .catch((error) => console.log(error))
+        },
+        unLikePost(){
+            unLikePost(this.itemPost._id, this.isLiking._id)
+                .then(res => {
+                    console.log(res)
+                    this.itemPost = res.data.modifiedPost
+                })
+                .catch((error) => console.log(error))
+        },
+        commentPost() {
+            commentPost(this.itemPost._id, )
+                .then(res => {
+                    console.log(res)
+                    this.itemPost = res.data.modifiedPost
+                })
+                .catch((error) => console.log(error))
         }
+
     },
     computed: {
     //   formatDate(date) {
@@ -55,6 +84,11 @@ import moment from 'moment';
     //       console.log(formatDate);
     //        return formatDate;
     //     }
+        isLiking() {
+            const like = this.itemPost.likes.find((elt) =>  elt.user === getUserInfos()._id)
+            console.log(like)
+            return like
+        }
     }
    }
 </script>

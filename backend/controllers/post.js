@@ -1,7 +1,7 @@
 import Post from '../models/Post.js'
 import mongoose from "mongoose"
 
-import { startUpload } from "../src/googleapi.js"
+import {uploadFile, generatePublicURL } from "../src/googleapi.js"
 
 import { deleteImage } from "../multer/storage.js"
 
@@ -13,7 +13,14 @@ export async function getAllPost(req, res) {
 
     try {
         const posts = await Post.find({}).sort({"created_at": -1})
-        res.json({posts:posts})
+
+        for(var i = 0; i < posts.length; i++) {
+            if(posts[i].media !== null) 
+                posts[i] =  {...posts[i]._doc, link_media: await generatePublicURL(posts[i].media) }
+        }
+
+        
+        res.json({posts: posts})
     } catch (e) {
         return res.json({ error: e })
     }
@@ -36,7 +43,7 @@ export async function insertPost(req, res) {
 
     try {
         
-        const idPicture = await startUpload(media)
+        const idPicture = media !== null ? await uploadFile(media) : null
         const post = new Post({
             maker: user._id,
             content,
@@ -48,7 +55,7 @@ export async function insertPost(req, res) {
             if (err)
                 return console.error(err)
 
-            deleteImage(media.name)
+            if(idPicture !== null)deleteImage(media.name)
             return res.json(post)
         })
 
@@ -153,12 +160,14 @@ export async function addLike(req, res) {
     const idPost = req.params.id
     const user = req.user
 
+    const idUser = user._id
     const filter = {"_id":idPost}
-    const body = {$push:{"likes":{author:user._id, pseudo:user.pseudo}}}
+    const body = {$push:{"likes":{user:user._id, pseudo:user.pseudo}}}
 
     try {
-        const post = await Post.updateOne(filter, body)
-        res.json({ found: post.n, modified: post.nModified })
+        const post = await Post.findOneAndUpdate(filter, body, {new:true})
+        console.log(post)
+        res.json({ modifiedPost: post })
     } catch (e) {
         return res.json({ error: e })
     }
@@ -173,8 +182,9 @@ export async function removeLike(req, res) {
     const filter = {"_id":idPost}
     const body = {$pull:{"likes":{"_id":idLike}}}
     try {
-        const post = await Post.updateOne(filter, body)
-        res.json({ found: post.n, modified: post.nModified })
+        const post = await Post.findOneAndUpdate(filter, body, {new:true})
+        console.log(post)
+        res.json({ modifiedPost: post })
     } catch (e) {
         return res.json({ error: e })
     }

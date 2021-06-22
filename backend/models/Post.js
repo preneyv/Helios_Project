@@ -9,7 +9,7 @@ const postSchema = new Schema(
         media: String,
         idGroup: Schema.ObjectId,
         comments: [{author:Schema.ObjectId, content:String, datePub: Date}],
-        likes: [{author:Schema.ObjectId, pseudo:String}],
+        likes: [{user:Schema.ObjectId, pseudo:String}],
     },
     {
         timestamps: { createdAt: "created_at", updatedAt: "update_at" }

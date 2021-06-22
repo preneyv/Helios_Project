@@ -3,7 +3,7 @@ import path from 'path'
 import fs from 'fs'
 
 
- async function startUpload (file) {
+ function initAuth () {
         const CLIENT_ID = "663254775431-hhk7pgf7gohgfseu4prleq4eedt5s7dh.apps.googleusercontent.com"
         const CLIENT_SECRET = "gCvsRYBtCmERLtHcEf4RaqLm"
         const REDIRECT_URI = "https://developers.google.com/oauthplayground/"
@@ -23,16 +23,26 @@ import fs from 'fs'
             
         })
 
-       const id = await uploadFile(file, drive)
-       return id
+       return drive
         
 }
 
+async function generatePublicURL(idFile) {
+    const drive = initAuth()
+    const result = await drive.files.get({
+        fileId:idFile, 
+        fields: "webViewLink, webContentLink"
+    })
+    return result.data
+}
 
 
+async function uploadFile(file) {
 
-async function uploadFile({name, type}, drive) {
+    const drive = initAuth()
+    const {name, type} = file
 
+    
     try {
         var __dirname = path.resolve()
         const filepath = path.join(__dirname, `/temp/${name}`)
@@ -48,6 +58,14 @@ async function uploadFile({name, type}, drive) {
             }
         })
 
+        await drive.permissions.create({
+            fileId: res.data.id,
+            requestBody: {
+                role: 'reader',
+                type: "anyone"
+            }
+        })
+
         return res.data.id
 
     } catch (error) {
@@ -56,4 +74,4 @@ async function uploadFile({name, type}, drive) {
 }
 
 
-export  {startUpload}
+export  {uploadFile, generatePublicURL}

@@ -28,7 +28,10 @@
                     <div class="form-group--100">
                         <label for="media" class="img-btn">Image +</label>
                         <input type="file" class="img-input" id="media" name="postImage" @input="updateFormData">
-                        <p class="name-file"  v-if="formData.media">{{ formData.media.name || null }}</p>
+                        <span>
+                            <p class="name-file" >{{ getImageName }}</p>
+                            <button class="modal-default-button" @click=" () => formData.media = null "><img :src="require('@/assets/cancel.svg')" alt="Retirer image"></button>
+                        </span>
                     </div>
                 </form>
             </template>
@@ -65,11 +68,15 @@
                     <div class="form-group--100">
                         <label for="postImage" class="img-btn">Image +</label>
                         <input type="file" class="img-input" id="postImage" name="postImage" @input="updateFormData">
-                        <p class="name-file" v-if="formData.media">{{ formData.media.name || null }}</p>
+                        <span v-if="getImageName">
+                            <p class="name-file" >{{ getImageName }}</p>
+                            <button class="modal-default-button" @click=" () => formData.media = null "><img :src="require('@/assets/cancel.svg')" alt="Retirer image"></button>
+                        </span>
                     </div>
                 </form>
             </template>
         </PopUp>
+        <PopUp v-if="actionSuccess" headTitle="Post ajouté avec succés" :actionButton="() => actionSuccess = false "></PopUp>
         
         <div class="actus">
             <ul id="posts">
@@ -92,6 +99,7 @@
     import Post from '../components/Post.vue'
 
     import {getAllPost, insertOnePost} from "@/services/posts.js"
+ 
 
     export default {
         name: 'filActu',
@@ -109,14 +117,22 @@
                 formData:{},
                 errors: [],
                 textButton: "Que souhaitez-vous partager aujourd'hui ?",
-                listPost:[]
+                listPost:[],
+                actionSuccess: false
             }
         },
         async mounted(){
             const {data} = await getAllPost()
             this.listPost = data.posts || []
-            console.log(this.listPost)
+            console.log(data)
 
+
+        },
+        computed: {
+            getImageName() {
+                console.log(this.formData)
+                return this.formData.media?.name
+            }
         },
         methods: {
             togglePosts() {
@@ -154,15 +170,19 @@
             },
             updateFormData(e) {
                  e.target.type ===  "file" ? this.formData[e.target.id] = e.target.files[0] : this.formData[e.target.id] = e.target.value
+                 
             },
             addPost() {
-                if (this.formData.content && this.formData.media && isImage(this.formData.media.name)) {
-                    console.log(this.formData)
-                    UploadFile(this.formData.media)
-                    this.formData.media = {name:this.formData.media.name, type: this.formData.media.type}
+                if (this.formData.content) {
+                    
+                    if(this.formData.media && isImage(this.formData.media.name)) {
+                        UploadFile(this.formData.media)
+                        this.formData.media = {name:this.formData.media.name, type: this.formData.media.type}
+                    }
+                    
                     const data = {...this.formData, group: null}
                     insertOnePost(data)
-                        .then(res => this.handleSuccess(res))
+                        .then(res => this.handleSuccess(res, "post"))
                         .catch((error) => this.handleError(error))
                 }
 
@@ -175,7 +195,9 @@
             handleError(error) {
                 this.errors = [...this.errors,  error.response?.data?.message || "Erreur serveur" ]
             },
-            handleSuccess(res) {
+            handleSuccess(res, type) {
+                this.closeModal(type)
+                this.actionSuccess = true
                 console.log(res)
             },
         },

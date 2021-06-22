@@ -13,13 +13,6 @@ export async function getAllPost(req, res) {
 
     try {
         const posts = await Post.find({}).sort({"created_at": -1})
-
-        for(var i = 0; i < posts.length; i++) {
-            if(posts[i].media !== null) 
-                posts[i] =  {...posts[i]._doc, link_media: await generatePublicURL(posts[i].media) }
-        }
-
-        
         res.json({posts: posts})
     } catch (e) {
         return res.json({ error: e })
@@ -44,21 +37,26 @@ export async function insertPost(req, res) {
     try {
         console.log(media)
         const idPicture = media !== undefined ? await uploadFile(media) : null
+        const linkMedia = idPicture !== null ? await generatePublicURL(idPicture) : null
         
         const post = new Post({
             maker: user._id,
             content,
             media: idPicture,
+            link_media: linkMedia,
             idGroup: group,
         })
         
         post.save((err) => {
             if (err)
                 return console.error(err)
-
-            if(idPicture !== null)deleteImage(media.name)
-            return res.json(post)
         })
+
+        if(idPicture !== null) {
+            deleteImage(media.name)
+        }
+        return res.json(post)
+        
 
     } catch (e) {
         return res.status(500).send({error:"Erreur lors de l'ajout de post. Veuillez réessayer plus tard"})

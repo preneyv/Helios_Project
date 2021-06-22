@@ -14,6 +14,7 @@ const userSchema = new Schema(
         email: String,
         state: {type:String, default:"en attente"},
         carPicture: String,
+        link_media: Object,
         password: String,
     },
     {
@@ -40,8 +41,8 @@ userSchema.methods = {
             _id: this._id,
             name: this.name,
             firstname: this.firstname,
-            carPicture: generatePublicURL(this.carPicture),
             email: this.email,
+            link_media: this.link_media,
             pseudo: this.pseudo
         }
 

@@ -7,6 +7,7 @@ const postSchema = new Schema(
         maker: Schema.ObjectId,
         content: String,
         media: String,
+        link_media: Object,
         idGroup: Schema.ObjectId,
         comments: [{author:Schema.ObjectId, content:String, datePub: Date}],
         likes: [{user:Schema.ObjectId, pseudo:String}],

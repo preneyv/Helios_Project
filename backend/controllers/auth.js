@@ -69,6 +69,8 @@ export async function signup(req, res) {
     try {
         
         const idPicture = await uploadFile(carPicture)
+        const linkMedia = await generatePublicURL(idPicture) 
+
         const user = new User({
             pseudo,
             firstname,
@@ -76,6 +78,7 @@ export async function signup(req, res) {
             name,
             email,
             carPicture: idPicture,
+            link_media: linkMedia,
             password: passwordHash.generate(password),
         })
 

@@ -46,7 +46,8 @@ import {unLikePost, likePost, commentPost} from "@/services/posts.js"
      props: ['post'],
      data() {
        return {
-        itemPost: this.post
+        itemPost: this.post,
+        userInfo: getUserInfos(),
        }
      },
     methods: {
@@ -83,7 +84,8 @@ import {unLikePost, likePost, commentPost} from "@/services/posts.js"
     },
     computed: {
         isLiking() {
-            const like = this.itemPost.likes.find((elt) =>  elt.user === getUserInfos()._id)
+            console.log(this.userInfo)
+            const like = this.itemPost.likes.find((elt) =>  elt.user === this.userInfo._id)
             console.log(like)
             return like
         }

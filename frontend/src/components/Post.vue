@@ -27,18 +27,18 @@
               <div v-else class="action-like">
                   <img class="likes" :src="require('@/assets/likes.svg')"  @click="likePost" alt="Aimez ce post">
               </div>
-              <div class="action-comment">
-                  <img class="comment" :src="require('@/assets/commentaires.svg')"  alt="Commentaires de ce post">
+              <div class="action-comment message">
+                  <img class="comment message-header" @click="toggleAccordion" :src="require('@/assets/commentaires.svg')"  alt="Commentaires de ce post">
               </div>
           </div>
           <div class="date">
               <p>Posté le {{formatDate(post.created_at)}}</p>
           </div>
       </div>
-      <div class="container-comments">
-          <ul class="comments">
-
-          </ul>
+      <div class="container-comments message-body" :class="accordionClasses">
+          <ul class="comments message-content" v-for="(comment, index) in post.comments" :key="index">
+              <Comment :comment="comment"></Comment>
+          </ul> 
       </div>
   </div>
 </template>
@@ -47,13 +47,18 @@
 import moment from 'moment';
 import {getUserInfos} from '@/utils/utils.js'
 import {unLikePost, likePost, commentPost} from "@/services/posts.js"
+import Comment from '../components/Comment.vue'
 
    export default {
      props: ['post'],
+     components: {
+            Comment
+        },
      data() {
        return {
         itemPost: this.post,
         userInfo: getUserInfos(),
+        isOpen: false
        }
      },
     methods: {
@@ -84,8 +89,11 @@ import {unLikePost, likePost, commentPost} from "@/services/posts.js"
                     this.itemPost = res.data.modifiedPost
                 })
                 .catch((error) => console.log(error))
+        },
+        toggleAccordion: function() {
+            console.log("Toggle ok");
+            this.isOpen = !this.isOpen;
         }
-
     },
     computed: {
         isLiking() {
@@ -93,6 +101,13 @@ import {unLikePost, likePost, commentPost} from "@/services/posts.js"
             const like = this.itemPost.likes.find((elt) =>  elt.user === this.userInfo._id)
             console.log(like)
             return like
+        },
+        accordionClasses() {
+            return {
+                'is-closed': !this.isOpen,
+                'is-primary': this.isOpen,
+                'is-dark': !this.isOpen
+            };
         }
     }
    }
@@ -197,6 +212,24 @@ import {unLikePost, likePost, commentPost} from "@/services/posts.js"
    p {
        font-size: 14px;
    }
+}
+
+//Comments 
+
+.message-body   {
+    padding: 0;
+    max-height: 10em;
+    overflow: hidden;
+    transition: 0.3s ease all;
+}
+
+.is-closed .message-content {
+   display: none;
+}
+
+.message-content {
+    display: block;
+    padding: 20px;
 }
    
 </style>

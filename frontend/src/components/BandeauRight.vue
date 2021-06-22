@@ -46,7 +46,7 @@
   .bandeauRight {
     min-height: 100%;
     position: absolute;
-    width: 18%; 
+    width: 20%; 
     background-color: $black;
     right: 0;
     position:fixed;

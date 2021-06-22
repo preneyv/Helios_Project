@@ -82,7 +82,6 @@
 </template>
 
 <script>
-  import { onMounted } from 'vue'
 
 export default {
   data() {

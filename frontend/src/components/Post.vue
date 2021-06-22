@@ -2,7 +2,8 @@
   <div class="container-post">
       <div class="up">
           <div class="user">
-              <img :src="post.makerInfo[0].link_media.webContentLink || require('@/assets/defaut-profil.jpg')" alt="photo de l'utilisateur">
+              <img v-if="post.makerInfo[0].link_media" :src="post.makerInfo[0].link_media.webContentLink" alt="photo de l'utilisateur">
+              <img v-else :src="require('@/assets/defaut-profil.jpg')" alt="photo de l'utilisateur">
               <p class="user-name">{{post.makerInfo[0].pseudo || "utilisateur inconnu"}}</p>
           </div>
           <div class="plus">

@@ -202,6 +202,7 @@
             handleSuccess(res, type) {
                 this.closeModal(type)
                 this.actionSuccess = true
+                console.log(res.data)
                 let newPost = res.data;
                 this.listPost = [newPost, ...this.listPost]
  

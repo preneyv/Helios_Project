@@ -21,10 +21,10 @@
       <div class="down">
           <div class="actions">
               <div v-if="isLiking" class="action-like">
-                  <img class="likes" :src="require('@/assets/likes-full.svg')"  @click="likePost" alt="Vous avez aimé ce post">
+                  <img class="likes" :src="require('@/assets/likes-full.svg')"  @click="unLikePost" alt="Vous avez aimé ce post">
               </div>
               <div v-else class="action-like">
-                  <img class="likes" :src="require('@/assets/likes.svg')"  @click="unLikePost" alt="Aimez ce post">
+                  <img class="likes" :src="require('@/assets/likes.svg')"  @click="likePost" alt="Aimez ce post">
               </div>
               <div class="action-comment">
                   <img class="comment" :src="require('@/assets/commentaires.svg')"  alt="Commentaires de ce post">

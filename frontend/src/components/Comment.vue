@@ -1,6 +1,6 @@
 <template>
   <li>
-
+      {{ comment.content }}
   </li>
 </template>
 
@@ -8,6 +8,7 @@
 
 
    export default {
+    props: ['comment'],
      data() {
        return {
       
@@ -15,7 +16,7 @@
      },
     methods: {
     
-   }
+    }
    }
 </script>
 

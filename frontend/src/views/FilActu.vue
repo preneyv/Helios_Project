@@ -75,7 +75,7 @@
                 </form>
             </template>
         </PopUp>
-        <PopUp v-if="actionSuccess" headTitle="Post ajouté avec succés" :actionButton="() => actionSuccess = false "></PopUp>
+        <PopUp v-if="actionSuccess" headTitle="Post ajouté avec succès" :actionButton="() => actionSuccess = false "></PopUp>
         
         <div class="actus">
             <ul v-if="currentStateToggle" id="posts">
@@ -220,7 +220,6 @@
 
 .fil-actu {
     height: 100%;
-
 
  .toggle-btns {
     display: inline-flex;

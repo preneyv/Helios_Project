@@ -13,7 +13,7 @@
       <li><a href="#">Déconnexion</a></li>
     </ul>
   </nav>
-</template>
+</template> 
 
 <style lang="scss">
 

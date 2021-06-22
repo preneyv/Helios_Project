@@ -2,8 +2,8 @@
   <div class="container-post">
       <div class="up">
           <div class="user">
-              <img :src="require('@/assets/defaut-profil.jpg')" alt="photo de l'utilisateur">
-              <p class="user-name">John Doe</p>
+              <img :src="post.makerInfo[0].link_media.webContentLink || require('@/assets/defaut-profil.jpg')" alt="photo de l'utilisateur">
+              <p class="user-name">{{post.makerInfo[0].pseudo || "utilisateur inconnu"}}</p>
           </div>
           <div class="plus">
               <div class="social-media">
@@ -34,6 +34,11 @@
               <p>Posté le {{formatDate(post.created_at)}}</p>
           </div>
       </div>
+      <div class="container-comments">
+          <ul class="comments">
+
+          </ul>
+      </div>
   </div>
 </template>
 
@@ -59,16 +64,15 @@ import {unLikePost, likePost, commentPost} from "@/services/posts.js"
             
             likePost(this.itemPost._id)
                 .then(res => {
-                    console.log(res)
-                    this.itemPost = res.data.modifiedPost
+                    this.itemPost.likes.push({user:this.userInfo._id, pseudo: this.userInfo.pseudo})
                 })
                 .catch((error) => console.log(error))
         },
         unLikePost(){
             unLikePost(this.itemPost._id, this.isLiking._id)
                 .then(res => {
-                    console.log(res)
-                    this.itemPost = res.data.modifiedPost
+                    const indexLike = this.itemPost.likes.findIndex((elt) => elt.user === this.userInfo._id)
+                    this.itemPost.likes.splice(indexLike, 1)
                 })
                 .catch((error) => console.log(error))
         },
@@ -114,6 +118,8 @@ import {unLikePost, likePost, commentPost} from "@/services/posts.js"
     img {
         clip-path: circle(50%);
         align-self: center;
+        height: 45px;
+        width: auto;
     }
 
     .user-name {
@@ -148,6 +154,8 @@ import {unLikePost, likePost, commentPost} from "@/services/posts.js"
 
     img {
         padding-bottom: 10px;
+        width: 100%;
+        height: auto;
     }
 }
 
@@ -167,7 +175,7 @@ import {unLikePost, likePost, commentPost} from "@/services/posts.js"
      img.likes {
         padding-right: 8px;
         cursor: pointer;
-        height: 50px;
+        height: 40px;
         width: auto;
      }
 
@@ -175,7 +183,7 @@ import {unLikePost, likePost, commentPost} from "@/services/posts.js"
         padding-left: 8px;  
         cursor: pointer;
         align-self: center;
-        height: 28px;
+        height: 40px;
         width: auto;
     }
 

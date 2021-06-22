@@ -1,5 +1,5 @@
 <template>
-  <div class="bandeauLeft">
+  <nav class="bandeauLeft">
     <img id="logo" src="../assets/LogoHelios.svg">
     <ul>
       <li>
@@ -11,7 +11,7 @@
       </li>
       <li><a href="#">Déconnexion</a></li>
     </ul>
-  </div>
+  </nav>
 </template>
 
 <style lang="scss">
@@ -24,14 +24,24 @@
     background-color: $black;
     text-align: center;
 
-      li a {
-        color: $white;
-        font-size: 110%;
-      } 
-
       li {
         padding: 5%;
+
+         a {
+          color: $white;
+          font-size: 110%;
+
+          &:hover {
+            color: $primary;
+          }
+        } 
+
+        a.router-link-active {
+          color: $primary;
+          font-weight: 600;
+        }
       }
+
  
   }
 

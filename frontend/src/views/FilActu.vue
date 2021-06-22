@@ -79,10 +79,16 @@
         <PopUp v-if="actionSuccess" headTitle="Post ajouté avec succés" :actionButton="() => actionSuccess = false "></PopUp>
         
         <div class="actus">
-            <ul id="posts">
-                <li class="post" v-for="post in listPost" :key="post.id">
+            <ul v-if="currentStateToggle" id="posts">
+                <li class="post" v-for="post in getPost" :key="post.id">
                     <!-- {{ post.content }} -->
                     <Post :post="post"></Post>
+                </li>
+            </ul>
+            <ul v-else id="events">
+                <li class="event">
+                   
+                    <!-- <Post :post="post"></Post> -->
                 </li>
             </ul>
         </div>
@@ -100,7 +106,6 @@
 
     import {getAllPost, insertOnePost} from "@/services/posts.js"
  
-
     export default {
         name: 'filActu',
         components: {
@@ -124,11 +129,12 @@
         async mounted(){
             const {data} = await getAllPost()
             this.listPost = data.posts || []
-            console.log(data)
-
 
         },
         computed: {
+            getPost() {
+                return this.listPost;
+            },
             getImageName() {
                 console.log(this.formData)
                 return this.formData.media?.name
@@ -160,10 +166,8 @@
                 }else {
                     this.showModalEvent = true
                 }
-                
             },
             closeModal(modal) {
-                console.log(modal);
                 modal === "post" ? this.showModalPost = false : this.showModalEvent = false
                 this.formData = {}
                 this.errors = []
@@ -198,18 +202,20 @@
             handleSuccess(res, type) {
                 this.closeModal(type)
                 this.actionSuccess = true
-                console.log(res)
-            },
+                let newPost = res.data;
+                this.listPost = [newPost, ...this.listPost]
+ 
         },
+
+        watch: {
+            listPost: (newlistPost, oldlistPost) => {
+                console.log("listPost changed from " + oldlistPost + " to " + newlistPost);
+            }
+        }
     }
+}
 </script>
 <style lang="scss">
-
-// .filActu {
-//     .main {
-//         height: fit-content;
-//     }
-// }
 
 .fil-actu {
     height: 100%;

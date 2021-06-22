@@ -20,9 +20,15 @@
       </div>
       <div class="down">
           <div class="actions">
-              <img v-if="!isLiking" class="likes" :src="require('@/assets/likes.svg')"  alt="Nombre de j'aimes sur ce post" @click="likePost">
-              <img v-else class="likes" :src="require('@/assets/notifs.svg')"  alt="Nombre de j'aimes sur ce post" @click="unLikePost">
-              <img class="comment" :src="require('@/assets/commentaires.svg')"  alt="Commentaires de ce post">
+              <div v-if="isLiking" class="action-like">
+                  <img class="likes" :src="require('@/assets/likes-full.svg')"  @click="likePost" alt="Vous avez aimé ce post">
+              </div>
+              <div v-else class="action-like">
+                  <img class="likes" :src="require('@/assets/likes.svg')"  @click="unLikePost" alt="Aimez ce post">
+              </div>
+              <div class="action-comment">
+                  <img class="comment" :src="require('@/assets/commentaires.svg')"  alt="Commentaires de ce post">
+              </div>
           </div>
           <div class="date">
               <p>Posté le {{formatDate(post.created_at)}}</p>
@@ -45,9 +51,7 @@ import {unLikePost, likePost, commentPost} from "@/services/posts.js"
      },
     methods: {
          formatDate(date) {
-          console.log(date);
           let formatDate = moment(date).format("DD/MM/YY");
-          console.log(formatDate);
            return formatDate;
         },
         likePost(){
@@ -78,12 +82,6 @@ import {unLikePost, likePost, commentPost} from "@/services/posts.js"
 
     },
     computed: {
-    //   formatDate(date) {
-    //       console.log(date);
-    //       let formatDate = moment(date).format("YYYY-MM-DD");
-    //       console.log(formatDate);
-    //        return formatDate;
-    //     }
         isLiking() {
             const like = this.itemPost.likes.find((elt) =>  elt.user === getUserInfos()._id)
             console.log(like)
@@ -159,30 +157,21 @@ import {unLikePost, likePost, commentPost} from "@/services/posts.js"
      align-items: center;
      justify-content: center;
 
-     .likes {
+     img.likes {
         padding-right: 8px;
         cursor: pointer;
-
-         img {
-            height: 50px;
-            width: auto;
-        }
+        height: 50px;
+        width: auto;
      }
 
-     .comment {
+     img.comment {
         padding-left: 8px;  
         cursor: pointer;
         align-self: center;
+        height: 28px;
+        width: auto;
+    }
 
-        img {
-            height: 28px;
-            width: auto;
-        }
-     }
-
-     img {
-
-     }
 }
 
 .date {

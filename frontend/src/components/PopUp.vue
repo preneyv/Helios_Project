@@ -163,7 +163,7 @@ export default {
     height: 64%;
     width: 55vw;
 
-    #desc {
+    #content {
         width: 100%;
     }
 

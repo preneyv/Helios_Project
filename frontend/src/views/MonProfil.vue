@@ -38,8 +38,5 @@
     color:white;
     padding-bottom: 25px;
   }
-
-
-
 </style>
 

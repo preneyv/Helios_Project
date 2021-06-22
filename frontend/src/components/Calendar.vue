@@ -129,15 +129,15 @@ export default {
 
       this.currentMonth = month;
       this.currentYear = year;
-      setMonthYear(month, year);
+      this.setMonthYear(month, year);
 
       this.firstDay = day;
 
-      fillDays(this.firstDay);
+      this.fillDays(this.firstDay);
     },
 
     setMonthYear(theMonth, theYear) {
-        monthName = months[theMonth];
+        var monthName = this.months[theMonth];
         document.getElementById("monthHeading").innerHTML = monthName;
         document.getElementById("yearHeading").innerHTML = theYear;
     },
@@ -236,20 +236,20 @@ export default {
         }
       }
 
-      setMonthYear(this.currentMonth, this.currentYear);
+      this.setMonthYear(this.currentMonth, this.currentYear);
 
-      var newDay = new Date(months[this.currentMonth] +" 1, "+ this.currentYear.toString());
+      var newDay = new Date(this.months[this.currentMonth] +" 1, "+ this.currentYear.toString());
       this.firstDay = newDay.getDay();
 
       //clear first row and last 2 rows
       var firstRow = document.getElementsByClassName('.row1');
-      firstRowSquares = firstRow[0].children();
+      var firstRowSquares = firstRow[0].children();
 
       var fifthRow = document.getElementsByClassName('.row5');
-      fifthRowSquares = fifthRow[0].children();
+      var fifthRowSquares = fifthRow[0].children();
 
       var sixthRow = document.getElementsByClassName('.row6');
-      sixthRowSquares = sixthRow[0].children();
+      var sixthRowSquares = sixthRow[0].children();
 
       for (var g=0; g < 7; g++) {
             firstRowSquares[g].innerHTML = "";
@@ -269,8 +269,8 @@ export default {
         this.leapYear = false;
       }
 
-      fillDays(this.firstDay);
-  
+      this.fillDays(this.firstDay);
+   
     },
   }
 }

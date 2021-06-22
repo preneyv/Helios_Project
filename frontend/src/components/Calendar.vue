@@ -126,6 +126,7 @@ export default {
     },
 
     fillDays(day) {
+      console.log(day);
       var length = 31;
 
       if ((this.currentMonth == 3) || (this.currentMonth == 5) || (this.currentMonth == 8) || (this.currentMonth == 10)) {
@@ -144,18 +145,20 @@ export default {
         }
       }
 
-      var firstRow = document.getElementsByClassName('.row1');
-      var firstRowSquares = firstRow[0].children();
-      var secRow = document.getElementsByClassName('.row2');
-      var secRowSquares = secRow[0].children();
-      var thirdRow = document.getElementsByClassName('.row3');
-      var thirdRowSquares = thirdRow[0].children();
-      var fourthRow = document.getElementsByClassName('.row4');
-      var fourthRowSquares = fourthRow[0].children();
-      var fifthRow = document.getElementsByClassName('.row5');
-      var fifthRowSquares = fifthRow[0].children();
-      var sixthRow = document.getElementsByClassName('.row6');
-      var sixthRowSquares = sixthRow[0].children();
+      var firstRow = document.getElementsByClassName('row1');
+      console.log(firstRow);
+      var firstRowSquares = firstRow[0].children;
+      console.log(firstRowSquares);
+      var secRow = document.getElementsByClassName('row2');
+      var secRowSquares = secRow[0].children;
+      var thirdRow = document.getElementsByClassName('row3');
+      var thirdRowSquares = thirdRow[0].children;
+      var fourthRow = document.getElementsByClassName('row4');
+      var fourthRowSquares = fourthRow[0].children;
+      var fifthRow = document.getElementsByClassName('row5');
+      var fifthRowSquares = fifthRow[0].children;
+      var sixthRow = document.getElementsByClassName('row6');
+      var sixthRowSquares = sixthRow[0].children;
 
       var lastNum = 1;
 
@@ -225,13 +228,13 @@ export default {
       this.firstDay = newDay.getDay();
 
       //clear first row and last 2 rows
-      var firstRow = document.getElementsByClassName('.row1');
+      var firstRow = document.getElementsByClassName('row1');
       var firstRowSquares = firstRow[0].children();
 
-      var fifthRow = document.getElementsByClassName('.row5');
+      var fifthRow = document.getElementsByClassName('row5');
       var fifthRowSquares = fifthRow[0].children();
 
-      var sixthRow = document.getElementsByClassName('.row6');
+      var sixthRow = document.getElementsByClassName('row6');
       var sixthRowSquares = sixthRow[0].children();
 
       for (var g=0; g < 7; g++) {

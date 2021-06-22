@@ -118,6 +118,8 @@ import {unLikePost, likePost, commentPost} from "@/services/posts.js"
     img {
         clip-path: circle(50%);
         align-self: center;
+        height: 45px;
+        width: auto;
     }
 
     .user-name {

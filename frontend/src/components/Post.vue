@@ -34,6 +34,11 @@
               <p>Posté le {{formatDate(post.created_at)}}</p>
           </div>
       </div>
+      <div class="container-comments">
+          <ul class="comments">
+
+          </ul>
+      </div>
   </div>
 </template>
 
@@ -148,6 +153,8 @@ import {unLikePost, likePost, commentPost} from "@/services/posts.js"
 
     img {
         padding-bottom: 10px;
+        width: 100%;
+        height: auto;
     }
 }
 

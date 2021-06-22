@@ -4,9 +4,9 @@
 
     <div id="calHeader">
       <div id="part1">
-      <i class="fa fa-arrow-left fa-2x" id="leftArrow" onclick="updateCalendar('prev')"></i>
+      <i class="fa fa-arrow-left fa-2x" id="leftArrow" @click="updateCalendar('prev')"></i>
       <h1 id="monthHeading"></h1>
-      <i class="fa fa-arrow-right fa-2x" id="rightArrow" onclick="updateCalendar('prev')"></i>
+      <i class="fa fa-arrow-right fa-2x" id="rightArrow" @click="updateCalendar('prev')"></i>
       </div>
       <h2 id="yearHeading"></h2>
     </div>
@@ -82,189 +82,199 @@
 </template>
 
 <script>
-  var months = new Array();
-  months[0] = "January";
-  months[1] = "February";
-  months[2] = "March";
-  months[3] = "April";
-  months[4] = "May";
-  months[5] = "June";
-  months[6] = "July";
-  months[7] = "August";
-  months[8] = "September";
-  months[9] = "October";
-  months[10] = "November";
-  months[11] = "December";
+  // var months = new Array();
+  // months[0] = "January";
+  // months[1] = "February";
+  // months[2] = "March";
+  // months[3] = "April";
+  // months[4] = "May";
+  // months[5] = "June";
+  // months[6] = "July";
+  // months[7] = "August";
+  // months[8] = "September";
+  // months[9] = "October";
+  // months[10] = "November";
+  // months[11] = "December";
 
-  var currentMonth;
-  var currentYear;
-  var firstDay;
-  var leapYear;
+  // var currentMonth;
+  // var currentYear;
+  // var firstDay;
+  // var leapYear;
 
-function fillCalendar() {
-
-  var today = new Date();
-  var day = today.getDate();
-  var month = today.getMonth();
-  var year = today.getFullYear();
-
-  if ((year%4) == 0) {
-    leapYear = true;
-  } else {
-    leapYear = false;
-  }
-
-  currentMonth = month;
-  currentYear = year;
-  setMonthYear(month, year);
-
-  firstDay = today.getDay();
-
-  fillDays(firstDay);
-
-}
-
-function setMonthYear(theMonth, theYear) {
-
-    monthName = months[theMonth];
-    document.getElementById("monthHeading").innerHTML = monthName;
-    document.getElementById("yearHeading").innerHTML = theYear;
-}
-
-function fillDays(day) {
-
-  var length = 31;
-
-  if ((currentMonth == 3) || (currentMonth == 5) || (currentMonth == 8) || (currentMonth == 10)) {
-    length = 30;
-  }
-
-  if (currentMonth == 1) {
-    if (leapYear == true) {
-      length = 29;
+export default {
+  data() {
+    return {
+      months: [
+        "January","February","March","April","May","June","July","August","September","October","November","December",
+      ],
+      currentMonth: '',
+      currentYear: '',
+      firstDay: '',
+      leapYear: '',
     }
-  }
+  },
+  methods: {
+    
+    fillCalendar() {
+      var today = new Date();
+      var day = today.getDate();
+      var month = today.getMonth();
+      var year = today.getFullYear();
 
-  if (currentMonth == 1) {
-    if (leapYear == false) {
-      length = 28;
-    }
-  }
-
-  var firstRow = $('.row1');
-  firstRowSquares = firstRow.children();
-  var secRow = $('.row2');
-  secRowSquares = secRow.children();
-  var thirdRow = $('.row3');
-  thirdRowSquares = thirdRow.children();
-  var fourthRow = $('.row4');
-  fourthRowSquares = fourthRow.children();
-  var fifthRow = $('.row5');
-  fifthRowSquares = fifthRow.children();
-  var sixthRow = $('.row6');
-  sixthRowSquares = sixthRow.children();
-
-  var lastNum = 1;
-
-
-    for (var i=day; i < 7; i++) {
-        firstRowSquares[i].innerHTML = lastNum;
-        lastNum = lastNum + 1;
-    }
-
-    for (var i=0; i < 7; i++) {
-        secRowSquares[i].innerHTML = lastNum;
-        lastNum++;
-    }
-
-    for (var i=0; i < 7; i++) {
-        thirdRowSquares[i].innerHTML = lastNum;
-        lastNum++;
-    }
-
-    for (var i=0; i < 7; i++) {
-        fourthRowSquares[i].innerHTML = lastNum;
-        lastNum++;
-    }
-
-    for (var i=0; i < 7; i++) {
-      if (lastNum > length) {
-        break;
+      if ((year%4) == 0) {
+        this.leapYear = true;
+      } else {
+        this.leapYear = false;
       }
-      fifthRowSquares[i].innerHTML = lastNum;
-      lastNum++;
-    }
 
-    if ((lastNum > length) == false) {
-      for (var i=0; i < 7; i++) {
+      this.currentMonth = month;
+      this.currentYear = year;
+      setMonthYear(month, year);
+
+      this.firstDay = day;
+
+      fillDays(this.firstDay);
+    },
+
+    setMonthYear(theMonth, theYear) {
+        monthName = months[theMonth];
+        document.getElementById("monthHeading").innerHTML = monthName;
+        document.getElementById("yearHeading").innerHTML = theYear;
+    },
+
+    fillDays(day) {
+      var length = 31;
+
+      if ((this.currentMonth == 3) || (this.currentMonth == 5) || (this.currentMonth == 8) || (this.currentMonth == 10)) {
+        length = 30;
+      }
+
+      if (this.currentMonth == 1) {
+        if (this.leapYear == true) {
+          length = 29;
+        }
+      }
+
+      if (this.currentMonth == 1) {
+        if (this.leapYear == false) {
+          length = 28;
+        }
+      }
+
+      var firstRow = document.getElementsByClassName('.row1');
+      var firstRowSquares = firstRow[0].children();
+      var secRow = document.getElementsByClassName('.row2');
+      var secRowSquares = secRow[0].children();
+      var thirdRow = document.getElementsByClassName('.row3');
+      var thirdRowSquares = thirdRow[0].children();
+      var fourthRow = document.getElementsByClassName('.row4');
+      var fourthRowSquares = fourthRow[0].children();
+      var fifthRow = document.getElementsByClassName('.row5');
+      var fifthRowSquares = fifthRow[0].children();
+      var sixthRow = document.getElementsByClassName('.row6');
+      var sixthRowSquares = sixthRow[0].children();
+
+      var lastNum = 1;
+
+
+      for (var a=day; a < 7; a++) {
+          firstRowSquares[a].innerHTML = lastNum;
+          lastNum = lastNum + 1;
+      }
+
+      for (var b=0; b < 7; b++) {
+          secRowSquares[b].innerHTML = lastNum;
+          lastNum++;
+      }
+
+      for (var c=0; c < 7; c++) {
+          thirdRowSquares[c].innerHTML = lastNum;
+          lastNum++;
+      }
+
+      for (var d=0; d < 7; d++) {
+          fourthRowSquares[d].innerHTML = lastNum;
+          lastNum++;
+      }
+
+      for (var e=0; e < 7; e++) {
         if (lastNum > length) {
           break;
         }
-        sixthRowSquares[i].innerHTML = lastNum;
+        fifthRowSquares[e].innerHTML = lastNum;
         lastNum++;
       }
-    }
 
-}
+      if ((lastNum > length) == false) {
+        for (var f=0; f < 7; f++) {
+          if (lastNum > length) {
+            break;
+          }
+          sixthRowSquares[f].innerHTML = lastNum;
+          lastNum++;
+        }
+      }
+    },
 
-function updateCalendar(direction) {
+    updateCalendar(direction) {
+       if (direction == 'prev') {
 
-  if (direction == 'prev') {
+        if (this.currentMonth == 0) {
+          this.currentMonth = 11;
+          this.currentYear = this.currentYear - 1;
+        } else {
+          this.currentMonth = this.currentMonth - 1;
+        }
 
-    if (currentMonth == 0) {
-      currentMonth = 11;
-      currentYear = currentYear - 1;
-    } else {
-      currentMonth = currentMonth - 1;
-    }
+      } else {
 
-  } else {
+        if (this.currentMonth == 11) {
+          this.currentMonth = 0;
+          this.currentYear = this.currentYear + 1;
+        } else {
+          this.currentMonth++;
+        }
+      }
 
-    if (currentMonth == 11) {
-      currentMonth = 0;
-      currentYear = currentYear + 1;
-    } else {
-      currentMonth++;
-    }
-  }
+      setMonthYear(this.currentMonth, this.currentYear);
 
-  setMonthYear(currentMonth, currentYear);
+      var newDay = new Date(months[this.currentMonth] +" 1, "+ this.currentYear.toString());
+      this.firstDay = newDay.getDay();
 
-  var newDay = new Date(months[currentMonth]+" 1, "+currentYear.toString());
-  firstDay = newDay.getDay();
+      //clear first row and last 2 rows
+      var firstRow = document.getElementsByClassName('.row1');
+      firstRowSquares = firstRow[0].children();
 
-  //clear first row and last 2 rows
-  var firstRow = $('.row1');
-  firstRowSquares = firstRow.children();
+      var fifthRow = document.getElementsByClassName('.row5');
+      fifthRowSquares = fifthRow[0].children();
 
-  var fifthRow = $('.row5');
-  fifthRowSquares = fifthRow.children();
+      var sixthRow = document.getElementsByClassName('.row6');
+      sixthRowSquares = sixthRow[0].children();
 
-  var sixthRow = $('.row6');
-  sixthRowSquares = sixthRow.children();
+      for (var g=0; g < 7; g++) {
+            firstRowSquares[g].innerHTML = "";
+        }
 
-  for (var i=0; i < 7; i++) {
-        firstRowSquares[i].innerHTML = "";
-    }
+      for (var h=0; h < 7; h++) {
+          fifthRowSquares[h].innerHTML = "";
+      }
 
-  for (var i=0; i < 7; i++) {
-      fifthRowSquares[i].innerHTML = "";
-  }
+      for (var i=0; i < 7; i++) {
+          sixthRowSquares[i].innerHTML = "";
+      }
 
-  for (var i=0; i < 7; i++) {
-      sixthRowSquares[i].innerHTML = "";
-  }
+      if ((this.currentYear%4) == 0) {
+        this.leapYear = true;
+      } else {
+        this.leapYear = false;
+      }
 
-  if ((currentYear%4) == 0) {
-    leapYear = true;
-  } else {
-    leapYear = false;
-  }
-
-  fillDays(firstDay);
-
+      fillDays(this.firstDay);
   
+    },
+  }
 }
+
 </script>
 
 <style lang="scss">

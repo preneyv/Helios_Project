@@ -29,15 +29,18 @@ const port = process.env.PORT || 8800
 // Global middlewares
 app.use(helmet())
 app.use(json())
-app.use(cors())
+app.use(cors({
+    origin: "*"
+}))
 
 
 
 // Routes
-app.use("/api/helios/upload", uploadRoutes)
+
 app.use("/api/helios/auth", authRoutes)
 app.use("/api/helios/user", userRoutes)
 app.use("/api/helios/post", postRoutes)
+app.use("/api/helios/upload", uploadRoutes)
 
 app.all("*", (req, res, next) => {
     res.status(404).json({ message: "Wrong route" })

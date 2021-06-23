@@ -1,8 +1,6 @@
 <template>
   <div class="home">
-    <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
     <div class="logo-container">
-
       <img :src="require('@/assets/logo.png')" alt="logo Helios">
     </div>
     <div class="content-container">
@@ -13,8 +11,6 @@
           <div class="cta-login">
             <button @click="showModalInscription = true">S'inscrire</button>
             <button @click="showModalConnexion = true">Se connecter</button>
-            <!-- <router-link to="/">S'inscrire</router-link>
-            <router-link to="/">Se connecter</router-link> -->
           </div>
         </div> 
     </div>
@@ -52,10 +48,6 @@
               <input type="file" class="img-input" id="carPicture" name="carPicture" @input="updateFormData">
               <p class="name-file" v-if="formData.carPicture">{{ formData.carPicture.name }}</p>
         </div>
-        
-        <!-- <p class="forgot-password text-right mt-2 mb-4">
-            <router-link to="/forgot-password">Mot de passe oublié ?</router-link>
-        </p> -->
       </form>
       </template>
     </PopUp>
@@ -86,16 +78,11 @@
   </div>
 </template>
 
-
 <script>
-// @ is an alias to /src
 import PopUp from '@/components/PopUp.vue'
 import AuthServices from "@/services/auth.js"
 import UploadFile from "@/services/loadImage.js"
 import {isImage} from "@/utils/utils.js"
-
-
-
 
 export default {
   name: 'home',
@@ -112,26 +99,19 @@ export default {
       errorsSignUp: [],
     }
   },
-  // mounted() {
-  //   this.show = true; // might need this.$nextTick
-  //   let home = document.querySelector(".home");
-  //    home.style.opacity = "1";
-  // },
 
   methods:{
 
     closeModal(modal) {
       modal === "inscription" ? this.showModalInscription = false : this.showModalConnexion = false
       this.formData = {}
-
     },
+
     updateFormData(e) {
-      console.log(e)
       e.target.type ===  "file" ? this.formData[e.target.id] = e.target.files[0] : this.formData[e.target.id] = e.target.value
-      
     },
-    signin() {
 
+    signin() {
       if (this.formData.email && this.formData.password) {
         const data = this.formData
         AuthServices.signin(data)
@@ -147,131 +127,126 @@ export default {
       if (!this.formData.password) {
         this.errors.push('Mot de passe demandé.');
       }
-
     },
-    signup() {
 
-        if (
-            this.formData.name && this.formData.firstname && 
-            this.formData.email && this.formData.birthDate && 
-            this.formData.pseudo && this.formData.password && 
-            this.formData.carPicture && isImage(this.formData.carPicture.name)
-            ) 
-        {
-            UploadFile(this.formData.carPicture)
-            this.formData.carPicture = {name:this.formData.carPicture.name, type: this.formData.carPicture.type}
-            const data = this.formData
-            AuthServices.signup(data)
-              .then(() => this.handleSuccess())
-              .catch((error) => this.handleError(error, "signup"))
-        } 
-      
+    signup() {
+      if (
+          this.formData.name && this.formData.firstname && 
+          this.formData.email && this.formData.birthDate && 
+          this.formData.pseudo && this.formData.password && 
+          this.formData.carPicture && isImage(this.formData.carPicture.name)
+          ) 
+      {
+          UploadFile(this.formData.carPicture)
+          this.formData.carPicture = {name:this.formData.carPicture.name, type: this.formData.carPicture.type}
+          const data = this.formData
+          AuthServices.signup(data)
+            .then(() => this.handleSuccess())
+            .catch((error) => this.handleError(error, "signup"))
+      } 
+    
       this.errorsSignUp = [];
 
       if (!this.formData.name) {
         this.errorsSignUp.push('Nom demandé');
       }  
+
       if (!this.formData.firstname) {
          this.errorsSignUp.push('Prénom demandé');
       } 
+
       if (!this.formData.email) {
         this.errorsSignUp.push('Email demandé');
       } 
+
       if (!this.formData.birthDate) {
         this.errorsSignUp.push('Date de naissance demandé');
       } 
+
       if (!this.formData.pseudo) {
         this.errorsSignUp.push('Pseudo demandé');
       } 
+
       if (!this.formData.password) {
         this.errorsSignUp.push('Mot de passe demandé');
       } 
+
       if (!this.formData.carPicture) {
         this.errorsSignUp.push('Photo de votre voiture demandé');
       }
+
       if (this.formData.carPicture && !isImage(this.formData.carPicture.name)) {
         this.errorsSignUp.push('Veuillez transmettre une image valide (jpg, png, svg)');
       }
-
     },
 
     handleError(error, from) {
       from === "signin" ? 
       this.errors = [...this.errors, error.response?.data?.message || "Erreur serveur"]
       : this.errorsSignUp = [...this.errorsSignUp,  error.response?.data?.message || "Erreur serveur" ]
-   
     },
 
     handleSuccess() {
       const queryString = window.location.search
-      console.log(window.location)
       const params = new URLSearchParams(queryString)
-
-  console.log(this.$router)
       const redirectTo = params.get("redirectTo") || "filActu"
 
-      if (redirectTo === "back")
-      {
+      if (redirectTo === "back") {
         this.$router.go(-1)
-      }
-      else
-      {
+      } else {
         this.$router.push({name:redirectTo})
       }
-
     },
-
-  
   }
 }
 </script>
 
 <style lang="scss">
 
-#app {
-  font-family: Poppins, Helvetica, Arial, sans-serif;
-}
-
-.home { 
-  display: inline-flex;
-  height: 100vh;
-  width: 100vw;
-  background-image: url("../assets/bg-home.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  color: $white;
-  transition: opacity 3s;
-
-  .logo-container {
-    width: 45%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  #app {
+    font-family: Poppins, Helvetica, Arial, sans-serif;
   }
 
-  img {
-    height: 310px;
-    width: 310px;
-  }
+  .home { 
+    display: inline-flex;
+    height: 100vh;
+    width: 100vw;
+    background-image: url("../assets/bg-home.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: $white;
+    transition: opacity 3s;
 
-  .content-container {
-    width: 55%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 0 5%;
-
-    @include responsive('xl-desktop'){
-      padding: 0 15% 0 0;
+    .logo-container {
+      width: 45%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
-    @include responsive('large'){
-      padding: 0 22% 0 0;
-    } 
-  }
+    img {
+      height: 310px;
+      width: 310px;
+    }
 
-  .login {
+    .content-container {
+      width: 55%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0 5%;
+
+      @include responsive('xl-desktop'){
+        padding: 0 15% 0 0;
+      }
+
+      @include responsive('large'){
+        padding: 0 22% 0 0;
+      } 
+    }
+
+    .login {
       width: 90%;
       display: flex;
       flex-direction: column;
@@ -299,8 +274,6 @@ export default {
       }
     }
 
-
-
     h1 {
       font-size: 35px;
       font-weight: 600;
@@ -319,78 +292,78 @@ export default {
       padding: 50px 0 25px 0;
     }
 
-  //forms 
-
-  .login-id {
-    font-size: 12px; 
-    line-height: 15px;
-    padding: 20px 0 8px 0;
-  }
-
-  .photo-car {
-     font-size: 12px; 
-    line-height: 15px;
-  }
- 
-  .photo-profil, .name-file {
-    font-size: 10px; 
-    line-height: 15px;
-    padding: 3px 0 8px 0;
-  }
-
-  .photo-profil {
-    padding-bottom: 2%;
-  }
-
-  .name-file {
-    margin-top: 9px;
-  }
-
-  .forgot-password {
-    a {
-      font-size: 14px;
-    }
-  }
-
-  .inscription.basic-popUp {
-    .errors {
-      ul {
-        display: inline-flex;
-        flex-wrap: wrap;
-      }
-
-      li {
-        padding-right: 5px;
-      }
-    }
-  }
-
-  //connexion form 
-  .connexion.basic-popUp {
-    height: 45%;
-
-    @include responsive('xl-desktop'){
-      height: 32%;
-      width: 25vw;
+    //forms 
+    .login-id {
+      font-size: 12px; 
+      line-height: 15px;
+      padding: 20px 0 8px 0;
     }
 
-    #password {
-      margin-bottom: 15px;
+    .photo-car {
+      font-size: 12px; 
+      line-height: 15px;
+    }
+  
+    .photo-profil, .name-file {
+      font-size: 10px; 
+      line-height: 15px;
+      padding: 3px 0 8px 0;
+    }
+
+    .photo-profil {
+      padding-bottom: 2%;
+    }
+
+    .name-file {
+      margin-top: 9px;
     }
 
     .forgot-password {
       a {
-        font-size: 12px;
+        font-size: 14px;
+      }
+    }
+
+    .inscription.basic-popUp {
+      .errors {
+        ul {
+          display: inline-flex;
+          flex-wrap: wrap;
+        }
+
+        li {
+          padding-right: 5px;
+        }
+      }
+    }
+
+    //connexion form 
+    .connexion.basic-popUp {
+      height: 45%;
+
+      @include responsive('xl-desktop'){
+        height: 32%;
+        width: 25vw;
+      }
+
+      #password {
+        margin-bottom: 15px;
+      }
+
+      .forgot-password {
+        a {
+          font-size: 12px;
+        }
+      }
+    }
+
+    .connexion.yes.basic-popUp  {
+      height: 58%;
+
+      @include responsive('xl-desktop'){
+        height: 40%;
       }
     }
   }
 
-  .connexion.yes.basic-popUp  {
-    height: 58%;
-
-     @include responsive('xl-desktop'){
-      height: 40%;
-    }
-  }
-}
 </style>

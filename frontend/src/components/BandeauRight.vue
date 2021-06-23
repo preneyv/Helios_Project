@@ -40,6 +40,7 @@
 </template>
 
 <style lang="scss">
+
   .bandeauRight {
     min-height: 100%;
     position: absolute;

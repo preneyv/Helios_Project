@@ -10,28 +10,19 @@
 </template>
 
 <script>
- /* eslint-disable */
-    import Nav from './components/Nav.vue'
-    import BandeauRight from './components/BandeauRight.vue'
-    import VueMeta from 'vue-meta'
 
-    // Vue.use(VueMeta)
+import Nav from './components/Nav.vue'
+import BandeauRight from './components/BandeauRight.vue'
 
 export default {
   name: 'app',
   tile: 'Helios',
-  // metaInfo: {
-  //     title: 'Helios',
-  // },
-  // props: ,
   components: {
     Nav,
     BandeauRight
   },
   data() {
-    return {
-    
-    }
+    return {}
   },
   computed: {
     highlight () {
@@ -40,8 +31,6 @@ export default {
   }
 }
 </script>
-
-
 
 <style lang="scss">
 
@@ -63,33 +52,33 @@ export default {
     width: 63%;
     margin-left: 17%;
     height: 100%;
-}
+  }
 
-main.home {
-    margin-left: 0;
-}
+  main.home {
+      margin-left: 0;
+  }
 
-.main {
-    padding: 8% 10%;
-    position: relative;
-    height: 100%;
-}
+  .main {
+      padding: 8% 10%;
+      position: relative;
+      height: 100%;
+  }
 
-.fil-actu {
-    position: relative;
-}
+  .fil-actu {
+      position: relative;
+  }
 
-.notifs {
-    position: fixed;
-    top: 15px;
-    right: 15px; 
-    width: 20px;
-    height: 25px;
- 
-    img {
-        width: 100%;
-        height: 100%;
-    }
-}
+  .notifs {
+      position: fixed;
+      top: 15px;
+      right: 15px; 
+      width: 20px;
+      height: 25px;
+  
+      img {
+          width: 100%;
+          height: 100%;
+      }
+  }
 
 </style>

@@ -105,7 +105,6 @@ export default {
       this.currentYear = year;
       this.setMonthYear(month, year);
       this.firstDay = day;
-      console.log(this.firstDay);
       this.fillDays(this.firstDay);
   },
   methods: {
@@ -115,7 +114,6 @@ export default {
       document.getElementById("yearHeading").innerHTML = theYear;
     },
     fillDays(firstDay) {
-      console.log(firstDay);
       var length = 31;
       if ((this.currentMonth == 3) || (this.currentMonth == 5) || (this.currentMonth == 8) || (this.currentMonth == 10)) {
         length = 30;
@@ -131,9 +129,7 @@ export default {
         }
       }
       var firstRow = document.getElementsByClassName('row1');
-      console.log(firstRow);
       var firstRowSquares = firstRow[0].children;
-      console.log(firstRowSquares);
       var secRow = document.getElementsByClassName('row2');
       var secRowSquares = secRow[0].children;
       var thirdRow = document.getElementsByClassName('row3');
@@ -373,5 +369,5 @@ export default {
     top: -10px;
     box-shadow: 0 5px 15px 0 rgba(0,0,0,0.15);
   }
-  
+
 </style>

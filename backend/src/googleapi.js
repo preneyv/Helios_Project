@@ -2,7 +2,10 @@ import {google} from 'googleapis'
 import path from 'path'
 import fs from 'fs'
 
-
+/**
+ * Permet de générer une connexion vers le répertoire de sauvegarde des images google drive
+ * @returns l'accés au drive
+ */
  function initAuth () {
         const CLIENT_ID = "663254775431-hhk7pgf7gohgfseu4prleq4eedt5s7dh.apps.googleusercontent.com"
         const CLIENT_SECRET = "gCvsRYBtCmERLtHcEf4RaqLm"
@@ -27,6 +30,11 @@ import fs from 'fs'
         
 }
 
+/**
+ * Crée une url publique pour l'image
+ * @param {*} idFile id de l'image dans google drive
+ * @returns objet contenant deux url publiques de l'image
+ */
 async function generatePublicURL(idFile) {
     const drive = initAuth()
     const result = await drive.files.get({
@@ -36,7 +44,11 @@ async function generatePublicURL(idFile) {
     return result.data
 }
 
-
+/**
+ * Enregistre l'image dans google drive
+ * @param {*} file 
+ * @returns l'id de l'image dans google drive
+ */
 async function uploadFile(file) {
 
     const drive = initAuth()

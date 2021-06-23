@@ -10,6 +10,12 @@ const {Types} = mongoose
 
 /*POST PART */
 
+/**
+ * Récupère toutes les publications
+ * @param {express request} req 
+ * @param {express response} res 
+ * @returns 
+ */
 export async function getAllPost(req, res) {
 
     try {
@@ -38,10 +44,12 @@ export async function getAllPost(req, res) {
 
 
 /**
- * 
+ * Enregistre l'image de l'utilisateur sur google drive
+ * et ajoute l'url publique de l'image à la publication.
+ * Ajoute une nouvelle publication à la base de donnée.
  * @param {express.Request} req 
  * @param {express.Response} res 
- * @returns le post enregistre
+ * @returns le post enregistré
  */
 export async function insertPost(req, res) {
 
@@ -51,10 +59,9 @@ export async function insertPost(req, res) {
         media,
         group,
     } = req.body
-    console.log(req.body)
 
     try {
-        console.log(media)
+
         const idPicture = media !== undefined ? await uploadFile(media) : null
         const linkMedia = idPicture !== null ? await generatePublicURL(idPicture) : null
         
@@ -74,7 +81,6 @@ export async function insertPost(req, res) {
         if(idPicture !== null) {
             deleteImage(media.name)
         }
-        console.log(post)
         return res.json({...post._doc, makerInfo: [await User.findById(post._doc.maker, {pseudo:1, link_media:1})]})
         
 
@@ -84,6 +90,12 @@ export async function insertPost(req, res) {
     
 }
 
+/**
+ * Met à jour une publication
+ * @param {express.Request} req 
+ * @param {express.Response} res 
+ * @returns le nombre de modification effectuée
+ */
 export async function editPost(req, res){
     const idPost = req.params.id
     const filter = {"_id":idPost}
@@ -99,10 +111,10 @@ export async function editPost(req, res){
 
 
 /**
- * 
+ * Retire une publication de la base de donnée
  * @param {express.Request} req 
  * @param {express.Response} res 
- * @returns 
+ * @returns le nombre de modification effectuée
  */
 export async function removePost(req, res) {
     const idPost = req.params.id
@@ -119,10 +131,10 @@ export async function removePost(req, res) {
 /*COMMENTS PART */
 
 /**
- * 
- * @param {*} req 
- * @param {*} res 
- * @returns 
+ * Ajoute un commentaire à la publication
+ * @param {express.Request} req 
+ * @param {express.Response} res 
+ * @returns le nombre de modification apportée.
  */
 export async function insertComment(req, res) {
     const idPost = req.params.id
@@ -140,6 +152,12 @@ export async function insertComment(req, res) {
     }
 }
 
+/**
+ * Modifie un commentaire de l'utilisateur de la publication
+ * @param {express.Request} req 
+ * @param {express.Response} res 
+ * @returns le nombre de modification apportée.
+ */
 export async function updateComment(req, res) {
     const idPost = req.params.id
     const idComment = Types.ObjectId(req.params.idcomment)
@@ -157,6 +175,12 @@ export async function updateComment(req, res) {
     }
 }
 
+/**
+ * Retire un commentaire de l'utilisateur de la publication
+ * @param {express.Request} req 
+ * @param {express.Response} res 
+ * @returns le nombre de modification apportée.
+ */
 export async function removeComment(req, res) {
     const idPost = req.params.id
     const idComment = req.params.idcomment
@@ -174,6 +198,12 @@ export async function removeComment(req, res) {
 }
 
 /* LIKE PART*/
+/**
+ * Ajoute un "like" de l'utilisateur à la publication
+ * @param {express.Request} req 
+ * @param {express.Response} res 
+ * @returns le nombre de modification apportée.
+ */
 export async function addLike(req, res) {
     const idPost = req.params.id
     const user = req.user
@@ -192,6 +222,12 @@ export async function addLike(req, res) {
 }
 
 
+/**
+ * Retire le "like" de l'utilisateur de la publication
+ * @param {express.Request} req 
+ * @param {express.Response} res 
+ * @returns le nombre de modification apportée.
+ */
 export async function removeLike(req, res) {
     const idPost = req.params.id
     const idUser = req.user._id

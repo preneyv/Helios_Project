@@ -3,8 +3,8 @@ import { signin, signup } from '../controllers/auth.js'
 
 
 const router = Router()
-
-//  ROUTES /api/helios/auth
+// Routes d'authentification et d'inscription
+// ROUTES /api/helios/auth
 router.post("/signin", signin)
 router.post("/signup", signup)
 

@@ -1,9 +1,10 @@
 import User from "../models/User.js"
 
 /**
- * Get One User with a specified Id
+ * Récupère les informations d'un utilisateur
  * @param {express.Request} req
  * @param {express.Response} res
+ * @returns l'utilisateur
  */
 export async function getOneById(req, res) {
     const { id } = req.params
@@ -15,6 +16,12 @@ export async function getOneById(req, res) {
     }
 }
 
+/**
+ * Met à jour les informations d'un utilisateur
+ * @param {express.Request} req
+ * @param {express.Response} res
+ * @returns le nombre de modification apportée
+ */
 export async function updateUser(req, res) {
     const { id } = req.params
     try {

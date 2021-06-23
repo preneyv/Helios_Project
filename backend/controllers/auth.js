@@ -5,7 +5,7 @@ import { uploadFile, generatePublicURL } from "../src/googleapi.js"
 import { deleteImage } from "../multer/storage.js"
 
 /**
- * Login user from the database and generate a JWT
+ * Connecte et génère un jeton d'accés. Rendant la connexion unique
  * @param {express.Request} req
  * @param {express.Response} res
  * @returns
@@ -31,7 +31,7 @@ export async function signin(req, res) {
 }
 
 /**
- * Create a user and insert it into the database
+ * Crée un utilisateur et génère un jeton d'accés. Rendant la connexion unique.
  * @param {express.Request} req
  * @param {express.Response} res
  * @returns

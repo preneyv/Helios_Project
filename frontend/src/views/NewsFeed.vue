@@ -92,8 +92,6 @@
 </template>
 <script>
 
-import Nav from '../components/Nav.vue'
-import BandeauRight from '../components/BannerRight.vue'
 import PopUp from '../components/PopUp.vue'
 import UploadFile from "@/services/loadImage.js"
 import {isImage} from "@/utils/utils.js"
@@ -104,8 +102,6 @@ import {getAllPost, insertOnePost} from "@/services/posts.js"
 export default {
     name: 'NewsFeed',
     components: {
-        Nav,
-        BandeauRight,
         PopUp,
         Post
     },
@@ -135,20 +131,15 @@ export default {
     },
     methods: {
         togglePosts() {
-            if(this.currentStateToggle) {
-            
-            } else {
-                this.currentStateToggle = !this.currentStateToggle;
+            if(!this.currentStateToggle) {
+             this.currentStateToggle = !this.currentStateToggle;
                 this.textButton = "Que souhaitez-vous partager aujourd'hui ?"
-            }
-                
+            } 
         },
         toggleEvents() {
-            if(!this.currentStateToggle) {
-                    
-            } else { 
+            if(this.currentStateToggle) {
                 this.currentStateToggle = !this.currentStateToggle;
-                this.textButton = "Quel événement voulez-vous créer aujourd'hui ?"
+                this.textButton = "Quel événement voulez-vous créer aujourd'hui ?"  
             }
         },
         detectPopUp() {

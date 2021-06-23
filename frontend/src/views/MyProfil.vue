@@ -12,19 +12,14 @@
 
 <script>
 
-import Nav from '../components/Nav.vue'
-import BannerRight from '../components/BannerRight.vue'
 import ProfilGroups from '../components/ProfilGroups.vue'
 import ProfilEvents from '../components/ProfilEvents.vue'
 import ProfilInfos from '../components/ProfilInfos.vue'
 import ProfilPosts from '../components/ProfilPosts.vue'
-import AuthServices from "@/services/auth.js"
 
 export default {
   name: 'monProfil',
   components: {
-    Nav,
-    BannerRight,
     ProfilGroups,
     ProfilInfos,
     ProfilEvents,

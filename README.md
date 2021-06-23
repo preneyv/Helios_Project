@@ -54,13 +54,13 @@ Principales Librairies Backend :
 
 
 # 📖  Fonctionnalités du Fil d'Actualité
-Cette page permet lalalalalalalalalalalala.
+Cette page permet à l'utilisateur connecté d'interragir avec tous les posts et événements auxquels il a accès dernièrement mis en ligne.  
 
-Dans lalalala, l'utilisateur peut lalalala :
-* Test
-* Test
-* Test
-* Test
+Dans la page du fil d'actualité, l'utilisateur peut :
+* Consulter les posts
+* Aimer des posts
+* Commencer et aimer des posts
+* Créer un nouveau post
 * Test
 * Test
 

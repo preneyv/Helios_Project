@@ -1,12 +1,12 @@
 <template>
-  <div id="app">
+  <!-- <div id="app"> -->
     <Nav v-if="$route.name !== 'home'"/>
     <main :class=highlight>
       <span v-if="$route.name !== 'home'" class="notifs"><img :src="require('@/assets/notifs.svg')" alt="Mes notifications"></span>
       <router-view />
     </main>
     <BannerRight v-if="$route.name !== 'home'"/>
-  </div>
+  <!-- </div> -->
 </template>
 
 <script>
@@ -42,12 +42,6 @@ export default {
     position: relative;
   }
 
-  #app {
-    width: 100%;
-    height: 100%;
-    display: inline-flex;
-  }
-
   main {
     width: 63%;
     margin-left: 17%;
@@ -71,7 +65,7 @@ export default {
   .notifs {
       position: fixed;
       top: 15px;
-      right: 15px; 
+      right: 22%; 
       width: 20px;
       height: 25px;
   

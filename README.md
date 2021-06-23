@@ -1,4 +1,4 @@
-<div style="display: flex; justify-content: center">
+<div style="display: flex; justify-content: center; text-align: center">
 <img src="./frontend/src/assets/logo.png" width="50" height="50"/>
 <h1 align="center">
    Helios

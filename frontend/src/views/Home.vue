@@ -102,6 +102,9 @@ export default {
 
   methods:{
 
+    /*
+    * Méthode permettant de fermer une pop up
+    */
     closeModal(modal) {
       modal === "inscription" ? this.showModalInscription = false : this.showModalConnexion = false
       this.formData = {}
@@ -111,6 +114,10 @@ export default {
       e.target.type ===  "file" ? this.formData[e.target.id] = e.target.files[0] : this.formData[e.target.id] = e.target.value
     },
 
+    /*
+    * Méthode qui vérifie si l'utilisateur a bien mis un email et un mot de passe dans le formulaire de connexion,
+    * puis elle fait appel à l'API en backend qui va générer une connexion
+    */
     signin() {
       if (this.formData.email && this.formData.password) {
         const data = this.formData
@@ -129,6 +136,10 @@ export default {
       }
     },
 
+    /*
+    * Méthode qui vérifie si l'utilisateur a bien inséré toutes les informations demandées dans le formulaire d'inscription,
+    * puis elle fait appel à l'API en backend qui va générer une inscription
+    */
     signup() {
       if (
           this.formData.name && this.formData.firstname && 
@@ -180,12 +191,19 @@ export default {
       }
     },
 
+    /*
+    * Méthode qui va afficher un message d'erreur si un problème survient au niveau du serveur
+    */
     handleError(error, from) {
       from === "signin" ? 
       this.errors = [...this.errors, error.response?.data?.message || "Erreur serveur"]
       : this.errorsSignUp = [...this.errorsSignUp,  error.response?.data?.message || "Erreur serveur" ]
     },
 
+    /*
+    * Méthode qui redirige l'utilisateur vers son fil d'actualité si 
+    * la connexion ou l'inscription s'est bien déroulée
+    */
     handleSuccess() {
       const queryString = window.location.search
       const params = new URLSearchParams(queryString)

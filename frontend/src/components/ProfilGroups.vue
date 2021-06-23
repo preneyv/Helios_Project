@@ -4,7 +4,7 @@
         <div class="groupeCree">
             <table>
                 <tr>
-                    <td class="caseImgGroupe"><img class="imgGroupe"></td>
+                    <td class="caseImgGroupe"><img src="../assets/defaut-profil.jpg" alt="photo du groupe"></td>
                     <td class="titreGroupeCree">Green Bentley</td>
                     <td class="dernierMsg">Il y a 1h par dornicCl</td>
                 </tr>
@@ -13,7 +13,7 @@
         <div class="groupeCree">
             <table>
                 <tr>
-                    <td class="caseImgGroupe"><img class="imgGroupe"></td>
+                    <td class="caseImgGroupe"><img src="../assets/defaut-profil.jpg" alt="photo de l'utilisateur"></td>
                     <td class="titreGroupeCree">Green Bentley</td>
                     <td class="dernierMsg">Il y a 1h par dornicCl</td>
                 </tr>
@@ -22,7 +22,7 @@
         <div class="groupeCree">
             <table>
                 <tr>
-                    <td class="caseImgGroupe"><img class="imgGroupe"></td>
+                    <td class="caseImgGroupe"><img src="../assets/defaut-profil.jpg" alt="photo de l'utilisateur"></td>
                     <td class="titreGroupeCree">Green Bentley</td>
                     <td class="dernierMsg">Il y a 1h par dornicCl</td>
                   </tr>
@@ -41,6 +41,17 @@
     background-color:#222222;
     box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.5);
     margin-bottom: 5%;
+
+    img {
+      clip-path: circle(50%);
+      align-self: center;
+      height: 45px;
+      width: auto;
+    }
+
+    .titreGroupeCree {
+      padding-left:10px;
+    }
   }
 
   .groupeCree {

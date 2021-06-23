@@ -1,27 +1,24 @@
 <template>
     <div class="eventsOrganis">
         <div class="titresCategories">Les événements que j'organise</div>
-        <table>
-            <tr>
-                <td>
-                    <div class="titreEventOrganis">80's Car</div>
-                    <div class="infosEvent">
-                      <div class="adresse">4 avenue de Beau-Séjour<br>Mardi 05 Juillet 2021</div>
-                      <div class="horaire">14h30</div>
-                      <div class="voirPlus"><a href="#">voir plus ></a></div>
-                    </div>
-                </td>
-                <div class="ecartTableau"></div>
-                <td>
-                    <div class="titreEventOrganis">80's Car</div>
-                    <div class="infosEvent">
-                      <div class="adresse">4 avenue de Beau-Séjour<br>Mardi 05 Juillet 2021</div>
-                      <div class="horaire">14h30</div>
-                      <div class="voirPlus"><a href="#">voir plus ></a></div>
-                    </div>
-                </td>
-            </tr>
-        </table>
+        <div class="events">
+          <div class="event">
+            <div class="titreEventOrganis">80's Car</div>
+            <div class="infosEvent">
+              <div class="adresse">4 avenue de Beau-Séjour<br>Mardi 05 Juillet 2021</div>
+              <div class="horaire">14h30</div>
+              <div class="voirPlus"><a href="#">voir plus ></a></div>
+            </div>
+          </div>
+          <div class="event">
+            <div class="titreEventOrganis">80's Car</div>
+            <div class="infosEvent">
+              <div class="adresse">4 avenue de Beau-Séjour<br>Mardi 05 Juillet 2021</div>
+              <div class="horaire">14h30</div>
+              <div class="voirPlus"><a href="#">voir plus ></a></div>
+            </div>
+          </div>
+        </div>
     </div>
 </template>
 
@@ -35,22 +32,29 @@
     background-color:#222222;
     box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.5);
     margin-bottom: 5%;
+
+    .events {
+      padding: 2.5%;
+      width: 100%;
+      display: inline-flex;
+      justify-content: space-between;
+      padding-bottom: 15px;
+    }
+
+    .event {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding:5px;
+      background-color:#353535;
+      border-radius:20px;
+      width:40%;
+    }
   }
 
   .titresCategories {
-    padding-left: 2.5%;
-  }
-
-  .eventsOrganis table {
-    margin: 2.5%;
-  }
-
-  .eventsOrganis td {
-    height: auto;
-    background-color:#353535;
-    padding: 2% 4% 2% 4%;
-    border-radius: 20px;
-    width: 450px;
+     padding-left: 2.5%;
   }
 
   .titreEventOrganis {

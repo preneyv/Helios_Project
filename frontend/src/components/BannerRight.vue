@@ -11,28 +11,28 @@
       <div class="event">
         <div class="dateEvent">10 nov</div>
         <div class="titreEvent">Manif Ford</div>
-        <div class="decompteEventText"><span class="contourEventDecompte">J-4</span></div>
+        <div class="decompteEventText"><span class="contourEventDecompte">J-20</span></div>
       </div>
       <div class="event">
         <div class="dateEvent">19 nov</div>
         <div class="titreEvent">Expo Ferrari</div>
-        <div class="decompteEventText"><span class="contourEventDecompte">J-4</span></div>
+        <div class="decompteEventText"><span class="contourEventDecompte">J-29</span></div>
       </div>
     </div>
     <div class="titreBandeau">Mes groupes</div>
     <div class="trait"></div>
     <div class="mesGroupes">
       <div class="groupe">
-        <img class="imgGroupe">
+        <img src="../assets/defaut-profil.jpg" alt="photo de l'utilisateur">
         <p class="titreGrp">Green Bentley</p>
       </div>
       <div class="groupe">
-        <img class="imgGroupe">
-        <p class="titreGrp">Green Bentley</p>
+        <img src="../assets/defaut-profil.jpg" alt="photo de l'utilisateur">
+        <p class="titreGrp">Maserati</p>
       </div>
       <div class="groupe">
-        <img class="imgGroupe">
-        <p class="titreGrp">Green Bentley</p>
+        <img src="../assets/defaut-profil.jpg" alt="photo de l'utilisateur">
+        <p class="titreGrp">Fast car</p>
       </div>
     </div>
   </div>
@@ -48,6 +48,13 @@
     background-color: $black;
     right: 0;
     position: fixed;
+
+    img {
+      clip-path: circle(50%);
+      align-self: center;
+      height: 45px;
+      width: auto;
+    }
 
     .trait {
       border-bottom: 0.8px solid $white;
@@ -132,11 +139,11 @@
     }
 
     .titreGrp {
-      width: 60%;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
+      padding-left: 13px;
 
       &:hover {
         color: $primary;

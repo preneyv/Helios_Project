@@ -76,13 +76,13 @@ Il lui est possible de :
 
 ###### Quand on est administrateur :
 On peut effectuer divers modifications sur le projet.
-* Test
-* Test
-* Test
-* Test
-* Test
-* Test
-* Test
+* Accepter / Refuser des nouvelles inscriptions.
+* Supprimer des posts.
+* Supprimer des événements.
+* Supprimer des commentaires.
+* Supprimer des utilisateurs.
+* Modifier les mots de passe des utilisateurs.
+
 
 ## Le compte utilisateur
 Cette page affiche les informations de compte de l'utilisateur :

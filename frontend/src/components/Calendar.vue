@@ -31,49 +31,49 @@
           <div class="gridSquare numSquare"></div>
       </div>
       <div class="row2">
-          <div class="gridSquare numSquare"></div>
-          <div class="gridSquare numSquare"></div>
-          <div class="gridSquare numSquare"></div>
-          <div class="gridSquare numSquare"></div>
-          <div class="gridSquare numSquare"></div>
-          <div class="gridSquare numSquare"></div>
-          <div class="gridSquare numSquare"></div>
+          <div class="gridSquare numSquare"><div class="infobulle">Infos</div></div>
+          <div class="gridSquare numSquare"><div class="infobulle">Infos</div></div>
+          <div class="gridSquare numSquare"><div class="infobulle">Infos</div></div>
+          <div class="gridSquare numSquare"><div class="infobulle">Infos</div></div>
+          <div class="gridSquare numSquare"><div class="infobulle">Infos</div></div>
+          <div class="gridSquare numSquare"><div class="infobulle">Infos</div></div>
+          <div class="gridSquare numSquare"><div class="infobulle">Infos</div></div>
       </div>
       <div class="row3">
-          <div class="gridSquare numSquare"></div>
-          <div class="gridSquare numSquare"></div>
-          <div class="gridSquare numSquare"></div>
-          <div class="gridSquare numSquare"></div>
-          <div class="gridSquare numSquare"></div>
-          <div class="gridSquare numSquare"></div>
-          <div class="gridSquare numSquare"></div>
+          <div class="gridSquare numSquare"><div class="infobulle">Infos</div></div>
+          <div class="gridSquare numSquare"><div class="infobulle">Infos</div></div>
+          <div class="gridSquare numSquare"><div class="infobulle">Infos</div></div>
+          <div class="gridSquare numSquare"><div class="infobulle">Infos</div></div>
+          <div class="gridSquare numSquare"><div class="infobulle">Infos</div></div>
+          <div class="gridSquare numSquare"><div class="infobulle">Infos</div></div>
+          <div class="gridSquare numSquare"><div class="infobulle">Infos</div></div>
       </div>
       <div class="row4">
-          <div class="gridSquare numSquare"></div>
-          <div class="gridSquare numSquare"></div>
-          <div class="gridSquare numSquare"></div>
-          <div class="gridSquare numSquare"></div>
-          <div class="gridSquare numSquare"></div>
-          <div class="gridSquare numSquare"></div>
-          <div class="gridSquare numSquare"></div>
+          <div class="gridSquare numSquare"><div class="infobulle">Infos</div></div>
+          <div class="gridSquare numSquare"><div class="infobulle">Infos</div></div>
+          <div class="gridSquare numSquare"><div class="infobulle">Infos</div></div>
+          <div class="gridSquare numSquare"><div class="infobulle">Infos</div></div>
+          <div class="gridSquare numSquare"><div class="infobulle">Infos</div></div>
+          <div class="gridSquare numSquare"><div class="infobulle">Infos</div></div>
+          <div class="gridSquare numSquare"><div class="infobulle">Infos</div></div>
       </div>
       <div class="row5">
-          <div class="gridSquare numSquare"></div>
-          <div class="gridSquare numSquare"></div>
-          <div class="gridSquare numSquare"></div>
-          <div class="gridSquare numSquare"></div>
-          <div class="gridSquare numSquare"></div>
-          <div class="gridSquare numSquare"></div>
-          <div class="gridSquare numSquare"></div>
+          <div class="gridSquare numSquare"><div class="infobulle">Infos</div></div>
+          <div class="gridSquare numSquare"><div class="infobulle">Infos</div></div>
+          <div class="gridSquare numSquare"><div class="infobulle">Infos</div></div>
+          <div class="gridSquare numSquare"><div class="infobulle">Infos</div></div>
+          <div class="gridSquare numSquare"><div class="infobulle">Infos</div></div>
+          <div class="gridSquare numSquare"><div class="infobulle">Infos</div></div>
+          <div class="gridSquare numSquare"><div class="infobulle">Infos</div></div>
       </div>
       <div class="row6">
-          <div class="gridSquare numSquare"></div>
-          <div class="gridSquare numSquare"></div>
-          <div class="gridSquare numSquare"></div>
-          <div class="gridSquare numSquare"></div>
-          <div class="gridSquare numSquare"></div>
-          <div class="gridSquare numSquare"></div>
-          <div class="gridSquare numSquare"></div>
+          <div class="gridSquare numSquare"><div class="infobulle">Infos</div></div>
+          <div class="gridSquare numSquare"><div class="infobulle">Infos</div></div>
+          <div class="gridSquare numSquare"><div class="infobulle">Infos</div></div>
+          <div class="gridSquare numSquare"><div class="infobulle">Infos</div></div>
+          <div class="gridSquare numSquare"><div class="infobulle">Infos</div></div>
+          <div class="gridSquare numSquare"><div class="infobulle">Infos</div></div>
+          <div class="gridSquare numSquare"><div class="infobulle">Infos</div></div>
       </div>
     </div> <!-- grid -->
     
@@ -271,8 +271,6 @@ h1 {
 #calendar {
   width: 100%;
   margin: 0px auto;
-  padding: 10px;
-  padding-top: 30px;
 }
 
 #calHeader {
@@ -282,7 +280,6 @@ h1 {
   text-align: center;
   color: white;
   box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.5);
-  z-index:8;
   text-transform: uppercase;
   letter-spacing: 4px;
   border-radius:20px 20px 0px 0px;
@@ -317,10 +314,11 @@ h1 {
   text-transform: uppercase;
 }
 .numSquare {
+  height:60px;
   color: #fff;
   font-size:110%;
   text-align: center;
-  padding: 15px;
+  padding: 25px;
 }
 #part1 {
   width: 100%;
@@ -340,5 +338,25 @@ h1 {
 }
 .currentDate {
   background: black;
+}
+
+
+.infobulle{
+  opacity: 0;
+  width: 50px;
+  height: 26px;
+  background: #ffffff;
+  color: #222222;
+  padding-top:5px;
+  transition: 0.2s ease all;
+  border-radius: 5px;
+  text-align:center;
+  box-shadow: 0 0 0 0 rgba(0,0,0,0.0);
+}
+
+.numSquare:hover .infobulle{
+  opacity: 1;
+  top: -10px;
+  box-shadow: 0 5px 15px 0 rgba(0,0,0,0.15);
 }
 </style>

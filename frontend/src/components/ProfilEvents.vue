@@ -27,52 +27,52 @@
 
 <style lang="scss">
 .eventsOrganis {
-    padding:3%;
-    width:auto;
-    height:auto;
-    border-radius:20px;
+    padding: 3%;
+    width: auto;
+    height: auto;
+    border-radius: 20px;
     background-color:#222222;
     box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.5);
-    margin-bottom:5%;
+    margin-bottom: 5%;
   }
 
   .titresCategories {
-    padding-left:2.5%;
+    padding-left: 2.5%;
   }
 
   .eventsOrganis table {
-    margin:2.5%;
+    margin: 2.5%;
   }
 
   .eventsOrganis td {
     height: auto;
     background-color:#353535;
-    padding:2% 4% 2% 4%;
-    border-radius:20px;
-    width:450px;
+    padding: 2% 4% 2% 4%;
+    border-radius: 20px;
+    width: 450px;
   }
 
   .titreEventOrganis {
     text-align:center;
     font-weight:bold;
-    font-size:105%;
-    padding-bottom:4%;
+    font-size: 105%;
+    padding-bottom: 4%;
   }
 
   .infosEvent {
-    font-size:80%;
-    line-height:150%;
+    font-size: 80%;
+    line-height: 150%;
   }
 
   .horaire {
-    padding-top:6%;
+    padding-top: 6%;
   }
 
   .voirPlus {
-    text-align:right;
+    text-align: right;
   }
 
   .ecartTableau {
-    padding-left:100px;
+    padding-left: 100px;
   }
 </style>

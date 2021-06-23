@@ -49,7 +49,7 @@ Principales Librairies Backend :
 
 # Pages du site
 * **Page de connexion/inscription**
-* **Fil d'Actualité (accueil) **
+* **Fil d'Actualité (accueil)**
 * **Page profil**
 
 

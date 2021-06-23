@@ -28,7 +28,10 @@
               <div v-else class="action-like">
                   <img class="likes" :src="require('@/assets/likes.svg')"  @click="likePost" alt="Aimez ce post">
               </div>
-              <div class="action-comment message">
+              <div v-if="isOpen" class="action-comment message">
+                  <img class="comment message-header" @click="toggleAccordion" :src="require('@/assets/commentaires-full.svg')"  alt="Commentaires de ce post">
+              </div>
+              <div v-else class="action-comment message">
                   <img class="comment message-header" @click="toggleAccordion" :src="require('@/assets/commentaires.svg')"  alt="Commentaires de ce post">
               </div>
           </div>
@@ -40,6 +43,10 @@
           <ul class="comments message-content" v-for="(comment, index) in post.comments" :key="index">
               <Comment :comment="comment"></Comment>
           </ul> 
+          <div v-if="isOpen" class="newCommentContainer"> 
+            <input type="text"  class="newComment" placeholder="Ecrivez un commentaire">
+            <button type="submit" class="sendComment"><img :src="require('@/assets/envoyer.svg')" alt="Envoyer votre commentaire"></button>
+          </div>
       </div>
   </div>
 </template>
@@ -118,6 +125,7 @@ import Comment from '../components/Comment.vue'
 
 .container-post {
     padding: 20px 35px 0 35px;
+    font-family: $mainFont;
 }
 
 .up {
@@ -215,22 +223,87 @@ import Comment from '../components/Comment.vue'
    }
 }
 
-//Comments 
+//Comments
+
+.container-comments {
+    border-top: 1px solid rgba(255, 255, 255, 0.226);
+    padding-bottom: 25px !important;
+}
+
+.container-comments.is-closed { 
+    border: 0;
+    // transition: all 0.2s linear; 
+}
 
 .message-body   {
     padding: 0;
-    max-height: 10em;
-    overflow: hidden;
     transition: 0.3s ease all;
 }
 
 .is-closed .message-content {
-   display: none;
+   display: none; 
+   transition: 0.2s ease all;
 }
 
 .message-content {
     display: block;
-    padding: 20px;
+    padding: 15px 0;
+    transition: 0.2s ease all;
+
+    &:first-of-type {
+        padding: 25px 0 15px 0;
+    }
+
+     &:last-of-type {
+        padding: 15px 0 0 0;
+    }
+}
+
+.newCommentContainer {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: $gray;
+    border-radius: 10px;
+    padding: 8px 10px;
+    width: 100%;
+    margin-top: 25px;
+
+    .newComment {
+        width: 100%;
+        padding: 0 10px 0 0;
+        border: 0;
+        font-size: 14px;
+        color: #bebebe;
+        margin: 0;
+        padding: 0;
+
+        &:focus-visible,
+        &:focus {
+            border-bottom:0;
+        }
+
+        &::placeholder {
+            color: #bebebe;
+        }
+    }
+}
+
+.sendComment {
+    width: 32px;
+    height: 32px;
+    //bebebe
+    background-color: $light-black;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        width: 52%;
+        height: auto;
+        margin-left: -3px;
+    }
 }
    
 </style>

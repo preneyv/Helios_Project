@@ -3,7 +3,6 @@
     <div class="user">
       <img v-if="comment.mediaProfil" :src="comment.mediaProfil" alt="photo de l'utilisateur">
       <img v-else :src="require('@/assets/defaut-profil.jpg')" alt="photo de l'utilisateur">
-      <!-- <p class="user-name">{{post.makerInfo[0].pseudo || "utilisateur inconnu"}}</p> -->
     </div>
     <div class="comment">
       <p class="user-name">{{ comment.pseudoAuthor }}</p>
@@ -13,18 +12,11 @@
 </template>
 
 <script>
-
-
    export default {
     props: ['comment'],
      data() {
-       return {
-      
-       }
-     },
-    methods: {
-    
-    }
+       return {}
+     }
    }
 </script>
 
@@ -32,6 +24,7 @@
 
 .comments {
   font-size: $mainFont;
+
   li {
     display: inline-flex;
   }

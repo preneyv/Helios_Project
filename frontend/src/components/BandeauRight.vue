@@ -23,7 +23,7 @@
     <div class="trait"></div>
     <div class="mesGroupes">
       <div class="groupe">
-        <img class="imgGroupe"> 
+        <img class="imgGroupe">
         <p class="titreGrp">Green Bentley</p>
       </div>
       <div class="groupe">
@@ -38,18 +38,15 @@
   </div>
 
 </template>
-<script>
-/* eslint-disable */
-</script>
-<style lang="scss">
 
+<style lang="scss">
   .bandeauRight {
     min-height: 100%;
     position: absolute;
-    width: 20%; 
+    width: 20%;
     background-color: $black;
     right: 0;
-    position:fixed;
+    position: fixed;
 
     .trait {
       border-bottom: 0.8px solid $white;
@@ -82,7 +79,7 @@
     .dateEvent {
       color: #B6B6B6;
       font-size: 90%;
-      width:60%;
+      width: 60%;
       display: inline-flex;
       align-items: center;
     }
@@ -92,7 +89,7 @@
       font-size: 100%;
       font-weight: bold;
       text-align: center;
-      width:60%;
+      width: 60%;
       display: inline-flex;
       align-items: center;
       justify-content: right;
@@ -134,7 +131,7 @@
     }
 
     .titreGrp {
-      width:60%;
+      width: 60%;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -146,27 +143,24 @@
     }
 
     .imgGrp {
-      width:60%;
+      width: 60%;
       display: inline-flex;
       align-items: center;
       justify-content: center;
     }
   }
-  
-   .imgGroupe {
-      background-size: contain;
-      background-position: 50% 50%;
-      background-image: url(https://64.media.tumblr.com/eb84cd5dc67753cb5f67d9d4e5224592/e4381b4eb0cc8bfb-fc/s1280x1920/c7b0f7f3ff160b0587cea7bdecf10bf8820689aa.jpg);
-      display: inline-block;
-      width: 40px;
-      height: 40px;
-      border: none;
-      -moz-border-radius: 75px;
-      -webkit-border-radius: 75px;
-      border-radius: 75px;
-    }
 
+  .imgGroupe {
+    background-size: contain;
+    background-position: 50% 50%;
+    background-image: url(https://64.media.tumblr.com/eb84cd5dc67753cb5f67d9d4e5224592/e4381b4eb0cc8bfb-fc/s1280x1920/c7b0f7f3ff160b0587cea7bdecf10bf8820689aa.jpg);
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border: none;
+    -moz-border-radius: 75px;
+    -webkit-border-radius: 75px;
+    border-radius: 75px;
+  }
 
-
-  
 </style>

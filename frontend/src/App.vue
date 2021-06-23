@@ -5,21 +5,21 @@
       <span v-if="$route.name !== 'home'" class="notifs"><img :src="require('@/assets/notifs.svg')" alt="Mes notifications"></span>
       <router-view />
     </main>
-    <BandeauRight v-if="$route.name !== 'home'"/>
+    <BannerRight v-if="$route.name !== 'home'"/>
   </div>
 </template>
 
 <script>
 
 import Nav from './components/Nav.vue'
-import BandeauRight from './components/BandeauRight.vue'
+import BannerRight from './components/BannerRight.vue'
 
 export default {
   name: 'app',
   tile: 'Helios',
   components: {
     Nav,
-    BandeauRight
+    BannerRight
   },
   data() {
     return {}

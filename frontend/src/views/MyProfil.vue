@@ -4,7 +4,7 @@
           <div class="h1">Mon profil</div>
           <ProfilInfos></ProfilInfos>
           <ProfilEvents></ProfilEvents>
-          <ProfilGroupes></ProfilGroupes>
+          <ProfilGroups></ProfilGroups>
           <ProfilPosts></ProfilPosts>
       </div>
   </div>
@@ -13,8 +13,8 @@
 <script>
 
 import Nav from '../components/Nav.vue'
-import BandeauRight from '../components/BandeauRight.vue'
-import ProfilGroupes from '../components/ProfilGroupes.vue'
+import BannerRight from '../components/BannerRight.vue'
+import ProfilGroups from '../components/ProfilGroups.vue'
 import ProfilEvents from '../components/ProfilEvents.vue'
 import ProfilInfos from '../components/ProfilInfos.vue'
 import ProfilPosts from '../components/ProfilPosts.vue'
@@ -24,13 +24,12 @@ export default {
   name: 'monProfil',
   components: {
     Nav,
-    BandeauRight,
-    ProfilGroupes,
+    BannerRight,
+    ProfilGroups,
     ProfilInfos,
     ProfilEvents,
     ProfilPosts
   },
-
 }
 
 </script>
@@ -41,6 +40,6 @@ export default {
     color:white;
     padding-bottom: 25px;
   }
-  
+
 </style>
 

@@ -93,7 +93,7 @@
 <script>
 
 import Nav from '../components/Nav.vue'
-import BandeauRight from '../components/BandeauRight.vue'
+import BandeauRight from '../components/BannerRight.vue'
 import PopUp from '../components/PopUp.vue'
 import UploadFile from "@/services/loadImage.js"
 import {isImage} from "@/utils/utils.js"
@@ -102,7 +102,7 @@ import Post from '../components/Post.vue'
 import {getAllPost, insertOnePost} from "@/services/posts.js"
  
 export default {
-    name: 'filActu',
+    name: 'NewsFeed',
     components: {
         Nav,
         BandeauRight,
@@ -130,7 +130,6 @@ export default {
             return this.listPost;
         },
         getImageName() {
-            console.log(this.formData)
             return this.formData.media?.name
         }
     },
@@ -187,21 +186,14 @@ export default {
             }  
         },
         handleError(error) {
-            console.log(error)
             this.errors = [...this.errors,  error.response?.data?.error || "Erreur serveur" ]
         },
         handleSuccess(res, type) {
             this.closeModal(type)
             this.actionSuccess = true
-            console.log(res.data)
             let newPost = res.data;
             this.listPost = [newPost, ...this.listPost]
         },
-        // watch: {
-        //     listPost: (newlistPost, oldlistPost) => {
-        //         console.log("listPost changed from " + oldlistPost + " to " + newlistPost);
-        //     }
-        // }
     }
 }
 </script>

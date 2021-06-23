@@ -7,6 +7,8 @@
 
 Cette application vise à réunir des passionnés de belles voitures au sein d'un tout nouveau **réseau social** : Hélios. Seuls les membres inscrits y ont accès et peuvent partager avec les autres des contenus tels que des photos, des informations et des événements automobiles. Ils peuvent visualiser un post, l'aimer et/ou le commenter. 
 
+En vue d'un développement supérieur de l'application, nous avons visualiser des fonctionnalités supplémentaires. Mais nous n'avons pas eu le temps de les développer, préférant nous concentrer sur les principales.
+
 # ⚙ Installation
 
 Il faut installer différentes dépendances avant de démarrer le projet.
@@ -51,6 +53,7 @@ Principales Librairies Backend :
 * **Page de connexion/inscription**
 * **Fil d'Actualité (accueil)**
 * **Page profil**
+* **Agenda**
 
 
 # 📖  Fonctionnalités du Fil d'Actualité
@@ -61,25 +64,30 @@ Dans la page du fil d'actualité, l'utilisateur peut :
 * Aimer des posts auxquels il a accès.
 * Commenter et aimer des posts auxquels il a accès.
 * Créer un nouveau post avec ou sans image et le partager.
-* Créer un nouvel événement et choisir à qui le partager.
-* Voir les événements organisés.
+* Créer un nouvel événement et choisir à qui le partager. (=> non réalisé)
+* Voir les événements organisés. (=> non terminé)
 
 # 📖  Fonctionnalités de la page Profil
 Cette page permet à l'utilisateur d'accéder à ses données personnelles.
 
 Il lui est possible de :
 * Consulter ses informations de profil.
-* Modifier ses informations de profil (nom, prénom, pseudo, mail, mot de passe, etc).
+* Modifier ses informations de profil (=> non réalisé)
 * Voir les événements qu'il organise.
 * Voir les groupes qu'il a créés.
 * Consulter ses derniers posts réalisés.
 
 ###### Quand on est administrateur :
 On peut effectuer divers modifications sur le projet.
-* Accepter / Refuser des nouvelles inscriptions.
-* Supprimer des posts.
-* Supprimer des événements.
-* Supprimer des commentaires.
-* Supprimer des utilisateurs.
-* Modifier les mots de passe des utilisateurs.
+* Accepter / Refuser des nouvelles inscriptions. (=> non réalisé)
+* Supprimer des posts. (=> non réalisé)
+* Supprimer des événements. (=> non réalisé)
+* Supprimer des commentaires. (=> non réalisé)
+* Supprimer des utilisateurs. (=> non réalisé)
+* Modifier les mots de passe des utilisateurs. (=> non réalisé)
 
+# 📖  Agenda
+Cette page permet à l'utilisateur de consulter son agenda d'événements.
+
+Il lui est possible de :
+* Consulter ses futurs événements prévus. (=> non terminé)

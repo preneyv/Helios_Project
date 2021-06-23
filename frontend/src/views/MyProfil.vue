@@ -17,7 +17,6 @@ import ProfilEvents from '../components/ProfilEvents.vue'
 import ProfilInfos from '../components/ProfilInfos.vue'
 import ProfilPosts from '../components/ProfilPosts.vue'
 
-
 export default {
   name: 'monProfil',
   components: {

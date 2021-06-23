@@ -131,20 +131,15 @@ export default {
     },
     methods: {
         togglePosts() {
-            if(this.currentStateToggle) {
-            
-            } else {
-                this.currentStateToggle = !this.currentStateToggle;
+            if(!this.currentStateToggle) {
+             this.currentStateToggle = !this.currentStateToggle;
                 this.textButton = "Que souhaitez-vous partager aujourd'hui ?"
-            }
-                
+            } 
         },
         toggleEvents() {
-            if(!this.currentStateToggle) {
-                    
-            } else { 
+            if(this.currentStateToggle) {
                 this.currentStateToggle = !this.currentStateToggle;
-                this.textButton = "Quel événement voulez-vous créer aujourd'hui ?"
+                this.textButton = "Quel événement voulez-vous créer aujourd'hui ?"  
             }
         },
         detectPopUp() {

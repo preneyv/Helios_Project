@@ -26,34 +26,34 @@ export default {
 
 <style lang="scss">
 
-.basic-popUp {
-    position: absolute;
-    height: 85%;
-    width: 50vw;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    top: 0;
-    margin: auto;
-    background-color: $white !important;
-    color: $black;
-    border-radius: 20px;
-    font-family: $mainFont;
-    padding: 0 0 15px 0;
-    z-index: 100;
+  .basic-popUp {
+      position: absolute;
+      height: 85%;
+      width: 50vw;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      top: 0;
+      margin: auto;
+      background-color: $white !important;
+      color: $black;
+      border-radius: 20px;
+      font-family: $mainFont;
+      padding: 0 0 15px 0;
+      z-index: 100;
 
-    @include responsive('xl-desktop'){
-      height: 55%;
-    }
+      @include responsive('xl-desktop'){
+        height: 55%;
+      }
 
-    input,
-    textarea {
-      @include input;
-    }
-}
+      input,
+      textarea {
+        @include input;
+      }
+  }
 
 
-.basic-popUp-head {
+  .basic-popUp-head {
     position: relative;
 
     h2 {
@@ -73,12 +73,13 @@ export default {
         width: 15px;
         height: 15px;
 
-      img {
-        width: 100%;
-        height: 100%;
-      }
+        img {
+          width: 100%;
+          height: 100%;
+        }
+    } 
   }
-}
+
   .basic-popUp-content {
     form {
       display: flex;
@@ -110,9 +111,11 @@ export default {
      input {
       width: 100%;
     }
+
     .img-input {
        display: none;
     }
+
     #password {
       margin-bottom: 25px;
     }
@@ -130,7 +133,7 @@ export default {
     }
 }
 
-  .img-btn {
+.img-btn {
     padding: 5px 20px;
     background-color: $black;
     color: $white;
@@ -147,91 +150,89 @@ export default {
     }
   }
 
-//Register
+  //Register
+  .inscription.yes.basic-popUp  {
+      height: 98%;
+      width: 55vw;
 
-.inscription.yes.basic-popUp  {
-    height: 98%;
-    width: 55vw;
+      @include responsive('xl-desktop'){
+        height: 63%;
+      }
+  }
 
-     @include responsive('xl-desktop'){
-      height: 63%;
-    }
-}
+  //add a post 
+  .post.no.basic-popUp  {
+      height: 70%;
+      width: 55vw;
 
-//add a post 
+      #content {
+          width: 100%;
+      }
 
-.post.no.basic-popUp  {
-    height: 70%;
-    width: 55vw;
+      @include responsive('xl-desktop'){
+        height: 43%;
+        width: 45vw;
+      }
+  }
 
-    #content {
+  //add an event 
+  .event.basic-popUp {
+      height: 116%;
+
+    @include responsive('xl-desktop'){
+        height: 78%;
+      }
+
+    .form-group--100 {
+      display: inline-flex; 
+      flex-wrap: wrap;
+
+      input,
+      textarea {
         width: 100%;
+      }
+
+      .de,
+      .a {
+        width: 5%;
+        margin: 0 12px 0 15px;
+        font-size: 14px;
+        text-align: right;
+        font-size: 14px;
+      }
+    
+      .le { 
+        width: 4%;
+        text-align: left;
+        font-size: 14px;
+      }
+
+      #timeStart,
+      #timeEnd {
+        padding-left: 30px;
+        width: 18%;
+      }
+
+      #time,
+      #date {
+        width: 35%;
+      }
     }
 
-     @include responsive('xl-desktop'){
-      height: 43%;
-      width: 45vw;
-    }
-}
-
-//add an event 
-.event.basic-popUp {
-    height: 116%;
-
-   @include responsive('xl-desktop'){
-      height: 78%;
-    }
-
-  .form-group--100 {
-    display: inline-flex; 
-    flex-wrap: wrap;
-
-    input,
-    textarea {
+    .date-label {
       width: 100%;
+      padding-top: 1rem;
+      font-weight: 600;
+      padding-bottom: 15px;
     }
 
-    .de,
-    .a {
-      width: 5%;
-      margin: 0 12px 0 15px;
-      font-size: 14px;
-      text-align: right;
-      font-size: 14px;
-    }
-  
-    .le { 
-      width: 4%;
-      text-align: left;
-      font-size: 14px;
+    #descEvent {
+      margin-bottom: 10px;
     }
 
-    #timeStart,
-    #timeEnd {
-      padding-left: 30px;
-      width: 18%;
-    }
-
-    #time,
-    #date {
-      width: 35%;
+    .img-btn {
+      margin-top: 5px;
     }
   }
-
-  .date-label {
-    width: 100%;
-    padding-top: 1rem;
-    font-weight: 600;
-    padding-bottom: 15px;
-  }
-
-  #descEvent {
-    margin-bottom: 10px;
-  }
-
-  .img-btn {
-    margin-top: 5px;
-  }
-}
 
 </style>

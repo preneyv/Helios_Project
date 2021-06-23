@@ -1,8 +1,8 @@
 
 import { createRouter, createWebHistory } from "vue-router"
 import Home from './views/Home.vue'
-import FilActu from './views/FilActu.vue'
-import MonProfil from './views/MonProfil.vue'
+import NewsFeed from './views/NewsFeed.vue'
+import MyProfil from './views/MyProfil.vue'
 import Agenda from './views/Agenda.vue'
 
 
@@ -24,13 +24,13 @@ const routes = [
     {
       path: '/fil-actu',
       name: 'filActu',
-      component: FilActu
+      component: NewsFeed
       // component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
     },
     {
       path: '/mon-profil',
       name: 'profil',
-      component: MonProfil
+      component: MyProfil
       // component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
     },
     {

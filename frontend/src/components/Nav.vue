@@ -26,25 +26,23 @@
     background-color: $black;
     text-align: center;
 
-      li {
-        padding: 5%;
+    li {
+      padding: 5%;
 
-         a {
-          color: $white;
-          font-size: 110%;
+      a {
+        color: $white;
+        font-size: 110%;
 
-          &:hover {
-            color: $primary;
-          }
-        } 
-
-        a.router-link-active {
+        &:hover {
           color: $primary;
-          font-weight: 600;
         }
-      }
+      } 
 
- 
+      a.router-link-active {
+        color: $primary;
+        font-weight: 600;
+      }
+    }
   }
 
   #logo {
@@ -52,6 +50,5 @@
     padding-bottom: 7%;
     width: 60%;
   }
-
 
 </style>

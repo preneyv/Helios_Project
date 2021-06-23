@@ -128,193 +128,189 @@ import Comment from '../components/Comment.vue'
 
 <style lang="scss">
 
-.container-post {
-    padding: 20px 35px 0 35px;
-    font-family: $mainFont;
-}
-
-.up {
-    width: 100%;
-    display: inline-flex;
-    justify-content: space-between;
-    padding-bottom: 15px;
-}
-
-.user {
- display: inline-flex;
- align-items: center;
- justify-content: center;
-
-    img {
-        clip-path: circle(50%);
-        align-self: center;
-        height: 45px;
-        width: auto;
+    .container-post {
+        padding: 20px 35px 0 35px;
+        font-family: $mainFont;
     }
 
-    .user-name {
-        padding-left: 10px;
+    .up {
+        width: 100%;
+        display: inline-flex;
+        justify-content: space-between;
+        padding-bottom: 15px;
     }
-}
 
-.plus {
+    .user {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    
-    .social-media {
-        padding-right: 8px;
-        cursor: pointer;
+
+        img {
+            clip-path: circle(50%);
+            align-self: center;
+            height: 45px;
+            width: auto;
+        }
+
+        .user-name {
+            padding-left: 10px;
+        }
     }
 
-    .more-info {
-        padding-left: 8px;
-        cursor: pointer;
+    .plus {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        
+        .social-media {
+            padding-right: 8px;
+            cursor: pointer;
+        }
+
+        .more-info {
+            padding-left: 8px;
+            cursor: pointer;
+        }
+
     }
 
-}
+    .content {
+        padding: 5px 0;
 
-.content {
-    padding: 5px 0;
+        p {
+            text-align: justify;
+            padding-bottom: 10px;
+        }
 
-    p {
-        text-align: justify;
-        padding-bottom: 10px;
+        img {
+            padding-bottom: 10px;
+            width: 100%;
+            height: auto;
+
+            @include responsive('large'){
+                max-height: 36rem;
+                height: unset;
+                object-fit: cover;
+            } 
+        }
     }
 
-    img {
-        padding-bottom: 10px;
+    .down {
         width: 100%;
-        height: auto;
-
-        @include responsive('large'){
-            max-height: 36rem;
-            height: unset;
-            object-fit: cover;
-        } 
-    }
-}
-
-.down {
-    width: 100%;
-    display: inline-flex;
-    justify-content: space-between;
-    border-top: 1px solid rgba(255, 255, 255, 0.226);
-    // padding-top: 5px;
-}
-
-.actions {
-     display: inline-flex;
-     align-items: center;
-     justify-content: center;
-
-     img.likes {
-        padding-right: 8px;
-        cursor: pointer;
-        height: 40px;
-        width: auto;
-     }
-
-     img.comment {
-        padding-left: 8px;  
-        cursor: pointer;
-        align-self: center;
-        height: 40px;
-        width: auto;
+        display: inline-flex;
+        justify-content: space-between;
+        border-top: 1px solid rgba(255, 255, 255, 0.226);
     }
 
-}
+    .actions {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
 
-.date {
-   display: flex;
-   align-items: center;
+        img.likes {
+            padding-right: 8px;
+            cursor: pointer;
+            height: 40px;
+            width: auto;
+        }
 
-   p {
-       font-size: 14px;
-   }
-}
+        img.comment {
+            padding-left: 8px;  
+            cursor: pointer;
+            align-self: center;
+            height: 40px;
+            width: auto;
+        }
 
-//Comments
-
-.container-comments {
-    border-top: 1px solid rgba(255, 255, 255, 0.226);
-    padding-bottom: 25px !important;
-}
-
-.container-comments.is-closed { 
-    border: 0;
-    // transition: all 0.2s linear; 
-}
-
-.message-body   {
-    padding: 0;
-    transition: 0.3s ease all;
-}
-
-.is-closed .message-content {
-   display: none; 
-   transition: 0.2s ease all;
-}
-
-.message-content {
-    display: block;
-    padding: 15px 0;
-    transition: 0.2s ease all;
-
-    &:first-of-type {
-        padding: 25px 0 15px 0;
     }
 
-     &:last-of-type {
-        padding: 15px 0 0 0;
+    .date {
+        display: flex;
+        align-items: center;
+
+        p {
+            font-size: 14px;
+        }
     }
-}
 
-.newCommentContainer {
-    display: inline-flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: $gray;
-    border-radius: 10px;
-    padding: 8px 10px;
-    width: 100%;
-    margin-top: 25px;
+    //Comments
+    .container-comments {
+        border-top: 1px solid rgba(255, 255, 255, 0.226);
+        padding-bottom: 25px !important;
+    }
 
-    .newComment {
-        width: 100%;
-        padding: 0 10px 0 0;
+    .container-comments.is-closed { 
         border: 0;
-        font-size: 14px;
-        color: #bebebe;
-        margin: 0;
+    }
+
+    .message-body   {
         padding: 0;
+        transition: 0.3s ease all;
+    }
 
-        &:focus-visible,
-        &:focus {
-            border-bottom:0;
+    .is-closed .message-content {
+    display: none; 
+    transition: 0.2s ease all;
+    }
+
+    .message-content {
+        display: block;
+        padding: 15px 0;
+        transition: 0.2s ease all;
+
+        &:first-of-type {
+            padding: 25px 0 15px 0;
         }
 
-        &::placeholder {
+        &:last-of-type {
+            padding: 15px 0 0 0;
+        }
+    }
+
+    .newCommentContainer {
+        display: inline-flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: $gray;
+        border-radius: 10px;
+        padding: 8px 10px;
+        width: 100%;
+        margin-top: 25px;
+
+        .newComment {
+            width: 100%;
+            padding: 0 10px 0 0;
+            border: 0;
+            font-size: 14px;
             color: #bebebe;
+            margin: 0;
+            padding: 0;
+
+            &:focus-visible,
+            &:focus {
+                border-bottom:0;
+            }
+
+            &::placeholder {
+                color: #bebebe;
+            }
         }
     }
-}
 
-.sendComment {
-    width: 32px;
-    height: 32px;
-    //bebebe
-    background-color: $light-black;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    .sendComment {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 32px;
+        height: 32px;
+        background-color: $light-black;
+        border-radius: 50%;
 
-    img {
-        width: 52%;
-        height: auto;
-        margin-left: -3px;
+        img {
+            width: 52%;
+            height: auto;
+            margin-left: -3px;
+        }
     }
-}
    
 </style>

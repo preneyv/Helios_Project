@@ -26,7 +26,8 @@
 </template>
 
 <style lang="scss">
-.eventsOrganis {
+
+  .eventsOrganis {
     padding: 3%;
     width: auto;
     height: auto;
@@ -53,8 +54,8 @@
   }
 
   .titreEventOrganis {
-    text-align:center;
-    font-weight:bold;
+    text-align: center;
+    font-weight: bold;
     font-size: 105%;
     padding-bottom: 4%;
   }
@@ -75,4 +76,5 @@
   .ecartTableau {
     padding-left: 100px;
   }
+
 </style>

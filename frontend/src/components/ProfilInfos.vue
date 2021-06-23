@@ -29,23 +29,36 @@
 <style lang="scss">
 
   .infosPerso {
-    padding:3%;
-    width:auto;
-    height:auto;
-    border-radius:20px;
+    padding: 3%;
+    width: auto;
+    height: auto;
+    border-radius: 20px;
     background-color:#222222;
     box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.5);
-    margin-bottom:5%;
+    margin-bottom: 5%;
   }
 
   .firstTable td {
-    padding:1%;
-    padding-left:3.5%;
-    width:500px;
+    padding: 1%;
+    padding-left: 3.5%;
+    width: 500px;
+
+    &::-webkit-calendar-picker-indicator {
+        filter: invert(1);
+    }
   }
 
+ input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  border-radius: 4px;
+  margin-right: 2px;
+  opacity: 0.6;
+  filter: invert(0.8);
+}
+
+
   .firstTable input {
-    width:95%;
+    width: 95%;
   } 
 
   input {
@@ -54,26 +67,30 @@
   }
 
   .textProfil {
-    padding-left:3.5%;
-    padding-right:3%;
-    font-size:80%;
-    padding-bottom:3%;
+    padding-left: 3.5%;
+    padding-right: 3%;
+    font-size: 80%;
+    padding-bottom: 3%;
   }
 
   .secondTable td {    
-    padding:1%;
-    padding-left:3.5%;
-    width:980px;
+    padding: 1%;
+    padding-left: 3.5%;
+    width: 980px;
   }
 
   .secondTable input {
-    width:100%;
+    width: 100%;
   } 
 
   .buttonModif {
-    text-align:right;
-    padding-right:3%;
-    padding-top:2%;
+    text-align: right;
+    padding-right: 3%;
+    padding-top: 2%;
+
+      button {
+        padding: 8px 40px !important;
+      }
   }
 
   .infosPerso {

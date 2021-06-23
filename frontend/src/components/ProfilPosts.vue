@@ -45,25 +45,25 @@
 <style lang="scss">
 
 .derniersPosts {
-    padding:3%;
-    width:auto;
-    height:auto;
-    border-radius:20px;
+    padding: 3%;
+    width: auto;
+    height: auto;
+    border-radius: 20px;
     background-color:#222222;
     box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.5);
-    margin-bottom:5%;
+    margin-bottom: 5%;
 
     .dernierPost {
         height: auto;
         background-color:#353535;
-        padding:1% 4% 1% 4%;
-        border-radius:20px;
-        width:auto;
-        margin:2.5%;
+        padding: 1% 4% 1% 4%;
+        border-radius: 20px;
+        width: auto;
+        margin: 2.5%;
     }
 
     .up {
-        padding-top:1.5%;
+        padding-top: 2%;
         width: 100%;
         display: inline-flex;
         justify-content: space-between;
@@ -77,23 +77,23 @@
 
     .contenuPost {
         padding: 2% 0% 2% 0%;
-        line-height:160%;
-        font-size:85%;
+        line-height: 160%;
+        font-size: 85%;
     }
 
     .trait {
-        border-bottom: 0.8px solid $white;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.226);
     }
 
     .iconsPost {
-        padding-top:1%;
-        text-align:right;
+        padding-top: 1%;
+        text-align: right;
     }
 
     .datePost {
         text-align:right;
-        padding:2% 0% 1% 0%;
-        font-size:80%;
+        padding: 2% 0% 1% 0%;
+        font-size: 80%;
     }
   }
    

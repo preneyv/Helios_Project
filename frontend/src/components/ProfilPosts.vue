@@ -71,9 +71,8 @@
     }
 
     .caseImgPost {
-        width:50px;
+        width: 50px;
     }
-   
 
     .contenuPost {
         padding: 2% 0% 2% 0%;
@@ -91,7 +90,7 @@
     }
 
     .datePost {
-        text-align:right;
+        text-align: right;
         padding: 2% 0% 1% 0%;
         font-size: 80%;
     }

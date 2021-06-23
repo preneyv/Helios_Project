@@ -97,8 +97,10 @@ import Comment from '../components/Comment.vue'
                 .then(res => {
                     console.log(res)
                     this.itemPost.comments.push({author:this.userInfo._id, pseudoAuthor: this.userInfo.pseudo, content: this.contentComment, datePub: Date.now(), mediaProfil: this.userInfo.link_media.webContentLink})
+                    this.contentComment = "";
                 })
                 .catch((error) => console.log(error))
+                
             }
         },
         toggleAccordion: function() {
@@ -184,6 +186,12 @@ import Comment from '../components/Comment.vue'
         padding-bottom: 10px;
         width: 100%;
         height: auto;
+
+        @include responsive('large'){
+            max-height: 36rem;
+            height: unset;
+            object-fit: cover;
+        } 
     }
 }
 

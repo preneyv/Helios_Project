@@ -67,10 +67,9 @@
   }
 
   .textProfil {
-    padding-left: 3.5%;
-    padding-right: 3%;
+    padding: 4% 3% 1% 3.5%;
     font-size: 80%;
-    padding-bottom: 3%;
+    color: grey;
   }
 
   .secondTable td {    

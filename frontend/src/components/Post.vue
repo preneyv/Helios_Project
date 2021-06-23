@@ -70,10 +70,19 @@ import Comment from '../components/Comment.vue'
        }
      },
     methods: {
-         formatDate(date) {
+
+        /*
+        * Mofification du format de la date provenant la base de données
+        */
+        formatDate(date) {
           let formatDate = moment(date).format("DD/MM/YY");
            return formatDate;
         },
+
+        /*
+        * Méthode appelée quand un utilisateur "like" un post, elle permet d'enregistrer dans la BDD le post liké 
+        * ainsi que l'id et le pseudo de l'utilisateur qui l'a liké
+        */
         likePost(){
             
             likePost(this.itemPost._id)
@@ -82,6 +91,11 @@ import Comment from '../components/Comment.vue'
                 })
                 .catch((error) => console.log(error))
         },
+
+        /*
+        * Méthode appelée quand un utilisateur retire son "like" sur un post, elle de supprimer 
+        * les informations du "like" dans la BDD
+        */
         unLikePost(){
             unLikePost(this.itemPost._id, this.isLiking._id)
                 .then( () => {
@@ -90,12 +104,15 @@ import Comment from '../components/Comment.vue'
                 })
                 .catch((error) => console.log(error))
         },
-        commentPost() {
 
+        /*
+        * Méthode appelée quand un utilisateur commente un post, elle sert à enregistrer le commentaire
+        * ainsi que l'id, le pseudo, la photo de profil de l'utilisateur qui a commenté
+        */
+        commentPost() {
             if(this.contentComment) {
                 commentPost(this.itemPost._id, {content:this.contentComment})
-                .then(res => {
-                    console.log(res)
+                .then(() => {
                     this.itemPost.comments.push({author:this.userInfo._id, pseudoAuthor: this.userInfo.pseudo, content: this.contentComment, datePub: Date.now(), mediaProfil: this.userInfo.link_media.webContentLink})
                     this.contentComment = "";
                 })
@@ -103,18 +120,28 @@ import Comment from '../components/Comment.vue'
                 
             }
         },
+
+        /*
+        * Méthode permettant au clic d'ouvrir ou de refermer les commentaires d'un post
+        */
         toggleAccordion: function() {
-            console.log("Toggle ok");
             this.isOpen = !this.isOpen;
         }
     },
     computed: {
+
+        /*
+        * Méthode permettant de détecter si un post est "liké" d'après les données de la BDD
+        */
         isLiking() {
-            console.log(this.userInfo)
             const like = this.itemPost.likes.find((elt) =>  elt.user === this.userInfo._id)
-            console.log(like)
             return like
         },
+
+        /*
+        * Méthode permettant d'ajouter ou de supprimer des classes css en fonction de 
+        * l'ouverture ou non des commentaires
+        */
         accordionClasses() {
             return {
                 'is-closed': !this.isOpen,

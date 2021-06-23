@@ -78,7 +78,7 @@
         <PopUp v-if="actionSuccess" headTitle="Post ajouté avec succès" :actionButton="() => actionSuccess = false "></PopUp>
         <div class="actus">
             <ul v-if="currentStateToggle" id="posts">
-                <li class="post" v-for="post in getPost" :key="post.id">
+                <li class="post" v-for="post in getPosts" :key="post.id">
                     <Post :post="post"></Post>
                 </li>
             </ul>
@@ -117,31 +117,56 @@ export default {
             actionSuccess: false
         }
     },
+    /*
+    * Récupération des posts à partir de l'API en backend
+    */
     async mounted(){
         const {data} = await getAllPost()
         this.listPost = data.posts || []
     },
     computed: {
-        getPost() {
+        /*
+        * Méthode retournant les posts de la donnée "listPost"
+        */
+        getPosts() {
             return this.listPost;
         },
+
+        /*
+        * Méthode retournant le nom de l'image ajouté lors de la création d'un post
+        */
         getImageName() {
             return this.formData.media?.name
         }
     },
     methods: {
+
+        /*
+        * Méthode permettant de savoir quel type de post afficher dans le feed et 
+        * également quel type de message afficher dans l'input pour créer un post ou un événement
+        */
         togglePosts() {
             if(!this.currentStateToggle) {
              this.currentStateToggle = !this.currentStateToggle;
                 this.textButton = "Que souhaitez-vous partager aujourd'hui ?"
             } 
         },
+
+        /*
+        * Méthode permettant de savoir quel type de post afficher dans le feed et 
+        * également quel type de message afficher dans l'input pour créer un post ou un événement
+        */
         toggleEvents() {
             if(this.currentStateToggle) {
                 this.currentStateToggle = !this.currentStateToggle;
                 this.textButton = "Quel événement voulez-vous créer aujourd'hui ?"  
             }
         },
+
+        /*
+        * Méthode permettant de savoir quelle pop up afficher 
+        * en fonction du type de post que l'on souhaite créer (post ou événement)
+        */
         detectPopUp() {
             if(this.currentStateToggle) {
                 this.showModalPost = true
@@ -149,14 +174,23 @@ export default {
                 this.showModalEvent = true
             }
         },
+
+        /*
+        * Méthode permettant de fermer une pop up
+        */
         closeModal(modal) {
             modal === "post" ? this.showModalPost = false : this.showModalEvent = false
             this.formData = {}
             this.errors = []
         },
+
         updateFormData(e) {
             e.target.type ===  "file" ? this.formData[e.target.id] = e.target.files[0] : this.formData[e.target.id] = e.target.value      
         },
+
+        /*
+        * Méthode permettant d'ajouter un post dans la BDD
+        */
         addPost() {
             if (this.formData.content) {
                     
@@ -176,9 +210,19 @@ export default {
                 this.errors.push('Description ou image demandé.');
             }  
         },
+
+        /*
+        * Méthode qui va afficher un message d'erreur si un problème survient au niveau du serveur
+        */
         handleError(error) {
             this.errors = [...this.errors,  error.response?.data?.error || "Erreur serveur" ]
         },
+
+        /*
+        * Méthode permettant de gérer le succès de l'ajout d'un post, elle permet d'ajouter
+        * le nouveau post à la list des posts actuelles et donc de permettre l'affichage de celui-ci
+        * la connexion ou l'inscription s'est bien déroulée
+        */
         handleSuccess(res, type) {
             this.closeModal(type)
             this.actionSuccess = true

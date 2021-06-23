@@ -77,14 +77,14 @@ import Comment from '../components/Comment.vue'
         likePost(){
             
             likePost(this.itemPost._id)
-                .then(res => {
+                .then( () => {
                     this.itemPost.likes.push({user:this.userInfo._id, pseudo: this.userInfo.pseudo})
                 })
                 .catch((error) => console.log(error))
         },
         unLikePost(){
             unLikePost(this.itemPost._id, this.isLiking._id)
-                .then(res => {
+                .then( () => {
                     const indexLike = this.itemPost.likes.findIndex((elt) => elt.user === this.userInfo._id)
                     this.itemPost.likes.splice(indexLike, 1)
                 })

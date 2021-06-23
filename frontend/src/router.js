@@ -1,17 +1,12 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+
+import { createRouter, createWebHistory } from "vue-router"
 import Home from './views/Home.vue'
 import FilActu from './views/FilActu.vue'
 import MonProfil from './views/MonProfil.vue'
 import Agenda from './views/Agenda.vue'
 
 
-Vue.use(Router)
-
-export default new Router({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes: [
+const routes = [
     {
       path: '/',
       name: 'home',
@@ -46,4 +41,11 @@ export default new Router({
     }
 
   ]
+
+
+const router = createRouter({
+  history: createWebHistory(process.env.BASE_URL),
+  routes,
 })
+
+export default router

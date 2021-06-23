@@ -1,13 +1,8 @@
-/* eslint-disable */
-import Vue from 'vue'
+import { createApp } from 'vue'
+import router from "./router.js"
 import App from './App.vue'
-import router from './router'
 
-// require('@/assets/main.scss');
+const Vue = createApp(App)
 
-Vue.config.productionTip = false
-
-new Vue({
-  router,
-  render: h => h(App)
-}).$mount('#app')
+Vue.use(router)
+Vue.mount('#app')

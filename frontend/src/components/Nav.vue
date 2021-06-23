@@ -7,6 +7,7 @@
       </li>
       <li>
         <router-link to="/mon-agenda">Agenda</router-link>
+      </li>
       <li>
         <router-link to="/mon-profil">Mon profil</router-link>
       </li>

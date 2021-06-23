@@ -24,7 +24,7 @@ const userSchema = new Schema(
 
 userSchema.methods = {
     /**
-     * Verify the password matches with the hash
+     * Vérifie le chiffrement du password
      * @param {string} password
      * @returns
      */
@@ -33,7 +33,7 @@ userSchema.methods = {
     },
 
     /**
-     * Create the JWT for this user
+     * Crée le jeton de connexion
      * @returns {string}
      */
     generateAccessToken: function () {

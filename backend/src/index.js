@@ -13,20 +13,18 @@ import postRoutes from "../routes/post.js"
 import uploadRoutes from "../routes/upload.js"
 
 
-
-
 //Import DB
 import database from "./database.js"
 
 const app = express()
 
-// Connect to MongoDB
+// Connexion à MongoDB
 database.init()
 
-// Port Listening
+// Le port écouté
 const port = process.env.PORT || 8800
 
-// Global middlewares
+// Middlewares
 app.use(helmet())
 app.use(json())
 app.use(cors({
@@ -36,7 +34,6 @@ app.use(cors({
 
 
 // Routes
-
 app.use("/api/helios/auth", authRoutes)
 app.use("/api/helios/user", userRoutes)
 app.use("/api/helios/post", postRoutes)
@@ -47,7 +44,7 @@ app.all("*", (req, res, next) => {
     next()
 })
 
-// Start Server
+// Démarre le serveur
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
 })

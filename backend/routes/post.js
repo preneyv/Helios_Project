@@ -14,6 +14,8 @@ import { authGuard } from "../guards/auth.js"
 
 const router = Router()
 
+// Route pour traites les publications
+// Route : /api/helios/post
 router.get("/", getAllPost)
 router.post('/new', authGuard, insertPost)
 router.put('/ed/:id', authGuard, editPost)

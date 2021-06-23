@@ -33,7 +33,7 @@
 
 <style lang="scss">
 
-.groupesCrees {
+  .groupesCrees {
     padding: 3%;
     width: auto;
     height: auto;
@@ -59,10 +59,6 @@
   .caseImgGroupe {
     width: 50px;
   }
-
-  // .titreGroupeCree {
-  //   padding:0px 0px 0px 20px;    
-  // }
 
   .dernierMsg {
     width: 75%;

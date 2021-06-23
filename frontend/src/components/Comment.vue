@@ -22,24 +22,24 @@
 
 <style lang="scss">
 
-.comments {
-  font-size: $mainFont;
+  .comments {
+    font-size: $mainFont;
 
-  li {
-    display: inline-flex;
-  }
+    li {
+      display: inline-flex;
+    }
 
-  .comment {
-    padding: 10px;
-    margin-left: 10px;
-    background-color: $gray;
-    font-size: 14px;
-    border-radius: 10px;
+    .comment {
+      padding: 10px;
+      margin-left: 10px;
+      background-color: $gray;
+      font-size: 14px;
+      border-radius: 10px;
 
-    .content {
-      color: #bebebe;
+      .content {
+        color: #bebebe;
+      }
     }
   }
-}
    
 </style>

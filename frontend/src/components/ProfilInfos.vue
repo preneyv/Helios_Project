@@ -48,14 +48,13 @@
     }
   }
 
- input[type="date"]::-webkit-calendar-picker-indicator {
-  cursor: pointer;
-  border-radius: 4px;
-  margin-right: 2px;
-  opacity: 0.6;
-  filter: invert(0.8);
-}
-
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    border-radius: 4px;
+    margin-right: 2px;
+    opacity: 0.6;
+    filter: invert(0.8);
+  }
 
   .firstTable input {
     width: 95%;
@@ -87,9 +86,9 @@
     padding-right: 3%;
     padding-top: 2%;
 
-      button {
-        padding: 8px 40px !important;
-      }
+    button {
+      padding: 8px 40px !important;
+    }
   }
 
   .infosPerso {
@@ -99,5 +98,5 @@
         }
     }
   }
-  
+
 </style>

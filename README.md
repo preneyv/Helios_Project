@@ -65,13 +65,14 @@ Dans la page du fil d'actualité, l'utilisateur peut :
 * Voir les événements organisés.
 
 # 📖  Fonctionnalités de la page Profil
-Cette page permet de lalalala.
+Cette page permet à l'utilisateur d'accéder à ses données personnelles.
 
-Il est possible de lalalala :
-* Test
-* Test
-* Test
-* Test
+Il lui est possible de :
+* Consulter ses informations de profil.
+* Modifier ses informations de profil (nom, prénom, pseudo, mail, mot de passe, etc).
+* Voir les événements qu'il organise.
+* Voir les groupes qu'il a créés.
+* Consulter ses derniers posts réalisés.
 
 ###### Quand on est administrateur :
 On peut effectuer divers modifications sur le projet.

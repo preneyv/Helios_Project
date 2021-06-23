@@ -83,9 +83,3 @@ On peut effectuer divers modifications sur le projet.
 * Supprimer des utilisateurs.
 * Modifier les mots de passe des utilisateurs.
 
-
-## Le compte utilisateur
-Cette page affiche les informations de compte de l'utilisateur :
-* Test
-* Test
-* Test

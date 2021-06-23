@@ -109,6 +109,7 @@ export default {
       this.currentYear = year;
       this.setMonthYear(month, year);
       this.firstDay = day;
+      console.log(this.firstDay);
       this.fillDays(this.firstDay);
   },
   methods: {
@@ -117,8 +118,8 @@ export default {
         document.getElementById("monthHeading").innerHTML = monthName;
         document.getElementById("yearHeading").innerHTML = theYear;
     },
-    fillDays(day) {
-      console.log(day);
+    fillDays(firstDay) {
+      console.log(firstDay);
       var length = 31;
       if ((this.currentMonth == 3) || (this.currentMonth == 5) || (this.currentMonth == 8) || (this.currentMonth == 10)) {
         length = 30;
@@ -148,7 +149,7 @@ export default {
       var sixthRow = document.getElementsByClassName('row6');
       var sixthRowSquares = sixthRow[0].children;
       var lastNum = 1;
-      for (var a=day; a < 7; a++) {
+      for (var a=firstDay; a < 7; a++) {
           firstRowSquares[a].innerHTML = lastNum;
           lastNum = lastNum + 1;
       }

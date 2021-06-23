@@ -127,11 +127,10 @@ export async function removePost(req, res) {
 export async function insertComment(req, res) {
     const idPost = req.params.id
     const user = req.user
-
     const {content} = req.body
 
     const filter = {"_id":idPost}
-    const body = {$push:{"comments":{author:user._id, content:content, datePub: Date.now()}}}
+    const body = {$push:{"comments":{author:user._id, pseudoAuthor: user.pseudo, mediaProfil: user.link_media.webContentLink, content:content, datePub: Date.now()}}}
 
     try {
         const post = await Post.updateOne(filter, body)
@@ -185,7 +184,7 @@ export async function addLike(req, res) {
 
     try {
         const post = await Post.updateOne(filter, body)
-        res.json({ modifiedPost: post.n })
+        res.json({ modifiedPost: post.nModified })
     } catch (e) {
         return res.json({ error: e })
     }
@@ -201,7 +200,7 @@ export async function removeLike(req, res) {
     const body = {$pull:{"likes":{"user":idUser}}}
     try {
         const post = await Post.updateOne(filter, body)
-        res.json({ modifiedPost: post.n })
+        res.json({ modifiedPost: post.nModified })
     } catch (e) {
         return res.json({ error: e })
     }

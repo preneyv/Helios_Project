@@ -9,7 +9,7 @@ const postSchema = new Schema(
         media: String,
         link_media: Object,
         idGroup: Schema.ObjectId,
-        comments: [{author:Schema.ObjectId, content:String, datePub: Date}],
+        comments: [{author:Schema.ObjectId, pseudoAuthor:String, mediaProfil: String, content:String, datePub: Date}],
         likes: [{user:Schema.ObjectId, pseudo:String}],
     },
     {

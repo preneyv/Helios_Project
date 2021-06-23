@@ -43,8 +43,8 @@
               <Comment :comment="comment"></Comment>
           </ul> 
           <div v-if="isOpen" class="newCommentContainer"> 
-            <input type="text"  class="newComment" placeholder="Ecrivez un commentaire">
-            <button type="submit" class="sendComment"><img :src="require('@/assets/envoyer.svg')" alt="Envoyer votre commentaire"></button>
+            <input type="text"  class="newComment" placeholder="Ecrivez un commentaire"  v-model="contentComment">
+            <button type="submit" class="sendComment" @click="commentPost"><img :src="require('@/assets/envoyer.svg')" alt="Envoyer votre commentaire"></button>
           </div>
       </div>
   </div>
@@ -65,7 +65,8 @@ import Comment from '../components/Comment.vue'
        return {
         itemPost: this.post,
         userInfo: getUserInfos(),
-        isOpen: false
+        isOpen: false,
+        contentComment: ""
        }
      },
     methods: {
@@ -90,12 +91,15 @@ import Comment from '../components/Comment.vue'
                 .catch((error) => console.log(error))
         },
         commentPost() {
-            commentPost(this.itemPost._id, )
+
+            if(this.contentComment) {
+                commentPost(this.itemPost._id, {content:this.contentComment})
                 .then(res => {
                     console.log(res)
-                    this.itemPost = res.data.modifiedPost
+                    this.itemPost.comments.push({author:this.userInfo._id, pseudoAuthor: this.userInfo.pseudo, content: this.contentComment, datePub: Date.now(), mediaProfil: this.userInfo.link_media.webContentLink})
                 })
                 .catch((error) => console.log(error))
+            }
         },
         toggleAccordion: function() {
             console.log("Toggle ok");

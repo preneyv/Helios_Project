@@ -11,10 +11,23 @@
       <li>
         <router-link to="/mon-profil">Mon profil</router-link>
       </li>
-      <li><a href="#">Déconnexion</a></li>
+      <li @click="signout" ><span class="deconnexion clickable">Déconnexion</span></li>
     </ul>
   </nav>
 </template> 
+
+<script>
+
+import AuthServices from "@/services/auth.js"
+export default {
+  methods: {
+    signout() {
+      AuthServices.signout()
+      this.$router.replace({ name: "home" })
+    }
+  }
+}
+</script>
 
 <style lang="scss">
 
@@ -29,7 +42,7 @@
     li {
       padding: 5%;
 
-      a {
+      a, .deconnexion {
         color: $white;
         font-size: 110%;
 

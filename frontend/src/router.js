@@ -5,6 +5,8 @@ import NewsFeed from './views/NewsFeed.vue'
 import MyProfil from './views/MyProfil.vue'
 import Agenda from './views/Agenda.vue'
 
+import {guard} from "./guard.js"
+
 
 const routes = [
     {
@@ -30,13 +32,15 @@ const routes = [
     {
       path: '/mon-profil',
       name: 'profil',
-      component: MyProfil
+      component: MyProfil,
+      beforeEnter: guard
       // component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
     },
     {
       path: '/mon-agenda',
       name: 'agenda',
-      component: Agenda
+      component: Agenda,
+      beforeEnter: guard
       // component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
     }
 

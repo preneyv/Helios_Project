@@ -2,18 +2,18 @@
     <div class="infosPerso">
         <table class="firstTable">
             <tr>
-                <td>Nom<br><input type="text" name="nom"></td>                  
-                <td>Prénom<br><input type="text" name="prenom"></td>
+                <td>Nom<br><input type="text" name="nom" v-model="userInfo.name"></td>                  
+                <td>Prénom<br><input type="text" name="prenom" v-model="userInfo.firstname"></td>
             </tr>
             <tr>
-                <td>Email<br><input type="mail" name="email"></td>
-                <td>Date<br><input type="date" name="date"></td>
+                <td>Email<br><input type="mail" name="email" v-model="userInfo.email"></td>
+                <td>Date<br><input type="date" name="date" v-model="userInfo.date" disabled></td>
             </tr>
         </table>
         <div class="textProfil">Votre login apparaîtra sur tout ce que vous publiez, il sera votre identifiant sur la plateforme pour garantir votre anonymat.</div>
         <table class="secondTable">
             <tr>
-                <td>Login<br><input type="text" name="login"></td>       
+                <td>Login<br><input type="text" name="login" v-model="userInfo.pseudo"></td>       
             </tr>
             <tr>
                 <td>Mot de passe<br><input type="password" name="password"></td>
@@ -25,6 +25,29 @@
         </div>
     </div>
 </template>
+
+<script>
+import moment from 'moment';
+import {getUserInfos} from '@/utils/utils.js'
+
+export default {
+  
+  data() {
+    return {
+      userInfo: getUserInfos()
+    }
+  },
+  computed: {
+    formatDate(date) {
+              let formatDate = moment(date).format("DD/MM/YY");
+              return formatDate;
+    },
+  },
+  methods: {
+    
+  }
+}
+</script>
 
 <style lang="scss">
 

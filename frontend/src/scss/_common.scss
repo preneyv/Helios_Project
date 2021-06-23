@@ -8,4 +8,8 @@ body {
     height: 100%;
     display: inline-flex;
   }
-
+  .clickable {
+    &:hover {
+        cursor: pointer;
+    }
+}

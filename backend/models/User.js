@@ -43,7 +43,8 @@ userSchema.methods = {
             firstname: this.firstname,
             email: this.email,
             link_media: this.link_media,
-            pseudo: this.pseudo
+            pseudo: this.pseudo,
+            date: this.birthDate
         }
 
         return jwt.sign(payload, process.env.TOKEN_SECRET)

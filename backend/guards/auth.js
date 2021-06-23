@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken"
 
 /**
- * Verifies the user is authenticated
+ * Vérifie si l'utilisateur est authentifié
  * @param {express.Request} req
  * @param {express.Response} res
  * @param {express.Next} next

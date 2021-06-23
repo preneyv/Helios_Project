@@ -23,15 +23,15 @@
     <div class="trait"></div>
     <div class="mesGroupes">
       <div class="groupe">
-        <img class="imgGroupe">
+        <img src="../assets/defaut-profil.jpg" alt="photo de l'utilisateur">
         <p class="titreGrp">Green Bentley</p>
       </div>
       <div class="groupe">
-        <img class="imgGroupe">
+        <img src="../assets/defaut-profil.jpg" alt="photo de l'utilisateur">
         <p class="titreGrp">Maserati</p>
       </div>
       <div class="groupe">
-        <img class="imgGroupe">
+        <img src="../assets/defaut-profil.jpg" alt="photo de l'utilisateur">
         <p class="titreGrp">Fast car</p>
       </div>
     </div>
@@ -48,6 +48,13 @@
     background-color: $black;
     right: 0;
     position: fixed;
+
+    img {
+      clip-path: circle(50%);
+      align-self: center;
+      height: 45px;
+      width: auto;
+    }
 
     .trait {
       border-bottom: 0.8px solid $white;

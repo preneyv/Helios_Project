@@ -8,10 +8,12 @@
 @import "reusable/mixins";
 
 
-// Base
+//Base
 @import "base/reset";
 @import "base/typo"; 
 
-// Common
-
+//Common
 @import "common";  
+
+//Bulma
+// @import '~bulma';

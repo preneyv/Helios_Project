@@ -92,8 +92,6 @@
 </template>
 <script>
 
-import Nav from '../components/Nav.vue'
-import BandeauRight from '../components/BannerRight.vue'
 import PopUp from '../components/PopUp.vue'
 import UploadFile from "@/services/loadImage.js"
 import {isImage} from "@/utils/utils.js"
@@ -104,8 +102,6 @@ import {getAllPost, insertOnePost} from "@/services/posts.js"
 export default {
     name: 'NewsFeed',
     components: {
-        Nav,
-        BandeauRight,
         PopUp,
         Post
     },

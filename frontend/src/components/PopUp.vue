@@ -24,7 +24,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 
 .basic-popUp {
     position: absolute;
@@ -35,7 +35,7 @@ export default {
     right: 0;
     top: 0;
     margin: auto;
-    background-color: $white;
+    background-color: $white !important;
     color: $black;
     border-radius: 20px;
     font-family: $mainFont;
@@ -72,11 +72,12 @@ export default {
     .modal-default-button {
         width: 15px;
         height: 15px;
+
       img {
         width: 100%;
         height: 100%;
       }
-    }
+  }
 }
   .basic-popUp-content {
     form {

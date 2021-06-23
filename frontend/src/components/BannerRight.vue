@@ -11,12 +11,12 @@
       <div class="event">
         <div class="dateEvent">10 nov</div>
         <div class="titreEvent">Manif Ford</div>
-        <div class="decompteEventText"><span class="contourEventDecompte">J-4</span></div>
+        <div class="decompteEventText"><span class="contourEventDecompte">J-20</span></div>
       </div>
       <div class="event">
         <div class="dateEvent">19 nov</div>
         <div class="titreEvent">Expo Ferrari</div>
-        <div class="decompteEventText"><span class="contourEventDecompte">J-4</span></div>
+        <div class="decompteEventText"><span class="contourEventDecompte">J-29</span></div>
       </div>
     </div>
     <div class="titreBandeau">Mes groupes</div>
@@ -28,11 +28,11 @@
       </div>
       <div class="groupe">
         <img class="imgGroupe">
-        <p class="titreGrp">Green Bentley</p>
+        <p class="titreGrp">Maserati</p>
       </div>
       <div class="groupe">
         <img class="imgGroupe">
-        <p class="titreGrp">Green Bentley</p>
+        <p class="titreGrp">Fast car</p>
       </div>
     </div>
   </div>
@@ -132,11 +132,11 @@
     }
 
     .titreGrp {
-      width: 60%;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
+      padding-left: 13px;
 
       &:hover {
         color: $primary;

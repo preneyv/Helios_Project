@@ -26,7 +26,8 @@ const routes = [
     {
       path: '/fil-actu',
       name: 'filActu',
-      component: NewsFeed
+      component: NewsFeed,
+      beforeEnter: guard
       // component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
     },
     {

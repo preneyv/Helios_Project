@@ -15,38 +15,45 @@
             <tr>
                 <td>Login<br><input type="text" name="login" v-model="userInfo.pseudo"></td>       
             </tr>
-            <tr>
-                <td>Mot de passe<br><input type="password" name="password"></td>
-            </tr>
         </table>
 
         <div class="buttonModif">
-            <button>Modifier</button>
+            <button  :disabled="canUpdate" @click="updateUserInfos">Modifier</button>
         </div>
     </div>
 </template>
 
 <script>
+
+import { watchEffect, ref, defineComponent } from "vue";
 import moment from 'moment';
 import {getUserInfos} from '@/utils/utils.js'
+//import {updateUser} from "@/services/user.js"
 
-export default {
-  
-  data() {
-    return {
-      userInfo: getUserInfos()
-    }
+
+export default defineComponent({
+
+  setup() {
+    const userInfo = ref(getUserInfos())
+    let canUpdate = ref(false)
+    watchEffect(() => {
+      console.log(userInfo)
+      canUpdate = true
+    })
+
+    return { userInfo, canUpdate}
   },
-  computed: {
+  methods: {
     formatDate(date) {
               let formatDate = moment(date).format("DD/MM/YY");
               return formatDate;
     },
-  },
-  methods: {
-    
+    updateUserInfos() {
+        console.log("this.userInfo")
+        //updateUser().then(res => console.log(res))
+    }
   }
-}
+})
 </script>
 
 <style lang="scss">

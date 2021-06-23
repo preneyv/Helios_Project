@@ -3,7 +3,6 @@
    <ul class="nav nav-tabs">
     <li v-for="tab in tabs" :key="tab" :class="'nav-item-' + tab" class="nav-item">
       <a class="nav-link" :class="{active: tab === selected }" @click="setTab(tab)"></a> 
-      <!-- {{ tab }} -->
     </li>      
   </ul>
   <slot></slot>

@@ -269,7 +269,7 @@ h1 {
 }
 
 #calendar {
-  width: 80%;
+  width: 100%;
   margin: 0px auto;
   padding: 10px;
   padding-top: 30px;

@@ -28,8 +28,8 @@ Coté Frontend :
 - Puis saisissez la commande ```npm run serve``` ou ```yarn serve```.
 
 Coté Backend :
-- Rendez-vous dans le dossier **backend/src** avec la commande ```cd backend/src```
-- Puis saisissez la commande ```node index.js``` ou ```yarn serve```.
+- Rendez-vous dans le dossier **backend** avec la commande ```cd backend```
+- Puis saisissez la commande ```npm run start```.
 
 #  Technos utilisées
 

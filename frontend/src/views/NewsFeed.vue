@@ -75,7 +75,11 @@
                 </form>
             </template>
         </PopUp>
-        <PopUp v-if="actionSuccess" headTitle="Post ajouté avec succès" :actionButton="() => actionSuccess = false "></PopUp>
+        <PopUp v-if="actionSuccess" headTitle="Post ajouté avec succès" class="popUpSucess" v-bind:class = "[showModalPostSucess ? 'no':'yes']" :actionButton="() => actionSuccess = false ">
+             <template v-slot:header>
+                <button class="modal-default-button" @click="closeModalSucess"><img :src="require('@/assets/cancel.svg')" alt="fermer la pop up"></button>
+            </template> 
+        </PopUp>
         <div class="actus">
             <ul v-if="currentStateToggle" id="posts">
                 <li class="post" v-for="post in getPosts" :key="post.id">
@@ -110,6 +114,7 @@ export default {
             currentStateToggle: true,
             showModalPost: false,
             showModalEvent: false,
+            showModalPostSucess: false,
             formData:{},
             errors: [],
             textButton: "Que souhaitez-vous partager aujourd'hui ?",
@@ -184,6 +189,13 @@ export default {
             this.errors = []
         },
 
+        closeModalSucess() {
+            console.log(this.showModalPostSucess);
+            this.showModalPostSucess = false;
+             console.log(this.showModalPostSucess);
+            
+        },
+
         updateFormData(e) {
             e.target.type ===  "file" ? this.formData[e.target.id] = e.target.files[0] : this.formData[e.target.id] = e.target.value      
         },
@@ -225,7 +237,8 @@ export default {
         */
         handleSuccess(res, type) {
             this.closeModal(type)
-            this.actionSuccess = true
+            this.actionSuccess = true;
+              this.showModalPostSucess = true;
             let newPost = res.data;
             this.listPost = [newPost, ...this.listPost]
         },
@@ -309,6 +322,40 @@ export default {
         color: $white;
         margin: 25px 0;
         border-radius: 20px;
+    }
+
+    //Pop up sucess creation post
+    .popUpSucess {
+        height: 12%;
+        background-color: $primary !important;
+        color: $white;
+        padding: 0 !important;
+
+        .basic-popUp-head {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+
+            h2 {
+                font-size: 20px;
+                display: flex;
+                align-items: center;
+                padding: 20px 0 !important;
+            }
+        }
+
+        .basic-popUp-footer {
+            display: none;
+        }
+    }
+
+    .popUpSucess.yes {
+        display: none;
+    }
+
+    .name-file {
+        color: $black;
+        padding-top: 15px;
     }
 
 </style>

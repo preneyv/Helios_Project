@@ -3,7 +3,12 @@ body {
     height: 100%;
 }
 
-.clickable {
+#app {
+    width: 100%;
+    height: 100%;
+    display: inline-flex;
+  }
+  .clickable {
     &:hover {
         cursor: pointer;
     }

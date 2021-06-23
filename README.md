@@ -5,8 +5,6 @@
 </h1>
 </div>
 
-[![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com) 
-
 Cette application vise à réunir des passionnés de belles voitures au sein d'un tout nouveau **réseau social** : Hélios. Seuls les membres inscrits y ont accès et peuvent partager avec les autres des contenus tels que des photos, des informations et des événements automobiles. Ils peuvent visualiser un post, l'aimer et/ou le commenter. 
 
 # ⚙ Installation

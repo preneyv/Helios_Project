@@ -57,12 +57,12 @@ Principales Librairies Backend :
 Cette page permet à l'utilisateur connecté d'interragir avec tous les posts et événements auxquels il a accès dernièrement mis en ligne.  
 
 Dans la page du fil d'actualité, l'utilisateur peut :
-* Consulter les posts
-* Aimer des posts
-* Commencer et aimer des posts
-* Créer un nouveau post
-* Test
-* Test
+* Consulter les posts auxquels il a accès.
+* Aimer des posts auxquels il a accès.
+* Commenter et aimer des posts auxquels il a accès.
+* Créer un nouveau post avec ou sans image et le partager.
+* Créer un nouvel événement et choisir à qui le partager.
+* Voir les événements organisés.
 
 # 📖  Fonctionnalités de la page Profil
 Cette page permet de lalalala.

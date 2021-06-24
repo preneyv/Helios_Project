@@ -28,7 +28,7 @@ export default {
 
   .basic-popUp {
       position: absolute;
-      height: 85%;
+      height: 87%;
       width: 50vw;
       left: 0;
       bottom: 0;
@@ -60,7 +60,8 @@ export default {
         font-size: 24px;
         text-align: center;
         font-weight: 500;
-         padding: 30px 0 25px 0;
+        padding: 30px 0 25px 0;
+        color: $black;
     }
 
     button {

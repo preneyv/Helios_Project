@@ -48,6 +48,7 @@ Principales Librairies Backend :
 * [ExpressJs](https://expressjs.com/fr/) - Librairie permettant de mettre en place un serveur node simple, rapide et fonctionnel.
 * [Mongoose](https://mongoosejs.com/) - Librairie de gestion de base de données NoSQL. 
 * [JsonWebToken](https://www.npmjs.com/package/jsonwebtoken) - Librairie de générateur de tokens pour l'authentification.
+* [Googleapis](https://www.npmjs.com/package/googleapis) - Librairie permettant l'utilisation de l'api google drive
 
 # Pages du site
 * **Page de connexion/inscription**

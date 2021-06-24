@@ -4,3 +4,7 @@ export const guard = (to, from, next) => {
     else
         next()
 }
+
+export const notFoundAction = (to, from, next) => {
+    next('/fil-actu')
+}

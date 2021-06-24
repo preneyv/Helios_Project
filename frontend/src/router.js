@@ -5,7 +5,7 @@ import NewsFeed from './views/NewsFeed.vue'
 import MyProfil from './views/MyProfil.vue'
 import Agenda from './views/Agenda.vue'
 
-import {guard} from "./guard.js"
+import {guard, notFoundAction} from "./guard.js"
 
 
 const routes = [
@@ -26,7 +26,8 @@ const routes = [
     {
       path: '/fil-actu',
       name: 'filActu',
-      component: NewsFeed
+      component: NewsFeed,
+      beforeEnter: guard
       // component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
     },
     {
@@ -42,7 +43,12 @@ const routes = [
       component: Agenda,
       beforeEnter: guard
       // component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
-    }
+    },
+    {
+      path: "/:catchAll(.*)",
+      name: "PageNotFound",
+      beforeEnter: notFoundAction
+    },
 
   ]
 

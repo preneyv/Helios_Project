@@ -5,6 +5,6 @@ const router = Router()
 // Route qui permettent de gérer les infos utilisateurs
 //  ROUTES /api/helios/user
 router.get("/:id", getOneById)
-router.put("/:id", updateUser)
+router.put("/", updateUser)
 
 export default router
